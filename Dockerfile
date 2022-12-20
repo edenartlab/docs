@@ -1,4 +1,4 @@
-FROM awesometic/docusaurus as builder
+FROM node:19 as builder
 
 WORKDIR /docusaurus
 COPY . .
@@ -7,6 +7,8 @@ RUN yarn
 RUN yarn build
 
 ENV NODE_ENV production
+
+FROM nginx:1.14-alpine
 
 COPY --from=builder /docusaurus/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
