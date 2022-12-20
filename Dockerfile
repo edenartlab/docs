@@ -8,7 +8,7 @@ RUN yarn build
 
 ENV NODE_ENV production
 
-EXPOSE 8000
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 
