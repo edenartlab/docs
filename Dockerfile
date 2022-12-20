@@ -1,6 +1,6 @@
 FROM awesometic/docusaurus as builder
 
-WORKDIR /app
+WORKDIR /docusaurus
 COPY . .
 
 RUN yarn
