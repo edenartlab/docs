@@ -17,6 +17,6 @@ Despite the prevalence of open-source models, much effort is duplicated reinvent
 Eden improves this by fostering a commons for the generative AI space. This is primarily accomplished by:
 
 * an open-source full-stack platform for deploying your own custom model servers and embedding them in websites and applications. [Read more about our architecture](/docs/overview/architecture).
-* a decentralized, web3-based user account model. [Read more about the user model](/docs/overview/users).
+* a decentralized, web3-based user account model. [Read more about the user model](/docs/features/users.md).
 * an open, public, and decentralized provenance layer. [Read more about our provenance proposal](/docs/overview/provenance).
 
