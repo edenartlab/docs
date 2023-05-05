@@ -29,27 +29,17 @@ const config = {
 
   presets: [
     [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      '@docusaurus/preset-classic',
+      {
         docs: {
+          path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarCollapsible: false, 
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-      }),
+      },
     ],
   ],
 
@@ -63,25 +53,25 @@ const config = {
           src: 'img/eden.png',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Intro',
-          },
-          {
-            type: 'doc',
-            docId: 'overview/architecture',
-            position: 'left',
-            label: 'Overvew',
-          },
-          {
-            type: 'doc',
-            docId: 'api/creation',
-            position: 'left',
-            label: 'API',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          // {
+          //   type: 'doc',
+          //   docId: 'intro',
+          //   position: 'left',
+          //   label: 'Intro',
+          // },
+          // {
+          //   type: 'doc',
+          //   docId: 'overview/architecture',
+          //   position: 'left',
+          //   label: 'Overvew',
+          // },
+          // {
+          //   type: 'doc',
+          //   docId: 'technical/creation',
+          //   position: 'left',
+          //   label: 'Technical',
+          // },
+          // {to: '/blog', label: 'Blog', position: 'left'},
           {to: 'https://eden.art', label: 'Home', position: 'left'},
           {
             href: 'https://github.com/abraham-ai',
@@ -96,17 +86,17 @@ const config = {
           {
             title: 'Links',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
+              // {
+              //   label: 'Blog',
+              //   to: '/blog',
+              // },
               {
                 label: 'Garden',
                 to: 'https://garden.eden.art',
               },
               {
                 label: 'App',
-                to: 'https://examples.eden.art',
+                to: 'https://app.eden.art',
               },
               {
                 label: 'Home',
@@ -136,7 +126,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/github.com/abraham-ai',
               },
             ],
           },
