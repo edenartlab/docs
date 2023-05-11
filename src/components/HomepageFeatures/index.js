@@ -19,21 +19,21 @@ const FeatureList = [
       </>
     ),
   },
-  {
-    title: 'API Reference',
-    img: require('@site/static/img/eden.png').default,
-    description: (
-      <>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/overview/intro">
-            API Reference
-          </Link>
-        </div>
-      </>
-    ),
-  },
+  // {
+  //   title: 'API Reference',
+  //   img: require('@site/static/img/eden.png').default,
+  //   description: (
+  //     <>
+  //       <div className={styles.buttons}>
+  //         <Link
+  //           className="button button--secondary button--lg"
+  //           to="/docs/overview/intro">
+  //           API Reference
+  //         </Link>
+  //       </div>
+  //     </>
+  //   ),
+  // },
 ];
 
 function Feature({img, title, description}) {
