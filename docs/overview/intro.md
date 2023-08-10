@@ -5,19 +5,26 @@ sidebar_position: 1
 # Introduction
 
 :::tip
-Welcome to Eden! These docs are a work-in-progress. If you have any questions, please [join our Discord](https://discord.gg/4dSYwDT).
+Welcome to Eden! If you have any questions, please [join our Discord](https://discord.gg/4dSYwDT).
 :::tip
 
-Eden aims to solve the problem of coordination in generative AI.
+Eden's [mission](/docs/overview/mission) is to make expressive generative AI tools which are accessible to creators, and to foster a fun, social, and collaborative ecosystem around AI art.
 
-With the rise of generative models that produce realistic text, images, video, and sound, a new artform and industry has formed atop a relatively small cache of open-source models, datasets, code, and compute resources. Many tools, services, and APIs have emerged to support users of these resources and meet the needs of this ecosystem.
+Our flagship product is a social network that enables creators to generate, share, and remix art, train custom models, and deploy interactive agents and chatbots. We also provide a [convenient SDK](/docs/sdk/quickstart) that allows developers to build their own apps on top of Eden.
 
-Despite the prevalence of open-source models and tooling, much effort is duplicated reinventing solutions to common problems such as data acquisition, training, customizing, deployment, and serving models in a reliable and efficient way. Most of these services are proprietary, creating platform risk for users and application developers.
+Eden was founded by a team of artists, creative technologists, and longtime machine learners. We are [committed to open source](https://github.com/abraham-ai), and a highly community-driven project, with numerous ways for creators and developers to plug in and contribute.
 
-Eden improves this by fostering a commons for the generative AI space. This is primarily accomplished by:
+# Overview
 
-* an open-source full-stack platform for deploying your own custom model servers and embedding them in websites and applications. [Read more about our architecture](/docs/overview/architecture).
-* a decentralized, web3-based user account model. [Read more about the user model](/docs/overview/users).
-* an open, public, and decentralized provenance layer. [Read more about our provenance proposal](/docs/overview/provenance).
+These docs are divided into two sections. 
 
-The goal of the Eden project is to bootstrap a new generation of sovereign applications that are mutually composable and interoperable.
+The first section provides a set of guides for working with Eden as a creator, including:
+
+- [How to use the creation tool](/docs/guides/creation) to make creations in the form of images, videos, and text.
+- [How to train custom models or "concepts"](/docs/guides/concepts) in order to tailor the generators towards a specific domain, style, genre, or character.
+- [How to deploy your own characters](/docs/guides/characters), autonomous creative agents with whom you can chat with, assign artistic tasks to, or challenge other characters to debates or games.
+
+The second section is a technical reference containing:
+
+- [An introduction to the Eden API and SDK](/docs/sdk/quickstart), a JavaScript library that allows you to interact with Eden programatically and build custom applications with it.
+- [A guide for how to host custom models or code](/docs/sdk/generators) on Eden.

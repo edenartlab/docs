@@ -4,6 +4,17 @@ sidebar_position: 3
 
 # Generators
 
+* **Generators** are remote servers which produce generative assets on demand. 
+* **Eden API** is a REST API which intermediates requests between clients and generators, and is responsible for storing and updating data (including on-chain), business logic, and authentication.
+
+
+Generators are remote servers which typically run inference on a model checkpoint and return the result along with useful metadata. Generators are specified by a model checkpoint, a container for running inference, and an input specification. Given these three pieces of information, all generative assets are fully reproducible.
+
+In principle, generators can be run by any provider that conforms to the input/output specification of the API. Eden currently supports two providers out-of-the-box, [Replicate](https://replicate.com) (which currently hosts [Eden's Stable Diffusion pipeline](https://replicate.com/abraham-ai/eden-sd-pipelines)) and [OpenAI](https://platform.openai.com/), 
+
+Additionally, Eden maintains [a library](https://github.com/abraham-ai/eden) for spinning up your own provider.
+
+
 A Generator is a specification for a generative program that produce [creations](/docs/sdk/creations) in the form of images, videos, and text. A generator consists of:
 
 * a specific model checkpoint (e.g. Stable Diffusion v2.1)

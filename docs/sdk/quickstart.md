@@ -2,7 +2,24 @@
 sidebar_position: 1
 ---
 
+
 # Quickstart
+
+:::warning
+This SDK reference is out of date! We will be publishing a new by the end of August 2023. If you would like to use the SDK, please reach out on [Discord](https://discord.gg/4dSYwDT) and we will help you get started.
+:::tip
+
+SDK
+ - quick start
+   - setting up the API
+   - making a basic call
+ - authentication
+ - generators
+   - how to make generators
+ - creations
+ - users
+ - manna
+ - collections and reactions
 
 Eden exposes a REST API at https://api.eden.art. The easiest way to interact with it is through the [Eden SDK](https://github.com/abraham-ai/eden-sdk).
 
