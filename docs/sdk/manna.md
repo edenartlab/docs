@@ -4,10 +4,6 @@ sidebar_position: 4
 
 # Manna
 
-:::tip
-See the [overview section](/docs/overview/manna) for more information about what Manna is.
-:::tip
-
 Users must expend Manna to make Creations.
 
 ## Get Manna Balance

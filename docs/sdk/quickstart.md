@@ -66,4 +66,4 @@ const apiSecret = 'YOUR_API_SECRET';
 eden.loginApi(apiKey, apiSecret);
 ```
 
-In the [next section](/docs/sdk/creations.md), we will walk through the process of requesting creations.
+In the [next section](/docs/sdk/creations), we will walk through the process of requesting creations.
