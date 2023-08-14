@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+sidebar_class_name: hidden
 ---
 
 # Generators
@@ -7,6 +8,8 @@ sidebar_position: 3
 * **Generators** are remote servers which produce generative assets on demand. 
 * **Eden API** is a REST API which intermediates requests between clients and generators, and is responsible for storing and updating data (including on-chain), business logic, and authentication.
 
+ - generators
+   - how to make generators
 
 Generators are remote servers which typically run inference on a model checkpoint and return the result along with useful metadata. Generators are specified by a model checkpoint, a container for running inference, and an input specification. Given these three pieces of information, all generative assets are fully reproducible.
 

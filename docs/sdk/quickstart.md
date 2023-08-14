@@ -2,68 +2,64 @@
 sidebar_position: 1
 ---
 
-
 # Quickstart
 
-:::warning
-This SDK reference is out of date! We will be publishing a new by the end of August 2023. If you would like to use the SDK, please reach out on [Discord](https://discord.gg/4dSYwDT) and we will help you get started.
-:::tip
+The Eden SDK is a JavaScript library for interacting with the Eden API. The SDK allows you to make creation requests programatically and integrate Eden-facing widgets into your own applications. It is available as an npm package, with a commonjs version and Python SDK also planned for the near future.
 
-SDK
- - quick start
-   - setting up the API
-   - making a basic call
- - authentication
- - generators
-   - how to make generators
- - creations
- - users
- - manna
- - collections and reactions
+## Get API credentials
 
-Eden exposes a REST API at https://api.eden.art. The easiest way to interact with it is through the [Eden SDK](https://github.com/abraham-ai/eden-sdk).
-
-:::info
-Eden is looking for developers to help us improve the API and SDK. In particular, we are looking for help with:
-
-* Generating Swagger docs and UI for the API
-* Creating commonjs version of the SDK for use on client-side.
-* Making a package for Eden hooks and components.
-
-Please reach out on [Discord](https://discord.gg/4dSYwDT) if you are interested in helping out!
-:::info
+First go to [Tools](https://app.eden.art/tools), and issue yourself a new API key and secret.
 
 ## Installation
 
-To install the SDK with npm or yarn:
+You can install the SDK with npm, yarn, or pnpm:
 
 ```bash
-npm install eden-sdk
+npm install @edenlabs/eden-sdk
 ```
 
-or 
+## Make a creation
 
-```bash
-yarn add eden-sdk`
-```
+A full list of generators and their config parameters can be found in the [creation tool](https://app.eden.art/create).
 
-In Node, you can import the SDK with:
+All requests to Eden go through the `EdenClient` class. To make a task request, target a specific generator (e.g. "create") with a configuration object. For example:
 
 ```js
-import {EdenClient} from "eden-sdk";
-const eden = new EdenClient();
+import {EdenClient} from "@edenlabs/eden-sdk";
+
+const eden = new EdenClient({
+  apiKey: "YOUR_EDEN_API_KEY",
+  apiSecret: "YOUR_EDEN_API_SECRET",
+});
+
+const config = {
+  text_input: "An apple tree in a field",
+};
+
+const taskResult = await eden.tasks.create({
+  generatorName: "create", 
+  config: config
+});
 ```
 
-## Authentication
-
-All write requests to the API require authentication. To get an API key and secret, go to [the app](https://app.eden.art), navigate to the Account tab, and create a new API key and secret.
-
-To authenticate with the API, use the `loginApi` method:
+The `create` method is asynchronous and will immediately return a `taskResult` object with an ID for that task (or an error message). If you want to wait for the task to complete, you can poll the task until it is done, like so:
 
 ```js
-const apiKey = 'YOUR_API_KEY';
-const apiSecret = 'YOUR_API_SECRET';
-eden.loginApi(apiKey, apiSecret);
-```
+const pollForTask = async function(pollingInterval, taskId) {
+  let finished = false;
+  while (!finished) {
+    const taskResult = await eden.tasks.get({taskId: taskId});
+    if (taskResult.task.status == "faled") {
+      throw new Error('Failed')
+    }
+    else if (taskResult.task.status == "completed") {
+      finished = true;
+      const url = taskResult.task.output.files[0];
+      return url;
+    }
+    await new Promise(resolve => setTimeout(resolve, pollingInterval))
+  }
+}
 
-In the [next section](/docs/sdk/creations), we will walk through the process of requesting creations.
+const result = await pollForTask(5000, taskResult.taskId);
+```
