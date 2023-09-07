@@ -1,6 +1,7 @@
 # Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+Make sure you're running this with npm 20.5 as there's a compatibility issue between Docusaurus and later versions of npm.
 
 ### Installation
 
