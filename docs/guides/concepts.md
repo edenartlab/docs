@@ -69,7 +69,9 @@ The concept trainer is available at [https://app.eden.art/create/concepts](https
 
 <img src="https://minio.aws.abraham.fun/creations-stg/7310dc281868c547ab0c99290fbf8c440fe0eac88b8f6ae708ae98e5754c903d.png" width="600" />
 
-The three required parameters are:
+## Training parameters
+
+### Required parameters:
 
 * **Concept name**: The name of the concept. This can be used to refer to the concept in prompts. Names are not required to be unique and can be reused.
 * **Training images**: The images to use for training. You can upload image files (jpg, png, or webm), or you can upload zip files containing multiple images. You may upload up to 10 files, and each file must be below 100MB. From our experiments, the concept training actually works best if you dont have too many images. We recommend using 3-10 high quality and diverse images.
@@ -78,6 +80,8 @@ The three required parameters are:
 The trainer is designed to handle most cases well with the default settings, particularly in the case of concepts. Some concepts and  styles are more challenging to capture well and may require some trial and error adjusting the optional settings to achieve the right balance of diversity, accuracy, and promptability. To give some intuitions about how the advanced settings may affect the results, we describe them below. 
 
 However keep in mind that **the most important input parameter are the training images themselves**: if things dont look good, instead of spending hours fiddling with the advanced parameters, we highly recommend to first try training again with a different subset of your images (using default parameters).
+
+### Advanced parameters:
 
 * **Number of training steps**: This refers to how long to finetune the model with your dataset. More steps should lead to fitting your concept more accurately, but too much training may "overfit" your training data, leading the base model to "forget" much of its prior knowledge (prompting wont work well anymore) and produce visual artifacts.
 * **To randomly flip training imgs left/right**: This setting doubles the number of training samples by randomly flipping each image left/right. This should generally be on, unless the object you want to learn has a specific horizontal orientation which should not appear mirrored (for example text (LOGO's) or faces).
