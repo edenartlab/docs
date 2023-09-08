@@ -54,7 +54,7 @@ const pollForTask = async function(pollingInterval, taskId) {
     }
     else if (taskResult.task.status == "completed") {
       finished = true;
-      const url = taskResult.task.output.files[0];
+      const url = taskResult.task.creation.uri;
       return url;
     }
     await new Promise(resolve => setTimeout(resolve, pollingInterval))
@@ -63,3 +63,16 @@ const pollForTask = async function(pollingInterval, taskId) {
 
 const result = await pollForTask(5000, taskResult.taskId);
 ```
+
+## Manna
+
+To get your user's [Manna](/docs/overview/manna) balance, use:
+
+```js
+const manna = await eden.manna.balance();
+console.log(manna);
+```
+
+:::warning
+There is currently no way to retrieve the cost in Manna of a specific config or job requests. This is a high priority feature.
+:::warning
