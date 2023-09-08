@@ -19,7 +19,9 @@ Concepts are first trained by uploading example images to the [concept trainer](
 
 Concepts are a highly versatile and powerful creation tool. They can be used to capture a specific person's face or likeness, an animated character, or a complex object. They can also be more abstract, referring to a particular artistic style or genre.
 
-### Example: Faces
+Note: all the example images in this post were generated with the default trainer & generation settings!
+
+### Example: Face
 
 Generative models like Stable Diffusion are very good at generating realistic faces. However, the model obviously doesn't know what everyone looks like (unless you are very famous). To get around this, we can train a concept to learn a specific person's face.
 
@@ -29,29 +31,29 @@ After training, we can use the concept in a prompt to generate realistic and fig
 
 Faces are a popular and easy use case. It is possible to learn a face accurately from a single image, although two or three images are usually recommended to provide a bit of additional diversity.
 
-### Example: Character
+### Example: Concept
 
 <p align="center">
   <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_training_imgs.jpg" width="550" />
   <br />
-  Koji character training images
+  Kojii character training images
 </p>
 
-**Concepts** can also be used to model consistent objects or characters. The above images are professional renders of the character for our Koji project. This is a good example of a great training set since it contains: a single, consistent character with subtle variations in pose and appearance between every image. After training a new concept with name "koji" with mode 'concept' and default settings, we get a fully promptable Koji character, eg (see top image row):
-- a photo of <koji\> surfing a wave
-- <koji\> in a snowglobe
-- a low-poly artwork of <koji\>
-- a photo of <koji\> climbing mount Everest, alpinism
+**Concepts** can also be used to model consistent objects or characters. The above images are professional renders of the character for our Kojii project. This is a good example of a great training set since it contains: a single, consistent character with subtle variations in pose and appearance between every image. After training a new concept with name "kojii" with mode 'concept' and default settings, we get a fully promptable Koji character, eg (see top image row):
+- a photo of <kojii\> surfing a wave
+- <kojii\> in a snowglobe
+- a low-poly artwork of <kojii\>
+- a photo of <kojii\> climbing mount Everest, alpinism
 - etc ...
 
 
 <p align="center">
   <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_grid.jpg" width="1050" />
   <br />
-  Generated images with the koji concept
+  Generated images with the kojii concept
 </p>
 
-### Example: VJ Suave
+### Example: Style
 
 Concepts can also be used to model artistic styles. For example, the following training samples below are artworks originally created by [VJ Suave](https://vjsuave.com/).
 
@@ -61,7 +63,14 @@ Concepts can also be used to model artistic styles. For example, the following t
   Training images to learn the VJ Suave visual style
 </p>
 
-And the following are samples generated from the concept:
+And the following are samples are all generated from the concept:
+
+<p align="center">
+  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/suave_generated_imgs.jpg" width="1050" />
+  <br />
+  Generated images with the Suave style concept
+</p>
+
 
 # How to train a concept
 
