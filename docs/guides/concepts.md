@@ -81,7 +81,7 @@ Faces are a popular and easy use case. It is possible to learn a face accurately
   Kojii character training images
 </p>
 
-**Concepts** can also be used to model consistent objects or characters. The above images are professional renders of the character for our Kojii project. This is a good example of a great training set since it contains: a single, consistent character with subtle variations in pose and appearance between every image. After training a new concept with name "kojii" with mode 'concept' and default settings, we get a fully promptable Koji character, eg (see top image row):
+**Concepts** can also be used to model consistent objects or characters. The above images are professional renders of the character for our Kojii project. This is a good example of a great training set since it contains: a single, consistent character with subtle variations in pose and appearance between every image. After training a new concept with name "kojii" with mode 'concept' and default settings, we get a fully promptable Kojii character, eg (see top image row):
 - a photo of <kojii\> surfing a wave
 - <kojii\> in a snowglobe
 - a low-poly artwork of <kojii\>
