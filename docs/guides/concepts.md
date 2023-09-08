@@ -40,11 +40,29 @@ Once a concept has been trained, here's how to use it:
 ## Examples
 ### Example: Face
 
-Generative models like Stable Diffusion are very good at generating realistic faces. However, the model obviously doesn't know what everyone looks like (unless you are very famous). To get around this, we can train a concept to learn a specific person's face.
+Generative models like Stable Diffusion are great at generating realistic faces. However, the model obviously doesn't know what everyone looks like (unless you are very famous). To get around this, we can train a concept to learn a specific person's face.
+When training "face" concepts it is recommended to disable the random left/right flipping of training images (see more details below under **"advanced parameters"**).
 
-For example, these two training samples are of [Xander](https://twitter.com/xsteenbruggex).
+For example, the training samples below are of [Xander](https://twitter.com/xsteenbrugge).
+<p align="center">
+  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" width="550" />
+  <br />
+  Xander face training images. Notice how all imgs are HD, diverse and well cropped.
+</p>
 
-After training, we can use the concept in a prompt to generate realistic and figurative pictures of Xander.
+After training, we can use the concept <Xander\> in a prompt to generate realistic and figurative pictures:
+- <Xander\> as a character in a noir graphic novel
+- <Xander\> action figure
+- <Xander\> as a knight in shining armour
+- <Xander\> as the Mona Lisa
+- etc ...
+
+<p align="center">
+  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" width="1050" />
+  <br />
+  Generated images with the trained "face" concept
+</p>
+
 
 Faces are a popular and easy use case. It is possible to learn a face accurately from a single image, although two or three images are usually recommended to provide a bit of additional diversity.
 
