@@ -9,7 +9,9 @@ sidebar_position: 2
 2. Wait for training to finish (takes 5-10 mins)
 3. Go to the [creation tool](https://app.eden.art/create/creations) (/create, /interpolate or /real2real)
 4. Select your concept from the concept dropdown menu
-5. Trigger the concept by referring to it with <concept\> in your prompt text (not needed for styles and real2real).
+5. Trigger the concept by adding <concept\> in your prompt text (not needed for styles & real2real):  
+eg ***"a photo of <concept\> climbing a mountain"***
+6. If things dont look good, instead of messing with the settings, try changing your training images: they're the most important input variable!
 
 ## Introduction
 **Concepts** are custom characters, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
@@ -20,7 +22,16 @@ Concepts are first trained by uploading example images to the [concept trainer](
 
 Concepts are a highly versatile and powerful creation tool. They can be used to capture a specific person's face or likeness, an animated character, or a complex object. They can also be more abstract, referring to a particular artistic style or genre.
 
-## Training data
+## Training
+
+The concept trainer is available at [https://app.eden.art/create/concepts](https://app.eden.art/create/concepts). 
+
+<p align="center">
+  <img src="https://minio.aws.abraham.fun/creations-stg/7310dc281868c547ab0c99290fbf8c440fe0eac88b8f6ae708ae98e5754c903d.png" width="400" />
+  <br />
+</p>
+
+
 To train a good concept you need just a few (3-10 images is fine), but really good training images. Really good in this context means:
 - good resolution (at least 768x768 pixels is recommended)
 - diverse (it's better to have 5 very diverse images than 20 almost identical ones)
@@ -32,7 +43,7 @@ Once a concept has been trained, here's how to use it:
 1. Select your trained concept from the concept dropdown menu in the creation tool:
 
 <p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/create_with_concept.png" width="550" />
+  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/create_with_concept.png" width="400" />
   <br />
 </p>
 
@@ -113,13 +124,6 @@ The following are samples are all generated from the trained Suave concept (usin
   <br />
   Generated images with the Suave style concept
 </p>
-
-
-# How to train a concept
-
-The concept trainer is available at [https://app.eden.art/create/concepts](https://app.eden.art/create/concepts). 
-
-<img src="https://minio.aws.abraham.fun/creations-stg/7310dc281868c547ab0c99290fbf8c440fe0eac88b8f6ae708ae98e5754c903d.png" width="600" />
 
 ## Training parameters
 
