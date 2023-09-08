@@ -4,23 +4,40 @@ sidebar_position: 2
 
 # Concepts
 
-**TLDR**
+### **TLDR**
 1. Train a new concept by uploading images to the [concept trainer](https://app.eden.art/create/concepts) and picking a training mode.
 2. Wait for training to finish (takes 5-10 mins)
 3. Go to the [creation tool](https://app.eden.art/create/creations) (/create, /interpolate or /real2real)
 4. Select your concept from the concept dropdown menu
 5. Trigger the concept by referring to it with <concept\> in your prompt text (not needed for styles and real2real).
 
-**Concepts** are custom characters, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, like a person named 'Barack Obama' or a style like 'cubism'.
+## Introduction
+**Concepts** are custom characters, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
 
-Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). After training finishes (takes about 5 mins), the concept becomes available to use in the main creation tool and is compatible with single image creates, interpolations and real2real. Note that a concept has to be:
+Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). After training finishes (this takes about 5 mins), the concept becomes available to use in the main creation tool and is compatible with single image creates, interpolations and real2real. Note that a concept has to be:
 - activated in the creation by selecting the corresponding name from the concept dropdown menu
 - triggered by using <concept\> to refer to it in the prompt text.
 
 Concepts are a highly versatile and powerful creation tool. They can be used to capture a specific person's face or likeness, an animated character, or a complex object. They can also be more abstract, referring to a particular artistic style or genre.
 
-Note: all the example images in this post were generated with the default trainer & generation settings!
+## Generating with concepts:
 
+Once a concept has been trained, here's how to use it:
+1. Select your trained concept from the concept dropdown menu in the creation tool:
+
+<p align="center">
+  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/create_with_concept.png" width="550" />
+  <br />
+</p>
+
+2. If the concept was trained with "style" mode you can prompt as normal. If the concept was trained with "face" or "concept" mode, you have to trigger your concept/face in the prompt. There are two options to do this:
+   - You can either trigger your concept by referring to it as <concept\> in your prompt text, eg ***"a photo of <concept\> climbing a mountain"***
+   - Or you can use the actual name of your trained concept. Eg if my concept name was "Banny" I could prompt-trigger it like so: ***"a photo of <Banny\> climbing a mountain"***
+
+
+- all the example images in this post were generated with the default trainer & generation settings!
+
+## Examples
 ### Example: Face
 
 Generative models like Stable Diffusion are very good at generating realistic faces. However, the model obviously doesn't know what everyone looks like (unless you are very famous). To get around this, we can train a concept to learn a specific person's face.
@@ -63,7 +80,8 @@ Concepts can also be used to model artistic styles. For example, the following t
   Training images to learn the VJ Suave visual style
 </p>
 
-And the following are samples are all generated from the concept:
+You can then train a concept using the "style" mode, and generate with it in /create. For style concepts, you dont even have to trigger the concept in any way, just prompt like you normally would.
+The following are samples are all generated from the trained Suave concept (using default settings for both the trainer and creations):
 
 <p align="center">
   <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/suave_generated_imgs.jpg" width="1050" />
@@ -111,5 +129,5 @@ However keep in mind that **the most important input parameter are the training 
 
 :::warning
 - When uploading face images, it's usually a good idea to crop the images so the face fills a large fraction of the total image.
-- We're used to "more data is always better", but for concept training this usually isn't true: 5 diverse, HD images are usually better than 20 low-quality images.
+- We're used to "more data is always better", but for concept training this usually isn't true: 5 diverse, HD images are usually better than 20 low-quality or similar images.
 :::warning
