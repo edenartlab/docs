@@ -20,6 +20,12 @@ Concepts are first trained by uploading example images to the [concept trainer](
 
 Concepts are a highly versatile and powerful creation tool. They can be used to capture a specific person's face or likeness, an animated character, or a complex object. They can also be more abstract, referring to a particular artistic style or genre.
 
+## Training data
+To train a good concept you need just a few (3-10 images is fine), but really good training images. Really good in this context means:
+- good resolution (at least 768x768 pixels is recommended)
+- diverse (it's better to have 5 very diverse images than 20 almost identical ones)
+- well cropped, clearly showing the concept you're trying to learn
+
 ## Generating with concepts:
 
 Once a concept has been trained, here's how to use it:
