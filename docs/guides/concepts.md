@@ -24,7 +24,7 @@ Concepts are a highly versatile and powerful creation tool. They can be used to 
 
 ## Training
 
-The concept trainer is available at [https://app.eden.art/create/concepts](https://app.eden.art/create/concepts). 
+The concept trainer is available at [https://app.eden.art/create/concepts](https://app.eden.art/create/concepts) and is a rework of the great LORA trainer created by [@cloneofsimo](https://twitter.com/cloneofsimo) over [here](https://github.com/replicate/cog-sdxl).
 
 <p align="center">
   <img src="https://minio.aws.abraham.fun/creations-stg/7310dc281868c547ab0c99290fbf8c440fe0eac88b8f6ae708ae98e5754c903d.png" width="400" />
