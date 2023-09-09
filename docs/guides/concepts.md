@@ -11,7 +11,7 @@ sidebar_position: 2
 4. Select your concept from the concept dropdown menu
 5. Trigger the concept by adding <concept\> in your prompt text (not needed for styles & real2real):  
 eg ***"a photo of <concept\> climbing a mountain"***
-6. If things dont look good, instead of messing with the settings, try changing your training images: they're the most important input variable!
+6. **If things dont look good, instead of messing with the settings, try changing your training images: they're the most important input variable!**
 
 ## Introduction
 **Concepts** are custom characters, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
@@ -36,6 +36,8 @@ To train a good concept you need just a few (3-10 images is fine), but really go
 - good resolution (at least 768x768 pixels is recommended)
 - diverse (it's better to have 5 very diverse images than 20 almost identical ones)
 - well cropped, clearly showing the concept you're trying to learn
+
+The training images are the most important part of concept training, if things dont look good, instead of changing the settings, just try a different (sub-) set of training images!
 
 ## Generating with concepts:
 
