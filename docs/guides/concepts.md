@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Concepts
 
-### **TLDR**
+### **Summary**
 1. Train a new concept by uploading images to the [concept trainer](https://app.eden.art/create/concepts) and picking a training mode.
 2. Wait for training to finish (takes 5-10 mins)
 3. Go to the [creation tool](https://app.eden.art/create/creations) (/create, /interpolate or /real2real)
@@ -14,7 +14,7 @@ eg ***"a photo of <concept\> climbing a mountain"***
 6. **If things dont look good, instead of messing with the settings, try changing your training images: they're the most important input variable!**
 
 ## Introduction
-**Concepts** are custom characters, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
+**Concepts** are custom characters, objects, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
 
 Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). After training finishes (this takes about 5 mins), the concept becomes available to use in the main creation tool and is compatible with single image creates, interpolations and real2real. Note that a concept has to be:
 - activated in the creation by selecting the corresponding name from the concept dropdown menu
@@ -58,7 +58,7 @@ Once a concept has been trained, here's how to use it:
 Note: all the example images in this post were generated with the default trainer & generation settings!
 
 ## Examples
-### Example: Face
+### Example: face-mode
 
 Generative models like Stable Diffusion are great at generating realistic faces. However, the model obviously doesn't know what everyone looks like (unless you are very famous). To get around this, we can train a concept to learn a specific person's face.
 When training "face" concepts it is recommended to disable the random left/right flipping of training images (see more details below under **"advanced parameters"**).
@@ -86,7 +86,7 @@ After training, we can use the concept <Xander\> in a prompt to generate realist
 
 Faces are a popular and easy use case. It is possible to learn a face accurately from a single image, although two or three images are usually recommended to provide a bit of additional diversity.
 
-### Example: Concept
+### Example: concept-mode
 
 <p align="center">
   <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_training_imgs.jpg" width="550" />
@@ -108,7 +108,7 @@ Faces are a popular and easy use case. It is possible to learn a face accurately
   Generated images with the kojii concept
 </p>
 
-### Example: Style
+### Example: style-mode
 
 Concepts can also be used to model artistic styles. For example, the following training samples below are artworks originally created by [VJ Suave](https://vjsuave.com/).
 
