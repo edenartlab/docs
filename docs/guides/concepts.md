@@ -50,8 +50,10 @@ Once a concept has been trained, here's how to use it:
 </p>
 
 2. If the concept was trained with "style" mode you can prompt as normal. If the concept was trained with "face" or "concept" mode, you have to trigger your concept/face in the prompt. There are two options to do this:
-   - You can either trigger your concept by referring to it as <concept\> in your prompt text, eg ***"a photo of <concept\> climbing a mountain"***
-   - Or you can use the actual name of your trained concept. Eg if my concept name was "Banny" I could prompt-trigger it like so: ***"a photo of <Banny\> climbing a mountain"***
+   - You can either trigger your concept by referring to it as <concept\> in your prompt text, eg  
+   ***"a photo of <concept\> climbing a mountain"***
+   - Or you can use the actual name of your trained concept. Eg if my concept name was "Banny" I could prompt-trigger it like so:  
+   ***"a photo of <Banny\> climbing a mountain"***
 
 3. When generating you can adjust the concept scale, which will control how strongly the concept is being used in the generation. 0.8 is usually perfect (1.0 usually doesn't work so well!), but in some cases, when the concept is slightly overfit, you can try to lower this value to get more promptability.
 
