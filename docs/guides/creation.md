@@ -11,6 +11,7 @@ sidebar_position: 1
 </p>
 
 ## Overview
+If you havent already, go to the **[Eden App](https://app.eden.art/)** and login with your email to get started!
 Before diving into each of Edens endpoints separately, lets do a quick overview of what each one does:
 
 #### Image endpoints:
@@ -28,7 +29,7 @@ Most of these endpoints are fairly easy to use with just the default settings, b
 
 ## 1. /create
 
-Create is our *text-to-image* endpoint, powered by StableDiffusion XL. Set your desired image resolution, enter your prompt and hit create, simple as that!
+**[Create](https://app.eden.art/create/creations)** is our *text-to-image* endpoint, powered by StableDiffusion XL. Set your desired image resolution, enter your prompt and hit create, simple as that!
 
 <p style={{ textAlign: 'center' }}>
   <img 
@@ -68,6 +69,9 @@ Every one of our endpoints has a dropdown *'Show optional settings'* that offers
 - ***'seed'*** random seed for reproducibility. Fixing the seed can make it easier to determine the precise effect of a certain parameter while keeping everything else fixed.
 
 ## 2. /controlnet (TODO)
+Controlnet allows you to adopt the shape / contours of a guidance image into your creation, but still apply the style and colors with a text prompt.
+
+Example: https://app.eden.art/creators/xander?creationId=64d6a125f02b40c9e545d537
 
 ## 3. /interpolate
 Interpolate lets you create smooth interpolation video’s by entering a sequence of prompts. This allows you to create simple, linear video narratives and is fully compatible with **[custom concepts](https://docs.eden.art/docs/guides/concepts)**. Here’s a simple videoloop between the following prompts:
@@ -162,7 +166,7 @@ Blend takes two input images and will produce a blended / mixed version of them 
 
 ## 7. /upscale
 Upscale takes a single input image and will produce an upscaled version of it. The parameters are:
-- ***'Init image strength'*** how strongly to use the original image. Lower values give the upscaler more freedom to create new details, often leading to a sharper final image, but will also deviate more from the original. Recommended values are 0.5-0.7
+- ***'Init image strength'*** how strongly to use the original image. Lower values give the upscaler more freedom to create new details, often leading to a sharper final image, but will also deviate more from the original. Recommended values are 0.3-0.7
 
 :::note
 TBD
