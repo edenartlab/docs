@@ -43,7 +43,7 @@ If you’re the first person to trigger a creation job in a while, it is possibl
 ### Optional settings
 Every one of our endpoints has a dropdown *'Show optional settings'* that offers a ton of additional features. Lets go over them:
 
-- ***'Width'*** and ***'Height'*** set the amount of pixels and aspect ratio of your creation. Note that if you are using init images or doing real2real, the generator will automatically adopt the aspect ratio of those and try to distribute the total amount of pixels 
+- ***'Width'*** and ***'Height'*** set the amount of pixels and aspect ratio of your creation. Note that if you are using init images or doing real2real, the generator will automatically adopt the aspect ratio of your inputs and distribute the total amount of pixels (width x heigth) over that aspect ratio.
 - ***'Upscale Factor'*** wil upscale the resolution of your generated image by the given factor after generating it with SDXL. If you want very HD images, upscaling is generally better than simply rendering at higher starting resolutions (width and height). This is because the model is trained for a specific resolution and going too far beyond that can create repeating artifacts in the image, but feel free to experiment here!
 - ***'concept'*** and ***'concept-scale'*** allow you to activate a trained concept in your creation, one of the most powerful features on Eden. See our **[concept-trainer guide](https://docs.eden.art/docs/guides/concepts)** for all the details!
 - ***'ControlNet or Init image'*** let’s you upload an image that the model will use as a color and shape template to start drawing from. This allows much more control over what the final image should look like.
@@ -68,33 +68,69 @@ Every one of our endpoints has a dropdown *'Show optional settings'* that offers
 - ***'steps'*** how many denoising steps to use. Higher values will be slower but sometimes produce more details. Strong diminishing returns past 40 steps.
 - ***'seed'*** random seed for reproducibility. Fixing the seed can make it easier to determine the precise effect of a certain parameter while keeping everything else fixed.
 
-## 2. /controlnet (TODO)
-Controlnet allows you to adopt the shape / contours of a guidance image into your creation, but still apply the style and colors with a text prompt.
+## 2. /controlnet
+Controlnet allows you to adopt the shape / contours of a control image into your creation, but still apply the style and colors with a text prompt.
+The best way to understand controlnet is to just show it:
 
-Example: https://app.eden.art/creators/xander?creationId=64d6a125f02b40c9e545d537
-
-## 3. /interpolate
-Interpolate lets you create smooth interpolation video’s by entering a sequence of prompts. This allows you to create simple, linear video narratives and is fully compatible with **[custom concepts](https://docs.eden.art/docs/guides/concepts)**. Here’s a simple videoloop between the following prompts:
-    - “a single lone sprout grows in a barren desert, the horizon is visible in the background, low angle 8k HD nature photo”
-    - “a lone sappling growing in a field of mud, realistic water colour”
-    - “a giant old Tree of life, beautiful, intricate, 8k highly professionally detailed, HDR”
-
+#### Step 1: Upload your control image:
 <p style={{ textAlign: 'center' }}>
   <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/interpolate.gif" 
-    alt="Your description here"
-    style={{ width: '90%' }} 
+    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/abraham_logo_hires.jpg" 
+    alt=""
+    style={{ width: '40%' }} 
   />
   <br />
   <span style={{ textAlign: 'center', display: 'block' }}>
-    interpolation between 3 prompts
+    Input: the original logo for Abraham, our autonomous digital artist
   </span>
 </p>
 
-The following video was made entirely with /lerp by [Xander](https://twitter.com/xsteenbrugge):
+#### Step 2: Pick your controlnet type ("canny-edge" or "depth" currently supported)
+This will cause different kinds of controlnet conditioning:
+  - canny-edge will try to produce a creation that has the same canny-edge map as your control image
+  - depth will try to produce a creation that has the same depth map as your control image
+Experiment!
+
+#### Step 3: Set the init image strength
+This value controls how strongly the control image affects the creation.  
+Usually values between and 0.5-1.0 are good to try.
+
+<p style={{ textAlign: 'center' }}>
+  <img 
+    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_controlnet_grid.jpg" 
+    alt=""
+    style={{ width: '100%' }} 
+  />
+  <br />
+  <span style={{ textAlign: 'center', display: 'block' }}>
+    Output with ControlNet: variations of the Abraham logo using different prompts
+  </span>
+</p>
+
+
+
+## 3. /interpolate
+Interpolate lets you create smooth interpolation video’s by entering a sequence of prompts. This allows you to create simple, linear video narratives and is fully compatible with **[custom concepts](https://docs.eden.art/docs/guides/concepts)**. Here’s a simple videoloop between the following prompts:
+    - "a photo of a single lone sprout grows in a barren desert, the horizon is visible in the background, low angle 8k HD nature photo"
+    - "a photo of a lone sappling growing in a field of mud, realistic water colour"
+    - "a photo of a huge, green tree in a forest, the tree is covered in moss, 8k HD nature photo"
+    - "a photo of an old, crumbled Tree of life, intricate wood folds, 8K professional nature photography, HDR"
+
+<iframe width="600" height="400" src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/tree_lerp.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+The following video on YouTube (with sound) was also made entirely with /lerp by [Xander](https://twitter.com/xsteenbrugge):
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Bo3VZCjDhGI?si=QlMB3T_aCAx8rrRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+
+
+### Lerp + ControlNet:
+
+Just like with /Create, you can use an Init image combined with ControlNet "canny-edge" to create an interpolation video guided by a control image:
+<iframe width="500" height="500" src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_lerp.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+The above was created with the Abraham logo as init image and a controlnet image strength of 0.65
 
 ## 4. /real2real
 
