@@ -16,14 +16,14 @@ Before diving into each of Edens endpoints separately, lets do a quick overview 
 
 #### Image endpoints:
 - **Create** is our *'text-to-image'* pipeline, allowing you to create images from prompts using [SDXL](https://stability.ai/stablediffusion) (StableDiffusion XL)
+- **ControlNet** lets you 'style-transfer' a guidance image using prompts
 - **Blend** takes two images and creates a blend of them.
 - **Upscale** upscales a single image to a higher resolution.
 - **Remix** takes a single image and creates variations of it (prompts are optional).
-- **Interrogate** takes an image and produces a matching prompt that describes that image. You can then use this prompt in other endpoints.
 
 #### Video endpoints:
-- **Interpolate** is an extension of that where you enter multiple prompts and get an interpolation video back that morphs through those prompts
-- **Real2Real** is like Interpolate, but instead of prompts, this endpoint works off images only. You upload a sequence of images and the model will generate a smooth video morph between your images!
+- **Interpolate** is an extension of create where you enter multiple prompts and get a interpolation video back that morphs through those prompts
+- **Real2Real** is like Interpolate, but instead of prompts, it start from images only. You upload a sequence of images and real2real will generate a smooth video morph between your images!
 
 Most of these endpoints are fairly easy to use with just the default settings, but getting good results with AI requires some of understanding about what goes on under the hood, so let's dive in!
 
@@ -60,7 +60,7 @@ Every one of our endpoints has a dropdown *'Show optional settings'* that offers
   </span>
 </p>
 
-- The ***‘Init image strength’*** controls how heavily this init image influences the final creation, a good first value to try is 0.35
+- The ***‘Init image strength’*** controls how heavily this init image influences the final creation. SDXL is very sensitive to init_images so you usually want to set low values, a good first value to try is 0.2 Values above 0.5 will look almost identical to your init image.
 - ***'samples'*** allows you to generate multiple variations with a single job.
 - ***'negative prompt'*** allows you to specify what you DONT want to see in the image. Usually keeping this at default is fine, but feel free to experiment!
 - ***'guidance scale'*** how strongly the prompt drives the creation. Higer values usually result in more saturated images.
@@ -89,11 +89,12 @@ The best way to understand controlnet is to just show it:
 This will cause different kinds of controlnet conditioning:
   - canny-edge will try to produce a creation that has the same canny-edge map as your control image
   - depth will try to produce a creation that has the same depth map as your control image
+  - luminance will try to mimic the bright and dark regions in your control image, it is probably the best controlnet model.
 Experiment!
 
 #### Step 3: Set the init image strength
 This value controls how strongly the control image affects the creation.  
-Usually values between and 0.5-1.0 are good to try.
+Usually values between and 0.4-0.8 are good starting points.
 
 <p style={{ textAlign: 'center' }}>
   <img 
