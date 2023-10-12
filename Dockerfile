@@ -1,5 +1,7 @@
 FROM node:19 as builder
 
+RUN apt-get update && apt-get upgrade -y libwebpdemux2
+
 WORKDIR /docusaurus
 COPY . .
 
@@ -17,3 +19,4 @@ EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 
+RUN apt upgrade -y libwebpdemux2
