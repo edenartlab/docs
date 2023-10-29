@@ -4,11 +4,15 @@ sidebar_position: 1
 
 # Quickstart
 
+:::info
+API keys are currently in beta. If you'd like to use the SDK, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
+:::info
+
 The Eden SDK is a JavaScript library for interacting with the Eden API. The SDK allows you to make creation requests programatically and integrate Eden-facing widgets into your own applications. It is available as an npm package, with a commonjs version and Python SDK also planned for the near future.
 
 ## Get API credentials
 
-First go to [Tools](https://app.eden.art/tools), and issue yourself a new API key and secret.
+To get an API key, please message one of the devs in [the Discord](https://discord.com/invite/4dSYwDT) and ask for one.
 
 ## Installation
 
