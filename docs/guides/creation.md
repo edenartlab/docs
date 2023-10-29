@@ -85,11 +85,11 @@ The best way to understand controlnet is to just show it:
   </span>
 </p>
 
-#### Step 2: Pick your controlnet type ("canny-edge" or "depth" currently supported)
-This will cause different kinds of controlnet conditioning:
-  - canny-edge will try to produce a creation that has the same canny-edge map as your control image
-  - depth will try to produce a creation that has the same depth map as your control image
-  - luminance will try to mimic the bright and dark regions in your control image, it is probably the best controlnet model.
+#### Step 2: Pick your controlnet type
+This will cause different kinds of image conditioning:
+  - canny-edge will try to produce a creation that has the same edges and lines as your input control image
+  - depth will try to produce a creation that has the same perceived sense of depth as your control image
+  - luminance will try to mimic the bright and dark regions in your control image, it is probably the most interesting controlnet model.
 Experiment!
 
 #### Step 3: Set the init image strength
@@ -160,10 +160,10 @@ Note that while Real2Real accepts litterally any input image, the quality of the
 
 Like our other endpoints, Real2Real has a few customization parameters that can dramatically affect the results from this algorithm:
 
-- ***'FILM iterations'***: when set to 1, this will post-process the video frames using FILM, dramatically improving the smoothness of the video (and doubling the number of frames).
-- ***'Init image min strength'***: the minimum strength of the init_imgs during the interpolation. This parameter has a significant effect on the result: low values (eg 0.0–0.20) will result in interpolations that have a longer “visual path length”, ie: more things are changing and moving: the video contains more information at the cost of less smoothness / more jitter. Higher values (eg 0.20–0.40) will seem to change more slowly and carry less visual information, but will also be more stable and smoother.
+- ***'FILM iterations'***: when set to 1 (highly recommended), this will post-process the video frames using [FILM](https://github.com/google-research/frame-interpolation), dramatically improving the smoothness of the video (and doubling the number of frames).
+- ***'Init image min strength'***: the minimum strength of the init_images during the interpolation. This parameter has a significant effect on the result: low values (eg 0.0–0.1) will result in interpolations that have a longer “visual path length”, ie: more freedom for the model, more things are changing and moving: the video contains more information at the cost of less smoothness. Higher values (eg 0.10–0.30) will seem to change more slowly and carry less visual information, but will also be more stable and smoother. Very high values (eg 0.3 - 0.8) will look more like alpha-fading the input images.
 → Experiment and see what works best for you!
-- ***'Init image max strength'***: the maximum strength of the init_imgs during the interpolation. Setting this to 1.0 will exactly reproduce the init_imgs at the keyframe positions in the interpolation at the cost of a brief flicker (due to not being encoded+decoded by VQGAN). Setting this to lower values (eg 0.70–0.90) will give the model some freedom to ‘hallucinate’ around the init_img, often creating smoother transitions. Recommended values are 0.90–0.97, experiment!
+- ***'Init image max strength'***: the maximum strength of the init_imgs during the interpolation. Setting this to 1.0 will exactly reproduce the init_imgs at the keyframe positions in the interpolation at the cost of a brief flicker. Setting this to lower values (eg 0.70–0.90) will give the model some freedom to ‘hallucinate’ around the input images, often creating smoother transitions. Recommended values are 0.90–0.97, experiment!
 
 ## 5. /remix
 
@@ -194,9 +194,10 @@ Remix does exactly what you think it does: it takes an input image and creates a
 </p>
 
 
-The most important parameter here is:
+The most important parameters here are:
 
-- Init image strength: controls how much influence the init image has over the final result. Setting this to 0.0 will produce a remix that is entirely based on the ‘guessed prompt’ for the image and not influenced at all by the actual colors / shape of the input image. This could produce more creative images but will diverge more from the original.
+- Init image strength: controls how much influence the init image has over the final result. Setting this to 0.0 will produce a remix that is entirely reimagined and not influenced at all by the actual colors / shape of the input image. This could produce more creative images but will diverge more from the original. 
+- Prompt: you can (optionally) add a prompt to guide the remix in a certain direction, eg adding a style or object.
 
 ## 6. /blend
 Blend takes two input images and will produce a blended / mixed version of them as output.
