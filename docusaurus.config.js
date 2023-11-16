@@ -16,8 +16,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  // organizationName: 'abraham-ai', // Usually your GitHub org/user name.
-  // projectName: 'docs', // Usually your repo name.
+  organizationName: 'abraham-ai', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -70,7 +70,8 @@ const config = {
           {
             to: '/docs/category/overview',
             label: 'Docs',
-            position: 'left'
+            position: 'left',
+            activeBaseRegex: 'docs/*',
           },
           {
             href: 'https://app.eden.art',
