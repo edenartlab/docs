@@ -31,7 +31,8 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Documentation for Eden Project">
+      description="Documentation for Eden Project"
+    >
       <HomepageHeader />
       <main>
         <HomepageFeatures />
