@@ -12,7 +12,8 @@ const FeatureList = [
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/overview/intro">
+            to="/docs/overview/intro"
+          >
             Overview of Eden Project
           </Link>
         </div>
@@ -41,7 +42,7 @@ function Feature({img, title, description}) {
     <div className={clsx('col col--6')}>
       <div className="text--center">
         {/* <Svg className={styles.featureSvg} role="img" /> */}
-        <img className={styles.featureSvg} role="img" src={img} />
+        <img alt='feature' className={styles.featureSvg} role="img" src={img} />
       </div>
       <div className="text--center padding-horiz--md">
         {/* <h3>{title}</h3> */}
