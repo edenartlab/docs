@@ -12,6 +12,10 @@
   display: none !important;
 }
 
+ body {
+   overscroll-behavior: contain;
+ }
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;
