@@ -12,7 +12,7 @@ The [creation tool](https://app.eden.art/create) is priced according to the foll
 
 ## How to get manna
 
-New users receive 1000 free manna upon sign-up.
+New users receive 500 free manna upon sign-up.
 
 To top up, manna may be purchased as well.
 
