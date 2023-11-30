@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -42,6 +43,19 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: false,
           showLastUpdateTime: true,
+          remarkPlugins: [
+            function () {
+              return {
+                setParserPlugins: (defaultPlugins) => [
+                  ...defaultPlugins,
+                  [require.resolve('remarkable-react'), {components: {
+                    Figure: path.join(__dirname, '/src/components/Figure'),
+                    FigureVideo: path.join(__dirname, '/src/components/FigureVideo')
+                  }}]
+                ]
+              };
+            }
+          ],
         },
         blog: false,
         theme: {

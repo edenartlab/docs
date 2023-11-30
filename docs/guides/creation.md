@@ -2,13 +2,10 @@
 sidebar_position: 1
 ---
 
+import Figure from '@site/src/components/Figure';
+import FigureVideo from '@site/src/components/FigureVideo';
+
 # Using the Creation Tool
-<!-- 
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_gif.gif" width="450" />
-  <br />
-  Seamless videoloop created with Eden Remix + Real2Real
-</p> -->
 
 The easiest way to make creations with Eden is through the [creation tool frontend](https://app.eden.art/create/creations).
 
@@ -18,7 +15,7 @@ The easiest way to make creations with Eden is through the [creation tool fronte
 
 ## Overview
 
-Eden offers a number of generative pipelines for making images and videos, mostly built on top of the [Stable Diffusion (SDXL)](https://stability.ai/stablediffusion) model family. The pipelines are divided into a number of endpoints or generators which are optimized for different visual tasks.
+Eden offers a number of generative pipelines for making images and videos, mostly built on top of the [Stable Diffusion (SDXL)](https://stability.ai/stablediffusion) model family. The pipelines are divided into a number of *endpoints* or *generators* (terms used interchangeably) which are optimized for different visual tasks.
 
 #### Image endpoints
 
@@ -41,16 +38,7 @@ Each of the endpoints are calibrated to give you good creations using the defaul
 
 **[Create](https://app.eden.art/create/creations)** is our default *text-to-image* endpoint. Simply enter a prompt, click "Create" and wait a few moments for the resulting image.
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="/img/create.jpg" 
-    style={{ width: '100%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Creation tool interface
-  </span>
-</p>
+<Figure src="/img/create.jpg" caption="Creation tool interface" />
 
 Besides the prompt, you are able to request 1, 2, or 4 different samples. 
 
@@ -77,45 +65,13 @@ Instead of generating an image purely from a prompt, you can also use an uploade
 - **Starting image strength** controls how heavily the starting image influences the final creation. A medium strength to try is around 0.2. Values above 0.5 will look almost identical to your init image, while setting it to 0 is equivalent to having no starting image.
 - **Adopt aspect ratio of starting image** will adjust the width and height of the creation to match the aspect ratio of the starting image, while keeping the same number of pixels.
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/init_img.jpg" 
-    alt="Your description here"
-    style={{ width: '100%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Init image (left), resulting creation (right)
-  </span>
-</p>
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/init_img.jpg" caption="An example of create with a starting image. Starting image on the left, resulting creation on the right." />
 
 ### /remix
 
 The remix endpoint takes an input image and creates variations of it. Internally, it does so by using a combination of [IP adapter](https://ip-adapter.github.io/) and a technique to construct a prompt that matches your image.
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/input_logo.jpg" 
-    alt="real2real input photos"
-    style={{ width: '50%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    initial logo draft for https://remix-alias.vercel.app/  
-  </span>
-</p>
-
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/remixed_logos.jpg" 
-    alt="real2real input photos"
-    style={{ width: '90%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Various remixes of the Alias logo using Eden Remix
-  </span>
-</p>
+<Figure src="/img/generators/remix.jpg" caption="An example of remix. The top left image is the input, the top right image is a remix without a prompt, and the bottom two images are remixes with prompts." />
 
 In remix, the **Starting image** is the input image to be remixed. Like [/create](#create), remix allows you to request 1, 2, or 4 different samples, and inherits all the same basic and advanced settings as create, including **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**. However, the following additional settings are specific to the remix endpoint:
 
@@ -129,12 +85,13 @@ In remix, the **Starting image** is the input image to be remixed. Like [/create
 
 The blend endpoint is similar to [/remix](#remix), but takes two input images rather than just one and creates an image which combines or mixes the two inputs in a novel way. Like remix, it also relies on [IP adapter](https://ip-adapter.github.io/) and prompt reconstruction to match each image, but then averages the internal conditioning of each input image to produce a new image.
 
-In remix, the **Starting image** is the input image to be remixed. Like [/create](#create), remix allows you to request 1, 2, or 4 different samples, and inherits all the same basic and advanced settings as remix, including **Width**, **Height**, **Starting image strength**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed** 
-. However, the following additional settings are specific to the blend endpoint:
+<Figure src="/img/generators/blend.jpg" caption="Two examples of blend. The left two images are blended to create the right image." />
+
+In blend, **Your images** lets you upload two starting images. /blend inherits all the same basic and advanced settings as [/remix](#remix), including **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, and **Steps**. The following additional settings are specific to the blend endpoint:
 
 - **Override prompts** allow you to optionally use a custom prompt for each input image rather than rely on the generator to reconstruct it.
 - **Interpolation seeds** let you optionally specify the random seed for each input image. This can be useful for reproducibility.
-
+- **Image strengths** sets the strength of each image during blending. Low values will give the blend more freedom, higher values will look more like alpha-blending of the original images. Recommended values are 0.0 - 0.1.
 
 ### /controlnet
 
@@ -145,31 +102,7 @@ In remix, the **Starting image** is the input image to be remixed. Like [/create
 
 It is distinct from using a starting image in /create by attempting to reconstruct a specific conditioning signal from the control image, rather than simply using it as the starting image.
 
-Here is an example of a luminance-based controlnet of the [Abraham](https://abraham.ai) logo with various prompts.
-
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/abraham_logo_hires.jpg" 
-    alt=""
-    style={{ width: '40%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Input: Abraham logo
-  </span>
-</p>
-
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_controlnet_grid.jpg" 
-    alt=""
-    style={{ width: '100%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Output: Variations of the Abraham logo using different prompts
-  </span>
-</p>
+<Figure src="/img/generators/controlnet.jpg" caption="An example of a luminance-based controlnet of the Eden logo. The leftmost image (the Eden logo) is the control image, the four images to the right are output images given different prompts." />
 
 The following parameters are specific to the controlnet endpoint:
 
@@ -184,10 +117,13 @@ The following parameters are specific to the controlnet endpoint:
 It also inherits the same **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed** parameters as [/create](#create).
 
 
-
 ### /upscale
 
-Upscale takes a single input image and simply produces an upscaled version of it. The only important parameters are:
+Upscale takes a single input image and simply produces an upscaled version of it.
+
+<Figure src="/img/generators/upscale.jpg" caption="Upscaling the image on the left" />
+
+The only important parameters are:
 
 - **Init Image** is the input image to be upscaled.
 - **Init image strength** controls the level of influence of the original image. A lower values give the upscaler more freedom to create new details, often leading to a sharper final image, but will also deviate more from the original input. Recommended values are 0.3-0.7.
@@ -196,8 +132,6 @@ Upscale takes a single input image and simply produces an upscaled version of it
 - **Adopt aspect ratio of starting image** (true by default) will adjust the width and height of the creation to match the aspect ratio of the starting image, while keeping the same number of pixels.
 
 Like [/create](#create), /upscale also inherits **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**.
-
-
 
 ### /interpolate
 
@@ -208,13 +142,7 @@ Interpolate generates smooth videos which interpolate through a sequence of text
 * a photo of a huge, green tree in a forest, the tree is covered in moss
 * a photo of an old, crumbled Tree of life, intricate wood folds
 
-<p style={{ textAlign: 'center' }}>
-  <iframe width="600" height="400" src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/tree_lerp.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    An interpolation through a prompt sequence
-  </span>
-</p>
+<FigureVideo src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/tree_lerp.mp4" w={600} h={400} caption="An interpolation through a prompt sequence." />
 
 /interpolate only requires:
 
@@ -245,22 +173,9 @@ In addition to those parameters, /interpolate also includes a set of three param
   - "depth" will try to produce a creation that has the same perceived sense of depth as the control image
   - "luminance" will try to mimic the bright and dark regions in your control image
 
-<p style={{ textAlign: 'center' }}>
-  <iframe width="500" height="500" src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_lerp.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    An interpolation with the Abraham logo as a controlnet image
-  </span>
-</p>
+<FigureVideo src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_lerp.mp4" w={500} h={500} aspectRatio={1} caption="An interpolation with the Abraham logo as a controlnet image." />
 
-<p style={{ textAlign: 'center' }}>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/Bo3VZCjDhGI?si=QlMB3T_aCAx8rrRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    An /interpolate video by <a href="https://twitter.com/xsteenbrugge">Xander</a>
-  </span>
-</p>
-
+<FigureVideo src="https://www.youtube.com/embed/Bo3VZCjDhGI?si=QlMB3T_aCAx8rrRc" w={900} h={506} caption="An /interpolate video by Xander" />
 
 ### /real2real
 
@@ -268,32 +183,15 @@ In addition to those parameters, /interpolate also includes a set of three param
 
 Real2Real accepts any input image, including photographs, sketches, video frames, images from other generative AI platforms, and so on.
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/real2real_input.jpg" 
-    alt="real2real input photos"
-    style={{ width: '90%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    An example Real2Real: input keyframes
-  </span>
-</p>
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/real2real_input.jpg" caption="/real2real input keyframes" />
 
-<p style={{ textAlign: 'center' }}>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/5a-hcE8OfQo?si=FOPHay2PBH4dOu9q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Output video interpolating through the keyframes
-  </span>
-</p>
+<FigureVideo src="https://www.youtube.com/embed/5a-hcE8OfQo?si=FOPHay2PBH4dOu9q" w={900} h={506} caption="/real2real output video interpolating through the above keyframes" />
 
 Real2Real has mostly the same parameters as /interpolate, including **Width**, **Height**, **Frames**, **Loop**, **Smooth**, **FILM Iterations**, **FPS**, **Seeds**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Interpolation Seeds**. It currently lacks compatibility with controlnet. It also includes:
 
 - **Override prompts** which allows you to optionally use a custom prompt to optimize towards in addition to each keyframe, similar to **Prompts** in /interpolate.
 - **Fading smoothness**: low values will result in a rich visual journey, while higher values will look more like alpha-fading but will also be smoother. Values above 0.4 are almost never needed.
 - **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
-
 
 
 ## Concepts
@@ -308,17 +206,7 @@ Concepts are necessary to be able to consistently generate a specific person, st
 
 The base model with no concepts is the default model used by all the endpoints. To activate a specific concept, it must first be selected. Clicking "Select Concept" brings up a menu of all available concepts on Eden. Toggle between "All Concepts" and "My Concepts" to filter by either all public concepts or just your own concepts.
 
-
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="/img/conceptselector.jpg" 
-    style={{ width: '100%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Selecting a public concept
-  </span>
-</p>
+<Figure src="/img/conceptselector.jpg" caption="Selecting a public concept" />
 
 ### Composing with concepts
 
