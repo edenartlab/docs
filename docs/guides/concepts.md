@@ -2,7 +2,135 @@
 sidebar_position: 2
 ---
 
-# Concepts
+import Figure from '@site/src/components/Figure';
+import FigureVideo from '@site/src/components/FigureVideo';
+
+# Training Concepts
+
+A limitation of generative models (including Eden's base model) is that they can only generate things they've been trained on. But what if you want to consistently compose with a specific object, person's face, or artistic style which is not found in the original training data? This is where *Concepts* come in.
+
+Concepts are custom characters, objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). With concepts, users are able to consistently reproduce specific content and styles in their creations.
+
+Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). Training a concept takes around 10 minutes. Once trained, the concept becomes available to use in the [creation tool](/docs/guides/creation) for all of the endpoints, including images and video.
+
+:::tip
+This doc is about training concepts. For help generating creations with your concepts, see the [creation tool doc](/docs/guides/creation/#concepts).
+:::tip
+
+## Concept types
+
+Concepts are a highly versatile and powerful creation tool. They can be used to capture a specific person's face or likeness, an animated character, or a complex object. They can also be more abstract, referring to a particular artistic style or genre, or even a compositional pattern without any specific content, such as a [triptych](https://www.google.com/search?q=triptych&tbm=isch) or a [knolling](https://www.google.com/search?q=knolling&tbm=isch).
+
+While concepts can be trained on any arbitrary image set, in practice there are three main categories of concepts: faces, objects, and styles. Internally, each of these categories has a different training mode which is optimized for that category.
+
+### Faces
+
+Generative models like Stable Diffusion are great at generating realistic human faces. However, the model obviously doesn't know what every non-famous person looks like. To get around this limitation, we can train a concept to learn a specific person's face.
+
+:::warning
+Note that the faces mode is highly optimized for human faces. If you want to train a concept to learn a non-human face, such as a cartoon character or animal, you should use the [object](#objects) mode instead.
+:::warning
+
+For example, the images below are actual photos of [Xander](https://twitter.com/xsteenbrugge).
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" caption="Xander face training images." />
+
+We can train a concept on these images, which we will name "Xander". After training, we can generate creations with the "Xander" concept. To refer to the concept in your prompt, you can include the concept name or `<concept\>` in your prompt. For example, we can prompt:
+
+- Xander as a character in a noir graphic novel
+- a xander action figure
+- <concept\> as a knight in shining armour
+- an artwork of <Xander\> as the Mona Lisa
+
+:::tip
+Note that the concept reference is not case-sensitive, and that Xander, `<Xander>`, or `<concept>` are all interchangeable ways of referencing the concept.
+:::tip
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" caption="Generated images with the Xander concept." />
+
+
+
+
+
+
+
+
+### Objects
+
+The "Object" training mode is optimized for learning all other "things" besides for human faces. This includes non-human faces, physical objects, characters, cartoons, and miscellaneous objects.
+
+For example, the images below are professional renders of the character [Kojii](https://twitter.com/kojii_ai). They exemplify a good training set: a single, consistent character with subtle variations in pose and appearance between every image. 
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_training_imgs.jpg" caption="Kojii character training images." />
+
+After training the concept, we are again able to compose with it in the creation tool. For example, we can prompt:
+
+- a photo of <kojii\> surfing a wave
+- kojii in a snowglobe
+- a photo of <concept\> climbing mount Everest
+- a low-poly artwork of Kojii
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_grid.jpg" caption="Generated images with the Kojii concept." />
+
+### Styles
+
+Concepts can also be used to model artistic styles or genres. The way that style concepts differ from object concepts is that style concepts are not trained on specific content or "things", but rather on the abstract style characteristics common to all the training images. 
+
+For example, the images below are artworks originally created by [VJ Suave](https://vjsuave.com/).
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/suave_training_imgs.jpg" caption="Training images to learn the VJ Suave visual style." />
+
+Like objects and faces, you can compose with the style concept in the creation tool by referring to it in your prompt. Particularly with style concepts, you don't have to refer to the concept at all, and can simply prompt as you normally would, and the active concept will be used to influence the image.
+
+The following are samples are all generated from the trained Suave concept.
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/suave_generated_imgs.jpg" caption="Generated images with the Suave style concept." />
+
+Styles are the most abstract of all the training modes, and can be used to capture a wide variety of aesthetics and compositional patterns. The most common use case for style concepts is to capture a particular artist's style or a genre such as cubism or vaporwave. However, style concepts can be used to capture non-aesthetic visual motifs, such as color palettes, layout patterns, or even more abstract notions.
+
+For example, a [knolling](https://www.google.com/search?q=knolling&tbm=isch) is a photograph where related objects are arranged neatly in a grid-like pattern. The images below are a training set of three knolling images.
+
+<Figure src="/img/knolling_training.jpg" caption="Knolling training set." />
+
+Note that these images are not of the same objects, nor do they share a common visual aesthetic with each other. Their only connection is the novel layout. Despite that, training a style concept on these images results in a concept that learns the knolling layout pattern.
+
+<Figure src="/img/knolling_generated.jpg" caption="Images generated using the Knolling concept." />
+
+
+
+
+
+
+
+
+
+
+
+Notice how all imgs are HD, diverse and well cropped.
+
+
+When training "face" concepts it is recommended to disable the random left/right flipping of training images (see more details below under **"advanced parameters"**).
+
+Faces are a popular and easy use case. It is possible to learn a face accurately from a single image, although two or three images are usually recommended to provide a bit of additional diversity.
+
+
+
+
+## How to train your own concepts
+
+The concept trainer is available at [https://app.eden.art/create/concepts](https://app.eden.art/create/concepts) and is a rework of the great LORA trainer created by [@cloneofsimo](https://twitter.com/cloneofsimo) over [here](https://github.com/replicate/cog-sdxl).
+
+
+
+
+ are custom characters, objects, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
+
+
+
+
+
+
+
 
 ### **Summary**
 1. Train a new concept by uploading images to the [concept trainer](https://app.eden.art/create/concepts) and picking a training mode.
@@ -13,18 +141,10 @@ sidebar_position: 2
 eg ***"a photo of <concept\> climbing a mountain"***
 6. **If things dont look good, instead of messing with the settings, try changing your training images: they're the most important input variable!**
 
-## Introduction
-**Concepts** are custom characters, objects, styles, or specific people that are not part of the base generative model's (SDXL) knowledge, but that can be trained into the model by showing it a few examples of your concept. Once trained, you can naturally compose with concepts in your prompts just like you'd normally do with things the model knows already, eg a person named 'Barack Obama' or a style like 'cubism'.
 
-Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). After training finishes (this takes about 5 mins), the concept becomes available to use in the main creation tool and is compatible with single image creates, interpolations and real2real. Note that a concept has to be:
-- activated in the creation by selecting the corresponding name from the concept dropdown menu
-- triggered by using <concept\> to refer to it in the prompt text.
-
-Concepts are a highly versatile and powerful creation tool. They can be used to capture a specific person's face or likeness, an animated character, or a complex object. They can also be more abstract, referring to a particular artistic style or genre.
 
 ## Training
 
-The concept trainer is available at [https://app.eden.art/create/concepts](https://app.eden.art/create/concepts) and is a rework of the great LORA trainer created by [@cloneofsimo](https://twitter.com/cloneofsimo) over [here](https://github.com/replicate/cog-sdxl).
 
 <p align="center">
   <img src="https://minio.aws.abraham.fun/creations-stg/7310dc281868c547ab0c99290fbf8c440fe0eac88b8f6ae708ae98e5754c903d.png" width="400" />
@@ -58,76 +178,6 @@ Once a concept has been trained, here's how to use it:
 3. When generating you can adjust the concept scale, which will control how strongly the concept is being used in the generation. 0.8 is usually perfect (1.0 usually doesn't work so well!), but in some cases, when the concept is slightly overfit, you can try to lower this value to get more promptability.
 
 Note: all the example images in this post were generated with the default trainer & generation settings!
-
-## Examples
-### Example: face-mode
-
-Generative models like Stable Diffusion are great at generating realistic faces. However, the model obviously doesn't know what everyone looks like (unless you are very famous). To get around this, we can train a concept to learn a specific person's face.
-When training "face" concepts it is recommended to disable the random left/right flipping of training images (see more details below under **"advanced parameters"**).
-
-For example, the training samples below are of [Xander](https://twitter.com/xsteenbrugge).
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" width="550" />
-  <br />
-  Xander face training images. Notice how all imgs are HD, diverse and well cropped.
-</p>
-
-After training, we can use the concept <Xander\> in a prompt to generate realistic and figurative pictures:
-- <Xander\> as a character in a noir graphic novel
-- <Xander\> action figure
-- <Xander\> as a knight in shining armour
-- <Xander\> as the Mona Lisa
-- etc ...
-
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" width="1050" />
-  <br />
-  Generated images with the trained "face" concept
-</p>
-
-
-Faces are a popular and easy use case. It is possible to learn a face accurately from a single image, although two or three images are usually recommended to provide a bit of additional diversity.
-
-### Example: concept-mode
-
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_training_imgs.jpg" width="550" />
-  <br />
-  Kojii character training images
-</p>
-
-**Concepts** can also be used to model consistent objects or characters. The above images are professional renders of the character for our Kojii project. This is a good example of a great training set since it contains: a single, consistent character with subtle variations in pose and appearance between every image. After training a new concept with name "kojii" with mode 'concept' and default settings, we get a fully promptable Kojii character, eg (see top image row):
-- a photo of <kojii\> surfing a wave
-- <kojii\> in a snowglobe
-- a low-poly artwork of <kojii\>
-- a photo of <kojii\> climbing mount Everest, alpinism
-- etc ...
-
-
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_grid.jpg" width="1050" />
-  <br />
-  Generated images with the kojii concept
-</p>
-
-### Example: style-mode
-
-Concepts can also be used to model artistic styles. For example, the following training samples below are artworks originally created by [VJ Suave](https://vjsuave.com/).
-
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/suave_training_imgs.jpg" width="1050" />
-  <br />
-  Training images to learn the VJ Suave visual style
-</p>
-
-You can then train a concept using the "style" mode, and generate with it in /create. For style concepts, you dont even have to trigger the concept in any way, just prompt like you normally would.
-The following are samples are all generated from the trained Suave concept (using default settings for both the trainer and creations):
-
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/suave_generated_imgs.jpg" width="1050" />
-  <br />
-  Generated images with the Suave style concept
-</p>
 
 ## Training parameters
 
@@ -164,3 +214,7 @@ However keep in mind that **the most important input parameter are the training 
 - When uploading face images, it's usually a good idea to crop the images so the face fills a large fraction of the total image.
 - We're used to "more data is always better", but for concept training this usually isn't true: 5 diverse, HD images are usually better than 20 low-quality or similar images.
 :::warning
+
+
+The training mode is selected when training a concept in the [concept trainer](https://app.eden.art/create/concepts).
+

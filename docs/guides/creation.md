@@ -9,9 +9,9 @@ import FigureVideo from '@site/src/components/FigureVideo';
 
 The easiest way to make creations with Eden is through the [creation tool frontend](https://app.eden.art/create/creations).
 
-:::note
-* You can also interact with the creator tool [through the Discord bot](/create), or [through the SDK](/create).
-:::note
+:::tip
+You can also interact with the creator tool <!-- [through the Discord bot](/create), or -->[through the SDK](/docs/sdk/quickstart).
+:::tip
 
 ## Overview
 
@@ -199,7 +199,7 @@ Real2Real has mostly the same parameters as /interpolate, including **Width**, *
 Concepts are custom objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). Concepts are available in all the endpoints except for /upscale, and work the same way for all of them.
 
 :::note
-* To train your own concept, see [training concepts](/docs/guides/concepts)
+To train your own concept, see [training concepts](/docs/guides/concepts)
 :::note
 
 Concepts are necessary to be able to consistently generate a specific person, style, or object which is not part of the base model's knowledge.
