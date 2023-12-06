@@ -10,7 +10,7 @@ import FigureVideo from '@site/src/components/FigureVideo';
 The easiest way to make creations with Eden is through the [creation tool frontend](https://app.eden.art/create/creations).
 
 :::tip
-You can also interact with the creator tool <!-- [through the Discord bot](/create), or -->[through the SDK](/docs/sdk/quickstart).
+You can also interact with the creator tool <!-- [through the Discord bot](/create), or -->[through the SDK](/docs/guides/sdk).
 :::tip
 
 ## Overview

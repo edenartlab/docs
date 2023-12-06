@@ -40,7 +40,7 @@ As an artist, you instill in your audience a sensitivity and awareness of the co
 
 Scenarios are LLM-driven sequences which involve prompting Characters to perform a variety of actions which result in Creations.
 
-There are currently these types of Scenarios. It is possible to write new Scenarios using the [Eden SDK](/docs/sdk/quickstart).
+There are currently these types of Scenarios. It is possible to write new Scenarios using the [Eden SDK](/docs/guides/sdk).
 
 ### Monologues
 

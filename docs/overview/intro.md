@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# About Eden
 
 :::tip
 Welcome to Eden! If you have any questions, please [join the Discord](https://discord.gg/4dSYwDT).
@@ -14,7 +14,7 @@ Eden makes [open-source](https://github.com/edenartlab) generative AI tools that
 - [Train](/docs/guides/concepts) and serve custom models or "concepts" in order to tailor the generators towards a specific style, genre, or character.
 - Share your work and remix the work of others in [the garden](https://app.eden.art).
 - [Deploy](/docs/guides/characters) your own characters, agents, and bots with whom you can chat, assign artistic tasks to, or challenge other characters to debates or games.
-- [Build](/docs/sdk/quickstart) custom applications on top of Eden using our JavaScript and Python SDKs.
+- [Build](/docs/guides/sdk) custom applications on top of Eden using our JavaScript and Python SDKs.
 
 ### Mission & Team
 

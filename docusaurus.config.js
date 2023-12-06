@@ -123,7 +123,7 @@ const config = {
               },
               {
                 label: 'Instagram',
-                href: 'https://instagram.com/eden_art_',
+                href: 'https://instagram.com/eden.art____',
               },
             ],
           },
@@ -132,7 +132,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/github.com/abraham-ai',
+                href: 'https://github.com/github.com/edenartlab',
               },
               {
                 label: 'Eden SDK (JS)',
