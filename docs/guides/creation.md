@@ -2,210 +2,222 @@
 sidebar_position: 1
 ---
 
-# Creations
+import Figure from '@site/src/components/Figure';
+import FigureVideo from '@site/src/components/FigureVideo';
 
-<p align="center">
-  <img src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_gif.gif" width="450" />
-  <br />
-  Seamless videoloop created with Eden Remix + Real2Real
-</p>
+# Using the Creation Tool
+
+The easiest way to make creations with Eden is through the [creation tool frontend](https://app.eden.art/create/creations).
+
+:::tip
+You can also interact with the creator tool <!-- [through the Discord bot](/create), or -->[through the SDK](/docs/guides/sdk).
+:::tip
 
 ## Overview
-If you havent already, go to the **[Eden App](https://app.eden.art/)** and login with your email to get started!
-Before diving into each of Edens endpoints separately, lets do a quick overview of what each one does:
 
-#### Image endpoints:
-- **Create** is our *'text-to-image'* pipeline, allowing you to create images from prompts using [SDXL](https://stability.ai/stablediffusion) (StableDiffusion XL)
-- **ControlNet** lets you 'style-transfer' a guidance image using prompts
-- **Blend** takes two images and creates a blend of them.
-- **Upscale** upscales a single image to a higher resolution.
-- **Remix** takes a single image and creates variations of it (prompts are optional).
+Eden offers a number of generative pipelines for making images and videos, mostly built on top of the [Stable Diffusion (SDXL)](https://stability.ai/stablediffusion) model family. The pipelines are divided into a number of *endpoints* or *generators* (terms used interchangeably) which are optimized for different visual tasks.
 
-#### Video endpoints:
-- **Interpolate** is an extension of create where you enter multiple prompts and get a interpolation video back that morphs through those prompts
-- **Real2Real** is like Interpolate, but instead of prompts, it start from images only. You upload a sequence of images and real2real will generate a smooth video morph between your images!
+#### Image endpoints
 
-Most of these endpoints are fairly easy to use with just the default settings, but getting good results with AI requires some of understanding about what goes on under the hood, so let's dive in!
+- [**/create**](#create) is our general-purpose text-to-image pipeline.
+- [**/remix**](#remix) generates variations of an uploaded image.
+- [**/blend**](#blend) generates a novel mixture of two uploaded images.
+- [**/controlnet**](#controlnet) generates a prompt-guided style transfer over an uploaded image.
+- [**/upscale**](#upscale) upscales a single image to a higher resolution.
 
-## 1. /create
+#### Video endpoints
+- [**/interpolate**](#interpolate) generates a video which gradually interpolates through a sequence of prompts.
+- [**/real2real**](#real2real) generates a video which gradually interpolates through a sequence of uploaded images.
+- [**/animate**](#animate) TBD.
 
-**[Create](https://app.eden.art/create/creations)** is our *text-to-image* endpoint, powered by StableDiffusion XL. Set your desired image resolution, enter your prompt and hit create, simple as that!
+Each of the endpoints are calibrated to give you good creations using the default settings, but achieving more particular or custom results requires some understanding of the optional parameters.
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/create_screenshot.jpg" 
-    style={{ width: '100%' }} 
-  />
-</p>
+## Summary of endpoints
 
-If you’re the first person to trigger a creation job in a while, it is possible that our backend will spin up a new gpu-box for you, which might take a few minutes. Once a gpu is up and running, image creations should take around 5-10 seconds with default settings.
+### /create
 
-### Optional settings
-Every one of our endpoints has a dropdown *'Show optional settings'* that offers a ton of additional features. Lets go over them:
+**[Create](https://app.eden.art/create/creations)** is our default *text-to-image* endpoint. Simply enter a prompt, click "Create" and wait a few moments for the resulting image.
 
-- ***'Width'*** and ***'Height'*** set the amount of pixels and aspect ratio of your creation. Note that if you are using init images or doing real2real, the generator will automatically adopt the aspect ratio of your inputs and distribute the total amount of pixels (width x heigth) over that aspect ratio.
-- ***'Upscale Factor'*** wil upscale the resolution of your generated image by the given factor after generating it with SDXL. If you want very HD images, upscaling is generally better than simply rendering at higher starting resolutions (width and height). This is because the model is trained for a specific resolution and going too far beyond that can create repeating artifacts in the image, but feel free to experiment here!
-- ***'concept'*** and ***'concept-scale'*** allow you to activate a trained concept in your creation, one of the most powerful features on Eden. See our **[concept-trainer guide](https://docs.eden.art/docs/guides/concepts)** for all the details!
-- ***'ControlNet or Init image'*** let’s you upload an image that the model will use as a color and shape template to start drawing from. This allows much more control over what the final image should look like.
+<Figure src="/img/create.jpg" caption="Creation tool interface" />
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/init_img.jpg" 
-    alt="Your description here"
-    style={{ width: '100%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Init image (left), resulting creation (right)
-  </span>
-</p>
+Besides the prompt, you are able to request 1, 2, or 4 different samples. 
 
-- The ***‘Init image strength’*** controls how heavily this init image influences the final creation. SDXL is very sensitive to init_images so you usually want to set low values, a good first value to try is 0.2 Values above 0.5 will look almost identical to your init image.
-- ***'samples'*** allows you to generate multiple variations with a single job.
-- ***'negative prompt'*** allows you to specify what you DONT want to see in the image. Usually keeping this at default is fine, but feel free to experiment!
-- ***'guidance scale'*** how strongly the prompt drives the creation. Higer values usually result in more saturated images.
-- ***'sampler'*** the diffusion sampler to use, see [here](https://huggingface.co/docs/diffusers/v0.20.0/en/api/schedulers/overview)
-- ***'steps'*** how many denoising steps to use. Higher values will be slower but sometimes produce more details. Strong diminishing returns past 40 steps.
-- ***'seed'*** random seed for reproducibility. Fixing the seed can make it easier to determine the precise effect of a certain parameter while keeping everything else fixed.
+#### Settings
 
-## 2. /controlnet
-Controlnet allows you to adopt the shape / contours of a control image into your creation, but still apply the style and colors with a text prompt.
-The best way to understand controlnet is to just show it:
+The "Settings" dropdown lists optional settings which can be used to customize your creation. It is always divided into commonly customized settings like the resolution, as well as *advanced* settings which should rarely need to be modified, but are available for further customization.
 
-#### Step 1: Upload your control image:
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/abraham_logo_hires.jpg" 
-    alt=""
-    style={{ width: '40%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Input: the original logo for Abraham, our autonomous digital artist
-  </span>
-</p>
+##### Common settings
 
-#### Step 2: Pick your controlnet type
-This will cause different kinds of image conditioning:
-  - canny-edge will try to produce a creation that has the same edges and lines as your input control image
-  - depth will try to produce a creation that has the same perceived sense of depth as your control image
-  - luminance will try to mimic the bright and dark regions in your control image, it is probably the most interesting controlnet model.
-Experiment!
+- **Width** and **Height** set the resolution of the image.
 
-#### Step 3: Set the init image strength
-This value controls how strongly the control image affects the creation.  
-Usually values between and 0.4-0.8 are good starting points.
+##### Advanced settings
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_controlnet_grid.jpg" 
-    alt=""
-    style={{ width: '100%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Output with ControlNet: variations of the Abraham logo using different prompts
-  </span>
-</p>
+- **Negative prompt** allows you to specify what you *don't* want to see in the image. If you wish to remove or de-emphasize some undesirable feature, e.g. "color", it is best to include it in the negative prompt rather than as a negation in the regular prompt (e.g. "no color").
+- **Guidance scale** how strongly the prompt drives the creation. Higer values usually result in more saturated images.
+- **Sampler** sets the diffusion sampler to use. See [here for an explanation](https://huggingface.co/docs/diffusers/v0.20.0/en/api/schedulers/overview).
+- **Steps** sets the number of denoising steps during diffusion. A higher step count may produce better details but is slower. There are diminishing returns past 40 steps.
+- **Seed** sets the random seed for reproducibility. Fixing the seed can make it easier to determine the precise effect of a certain parameter while keeping everything else fixed.
 
+#### Starting Image
 
+Instead of generating an image purely from a prompt, you can also use an uploaded image as a starting point for the creation. The starting image will constrain the final creation to resemble the shape and form of the starting image.
 
-## 3. /interpolate
-Interpolate lets you create smooth interpolation video’s by entering a sequence of prompts. This allows you to create simple, linear video narratives and is fully compatible with **[custom concepts](https://docs.eden.art/docs/guides/concepts)**. Here’s a simple videoloop between the following prompts:
-    - "a photo of a single lone sprout grows in a barren desert, the horizon is visible in the background, low angle 8k HD nature photo"
-    - "a photo of a lone sappling growing in a field of mud, realistic water colour"
-    - "a photo of a huge, green tree in a forest, the tree is covered in moss, 8k HD nature photo"
-    - "a photo of an old, crumbled Tree of life, intricate wood folds, 8K professional nature photography, HDR"
+- **Starting image strength** controls how heavily the starting image influences the final creation. A medium strength to try is around 0.2. Values above 0.5 will look almost identical to your init image, while setting it to 0 is equivalent to having no starting image.
+- **Adopt aspect ratio of starting image** will adjust the width and height of the creation to match the aspect ratio of the starting image, while keeping the same number of pixels.
 
-<iframe width="600" height="400" src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/tree_lerp.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/init_img.jpg" caption="An example of create with a starting image. Starting image on the left, resulting creation on the right." />
 
+### /remix
 
-The following video on YouTube (with sound) was also made entirely with /lerp by [Xander](https://twitter.com/xsteenbrugge):
+The remix endpoint takes an input image and creates variations of it. Internally, it does so by using a combination of [IP adapter](https://ip-adapter.github.io/) and a technique to construct a prompt that matches your image.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Bo3VZCjDhGI?si=QlMB3T_aCAx8rrRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<Figure src="/img/generators/remix.jpg" caption="An example of remix. The top left image is the input, the top right image is a remix without a prompt, and the bottom two images are remixes with prompts." />
 
+In remix, the **Starting image** is the input image to be remixed. Like [/create](#create), remix allows you to request 1, 2, or 4 different samples, and inherits all the same basic and advanced settings as create, including **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**. However, the following additional settings are specific to the remix endpoint:
 
+- **Starting image strength** controls how much influence the init image has over the final result. Setting this to 0.0 will produce more images which maximally diverge from the original, while increasing this will produce results which more closely resemble the starting image.
+- **Remix prompt** allows you to guide the remix generation towards an optional prompt. If left blank, the remix will be entirely guided by the input image.
+- **Image strength** controls the relative influence between the input image and the Remix prompt (if set). Setting this to 0.0 will produce a remix that is entirely guided by the prompt, while setting it to 1.0 will produce a remix that is entirely guided by the starting image.
+- **Upscale Factor** upscales the output resolution of your generated image by the given factor. If you want large images, upscaling is generally better than rendering at a higher starting resolution, which can result in repeating artifacts.
 
-### Lerp + ControlNet:
+### /blend
 
-Just like with /Create, you can use an Init image combined with ControlNet "canny-edge" to create an interpolation video guided by a control image:
-<iframe width="500" height="500" src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_lerp.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+The blend endpoint is similar to [/remix](#remix), but takes two input images rather than just one and creates an image which combines or mixes the two inputs in a novel way. Like remix, it also relies on [IP adapter](https://ip-adapter.github.io/) and prompt reconstruction to match each image, but then averages the internal conditioning of each input image to produce a new image.
 
-The above was created with the Abraham logo as init image and a controlnet image strength of 0.65
+<Figure src="/img/generators/blend.jpg" caption="Two examples of blend. The left two images are blended to create the right image." />
 
-## 4. /real2real
+In blend, **Your images** lets you upload two starting images. /blend inherits all the same basic and advanced settings as [/remix](#remix), including **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, and **Steps**. The following additional settings are specific to the blend endpoint:
 
-**Real2Real** is an algorithm we’re pretty proud of. It essentially does the same as lerp, except that here, the input is not a sequence of prompts, but a sequence of arbitrary images. The algorithm will then create a smoothed video interpolation morphing between those real input images, no prompt engineering required.
+- **Override prompts** allow you to optionally use a custom prompt for each input image rather than rely on the generator to reconstruct it.
+- **Interpolation seeds** let you optionally specify the random seed for each input image. This can be useful for reproducibility.
+- **Image strengths** sets the strength of each image during blending. Low values will give the blend more freedom, higher values will look more like alpha-blending of the original images. Recommended values are 0.0 - 0.1.
 
-Real2Real accepts ANY input image, so you can eg import images from MidJourney, use photographs, sketches, video frames, …
+### /controlnet
 
-Below is an example of a Real2Real morphing between the following input images:
+[Controlnet](https://arxiv.org/abs/2302.05543) is a versatile technique for guiding image generations with a spatial conditioning map from a control image. The controlnet endpoint in Eden has various capabilities, such as:
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/real2real_input.jpg" 
-    alt="real2real input photos"
-    style={{ width: '90%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    interpolation between 3 prompts
-  </span>
-</p>
+* prompt-guided style transfer which conforms to the shape and contours of the control image.
+* Generating prompt-guided images which have the same perceived depth or luminosity maps as the control image.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5a-hcE8OfQo?si=FOPHay2PBH4dOu9q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+It is distinct from using a starting image in /create by attempting to reconstruct a specific conditioning signal from the control image, rather than simply using it as the starting image.
 
+<Figure src="/img/generators/controlnet.jpg" caption="An example of a luminance-based controlnet of the Eden logo. The leftmost image (the Eden logo) is the control image, the four images to the right are output images given different prompts." />
 
-Note that while Real2Real accepts litterally any input image, the quality of the interpolation will depend on how well the generative model can represent the input images. Eg StableDiffusion was not particularly trained on faces and so Real2Real tends to give underwhelming results on face interpolations.
+The following parameters are specific to the controlnet endpoint:
 
-Like our other endpoints, Real2Real has a few customization parameters that can dramatically affect the results from this algorithm:
+- **Shape guidance image** this is the control image which spatially guides the final creation.
+- **Prompt** has the same function as in the [/create](#create).
+- **Shape guidance image strength** sets the influence of the shape guidance. This should usually be above 0.5.
+- **Controlnet mode** sets what to use as conditioning signal:
+  - "canny-edge" will try to produce a creation that has the same edges and lines as the control image
+  - "depth" will try to produce a creation that has the same perceived sense of depth as the control image
+  - "luminance" will try to mimic the bright and dark regions in your control image
 
-- ***'FILM iterations'***: when set to 1 (highly recommended), this will post-process the video frames using [FILM](https://github.com/google-research/frame-interpolation), dramatically improving the smoothness of the video (and doubling the number of frames).
-- ***'Init image min strength'***: the minimum strength of the init_images during the interpolation. This parameter has a significant effect on the result: low values (eg 0.0–0.1) will result in interpolations that have a longer “visual path length”, ie: more freedom for the model, more things are changing and moving: the video contains more information at the cost of less smoothness. Higher values (eg 0.10–0.30) will seem to change more slowly and carry less visual information, but will also be more stable and smoother. Very high values (eg 0.3 - 0.8) will look more like alpha-fading the input images.
-→ Experiment and see what works best for you!
-- ***'Init image max strength'***: the maximum strength of the init_imgs during the interpolation. Setting this to 1.0 will exactly reproduce the init_imgs at the keyframe positions in the interpolation at the cost of a brief flicker. Setting this to lower values (eg 0.70–0.90) will give the model some freedom to ‘hallucinate’ around the input images, often creating smoother transitions. Recommended values are 0.90–0.97, experiment!
+It also inherits the same **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed** parameters as [/create](#create).
 
-## 5. /remix
+### /upscale
 
-Remix does exactly what you think it does: it takes an input image and creates a variation of it. Internally, remix will try to construct a prompt that matches your image and use it to create variations of your image with.
+Upscale takes a single input image and simply produces an upscaled version of it.
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/input_logo.jpg" 
-    alt="real2real input photos"
-    style={{ width: '50%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    initial logo draft for https://remix-alias.vercel.app/  
-  </span>
-</p>
+<Figure src="/img/generators/upscale.jpg" caption="Upscaling the image on the left" />
 
-<p style={{ textAlign: 'center' }}>
-  <img 
-    src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/remixed_logos.jpg" 
-    alt="real2real input photos"
-    style={{ width: '90%' }} 
-  />
-  <br />
-  <span style={{ textAlign: 'center', display: 'block' }}>
-    Various remixes of the Alias logo using Eden Remix
-  </span>
-</p>
+The only important parameters are:
 
+- **Init Image** is the input image to be upscaled.
+- **Init image strength** controls the level of influence of the original image. A lower values give the upscaler more freedom to create new details, often leading to a sharper final image, but will also deviate more from the original input. Recommended values are 0.3-0.7.
+- **Width** the desired width of the final image.
+- **Height** the desired height of the final image.
+- **Adopt aspect ratio of starting image** (true by default) will adjust the width and height of the creation to match the aspect ratio of the starting image, while keeping the same number of pixels.
 
-The most important parameters here are:
+Like [/create](#create), /upscale also inherits **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**.
 
-- Init image strength: controls how much influence the init image has over the final result. Setting this to 0.0 will produce a remix that is entirely reimagined and not influenced at all by the actual colors / shape of the input image. This could produce more creative images but will diverge more from the original. 
-- Prompt: you can (optionally) add a prompt to guide the remix in a certain direction, eg adding a style or object.
+### /interpolate
 
-## 6. /blend
-Blend takes two input images and will produce a blended / mixed version of them as output.
+Interpolate generates smooth videos which interpolate through a sequence of text prompts. This allows you to create simple, linear video narratives. For example, the following video was created with the prompt sequence:
+   
+* a photo of a single lone sprout grows in a barren desert, the horizon is visible in the background
+* a photo of a lone sappling growing in a field of mud, realistic water colour
+* a photo of a huge, green tree in a forest, the tree is covered in moss
+* a photo of an old, crumbled Tree of life, intricate wood folds
 
-## 7. /upscale
-Upscale takes a single input image and will produce an upscaled version of it. The parameters are:
-- ***'Init image strength'*** how strongly to use the original image. Lower values give the upscaler more freedom to create new details, often leading to a sharper final image, but will also deviate more from the original. Recommended values are 0.3-0.7
+<FigureVideo src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/tree_lerp.mp4" w={600} h={400} caption="An interpolation through a prompt sequence." />
+
+/interpolate only requires:
+
+- **Prompts** an array of prompts to interpolate through.
+
+Optional settings you may modify regularly include:
+
+- **Width** and **Height** set the resolution of the video.
+- **Frames** sets the number of frames in the video.
+
+Advanced settings which you may occasionally wish to modify include:
+
+- **Loop** will loop the video back to the first prompt after reaching the last prompt.
+- **Smooth** will apply a smoothing algorithm that reduces large jumps during interpolations. This is recommended.
+- **FILM Iterations** when set to 1 (recommended), this will double the number of frames using [FILM](https://github.com/google-research/frame-interpolation)
+- **FPS** sets the frames per second of the video.
+- **Interpolation Seeds** sets the random seed for each prompt. This can be useful for reproducibility.
+
+Additionally, like [/create](#create), /interpolate also inherits **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**.
+
+In addition to those parameters, /interpolate also includes a set of three parameters which enable controlnet conditioning to guide the shape of the video, as in the [/controlnet](#controlnet) endpoint:
+
+- **Shape Guidance Image** sets a control image as a guidance signal throughout the entire video (you must enable one of the controlnet modes).
+- **Shape guidance image strength** sets the influence of the shape guidance. This should usually be above 0.5.
+- **Controlnet mode** optionally allows you to use a controlnet conditioning signal. If one is selected, the shape guidance image must also be set.
+  - "off" will not use a controlnet
+  - "canny-edge" will try to produce a creation that has the same edges and lines as the control image
+  - "depth" will try to produce a creation that has the same perceived sense of depth as the control image
+  - "luminance" will try to mimic the bright and dark regions in your control image
+
+<FigureVideo src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/eden_lerp.mp4" w={500} h={500} aspectRatio={1} caption="An interpolation with the Abraham logo as a controlnet image." />
+
+<FigureVideo src="https://www.youtube.com/embed/Bo3VZCjDhGI?si=QlMB3T_aCAx8rrRc" w={900} h={506} caption="An /interpolate video by Xander" />
+
+### /real2real
+
+**Real2Real** generates videos which interpolate through a sequence of uploaded images (called "keyframes"). It is similar to [/interpolate](#interpolate), except that it interpolates through images rather than prompts (although it optionally also allows a sequence of prompts as a secondary guidance signal).
+
+Real2Real accepts any input image, including photographs, sketches, video frames, images from other generative AI platforms, and so on.
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/real2real_input.jpg" caption="/real2real input keyframes" />
+
+<FigureVideo src="https://www.youtube.com/embed/5a-hcE8OfQo?si=FOPHay2PBH4dOu9q" w={900} h={506} caption="/real2real output video interpolating through the above keyframes" />
+
+Real2Real has mostly the same parameters as /interpolate, including **Width**, **Height**, **Frames**, **Loop**, **Smooth**, **FILM Iterations**, **FPS**, **Seeds**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Interpolation Seeds**. It currently lacks compatibility with controlnet. It also includes:
+
+- **Override prompts** which allows you to optionally use a custom prompt to optimize towards in addition to each keyframe, similar to **Prompts** in /interpolate.
+- **Fading smoothness**: low values will result in a rich visual journey, while higher values will look more like alpha-fading but will also be smoother. Values above 0.4 are almost never needed.
+- **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
+
+## Concepts
+
+Concepts are custom objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). Concepts are available in all the endpoints except for /upscale, and work the same way for all of them.
 
 :::note
-TBD
+To train your own concept, see [training concepts](/docs/guides/concepts)
+:::note
+
+Concepts are necessary to be able to consistently generate a specific person, style, or object which is not part of the base model's knowledge.
+
+The base model with no concepts is the default model used by all the endpoints. To activate a specific concept, it must first be selected. Clicking "Select Concept" brings up a menu of all available concepts on Eden. Toggle between "All Concepts" and "My Concepts" to filter by either all public concepts or just your own concepts.
+
+<Figure src="/img/conceptselector.jpg" caption="Selecting a public concept" />
+
+### Composing with concepts
+
+Once selected, you may optionally compose with that concept by including its name or "concept" in the prompt. Note that the concept is *not* case-sensitive. For example, if your concept is named **Alice**, then you can reference the concept in any of the equivalent ways.
+
+* A photograph of Alice training a neural network.
+* A photograph of alice training a neural network.
+* A photograph of <alice\> training a neural network.
+* A photograph of <concept\> training a neural network.
+
 :::tip
+If the concept was trained in "face" or "object" mode, it is recommended to trigger the concept by referring to it in the prompt. If the concept was trained in "style" mode, you can usually get better results by not referring to it in the prompt.
+:::tip
+
+### Adjusting concept strength
+
+The "Concept scale" parameter controls the influence of the concept on the final output. The default should work in most cases, but occasionally you may find your concept is somewhat over or underfit, in which case adjusting this value may improve your results.

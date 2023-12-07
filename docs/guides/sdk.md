@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 ---
 
-# Quickstart
+# SDK Quickstart
 
 :::info
 API keys are currently in beta. If you'd like to use the SDK, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).

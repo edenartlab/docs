@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -42,6 +43,19 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: false,
           showLastUpdateTime: true,
+          remarkPlugins: [
+            function () {
+              return {
+                setParserPlugins: (defaultPlugins) => [
+                  ...defaultPlugins,
+                  [require.resolve('remarkable-react'), {components: {
+                    Figure: path.join(__dirname, '/src/components/Figure'),
+                    FigureVideo: path.join(__dirname, '/src/components/FigureVideo')
+                  }}]
+                ]
+              };
+            }
+          ],
         },
         blog: false,
         theme: {
@@ -109,7 +123,7 @@ const config = {
               },
               {
                 label: 'Instagram',
-                href: 'https://instagram.com/eden_art_',
+                href: 'https://instagram.com/eden.art____',
               },
             ],
           },
@@ -118,7 +132,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/github.com/abraham-ai',
+                href: 'https://github.com/github.com/edenartlab',
               },
               {
                 label: 'Eden SDK (JS)',

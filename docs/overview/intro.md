@@ -2,29 +2,31 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# About Eden
 
 :::tip
-Welcome to Eden! If you have any questions, please [join our Discord](https://discord.gg/4dSYwDT).
+Welcome to Eden! If you have any questions, please [join the Discord](https://discord.gg/4dSYwDT).
 :::tip
 
-Eden's [mission](/docs/overview/mission) is to make expressive generative AI tools which are accessible to creators, and to foster a fun, social, and collaborative ecosystem around AI art.
+Eden makes [open-source](https://github.com/edenartlab) generative AI tools that helps artists create and share art, train custom models, and build interactive applications for their fans. With Eden, you can:
 
-Our flagship product is a social network that enables creators to generate, share, and remix art, train custom models, and deploy interactive agents and chatbots. We also provide a [convenient SDK](/docs/sdk/quickstart) that allows developers to build their own apps on top of Eden.
+- [Create](/docs/guides/creation) images, videos, and text using the [creation tool](https://app.eden.art/create/creations).
+- [Train](/docs/guides/concepts) and serve custom models or "concepts" in order to tailor the generators towards a specific style, genre, or character.
+- Share your work and remix the work of others in [the garden](https://app.eden.art).
+- [Deploy](/docs/guides/characters) your own characters, agents, and bots with whom you can chat, assign artistic tasks to, or challenge other characters to debates or games.
+- [Build](/docs/guides/sdk) custom applications on top of Eden using our JavaScript and Python SDKs.
 
-Eden was founded by a team of artists, creative technologists, and longtime machine learners. We are [committed to open source](https://github.com/abraham-ai), and a highly community-driven project, with numerous ways for creators and developers to plug in and contribute.
+### Mission & Team
 
-# Overview
+Eden is a team of artists, creative technologists, and longtime machine learners, founded by [Gene Kogan](https://twitter.com/genekogan) and [Xander Steenbrugge](https://twitter.com/xsteenbrugge), two OGs in the AI art space. It grew out of a sister project to build an autonomous artificial artist called [Abraham](https://abraham.ai).
 
-These docs are divided into two sections. 
+Our core principles are:
 
-The first section provides a set of guides for working with Eden as a creator, including:
+- **Open source and open access**. We believe in the power of [open source](https://github.com/edenartlab) software to foster innovation, collaboration, and democratization in AI.
+- **Creator-centric**. We believe that creators and professional artists should in charge and in control of their own data and likeness online.
+- **Interoperable and composable**. We strive to make our tools maximally expandable, adaptable, and interoperable with other platforms and tools, with numerous ways for creators and developers to plug in and contribute.
 
-- [How to use the creation tool](/docs/guides/creation) to make creations in the form of images, videos, and text.
-- [How to train custom models or "concepts"](/docs/guides/concepts) in order to tailor the generators towards a specific domain, style, genre, or character.
-- [How to deploy your own characters](/docs/guides/characters), autonomous creative agents with whom you can chat with, assign artistic tasks to, or challenge other characters to debates or games.
+Problems we are actively trying to solve:
 
-The second section is a technical reference containing:
-
-- [An introduction to the Eden API and SDK](/docs/sdk/quickstart), a JavaScript library that allows you to interact with Eden programatically and build custom applications with it.
-- [A guide for how to host custom models or code](/docs/sdk/generators) on Eden.
+* **Curation and discovery**: in the age of infinite content, how can we help users create or find what they are looking for? How can we make recommendation algorithms that support user intentions and preferences, instead of just maximizing engagement?
+* **Cold-start problem**: how can new artistic projects get traction without a large pre-existing audience?
