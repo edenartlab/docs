@@ -56,7 +56,7 @@ Two or more characters are prompted to chat with each other about some topic. Li
 Scenarios are currently hardcoded, but we are exploring ways to make them more permissionless.
 :::note
 
-Scenarios are written using the [Eden SDK](/docs/sdk/overview). A scenario is effectively a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) where nodes consist of a prompt and set of Characters.
+Scenarios are written using the [Eden SDK](/docs/guides/sdk). A scenario is effectively a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) where nodes consist of a prompt and set of Characters.
 
 
 ## Discord bots
