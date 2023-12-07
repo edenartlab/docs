@@ -80,7 +80,6 @@ In remix, the **Starting image** is the input image to be remixed. Like [/create
 - **Image strength** controls the relative influence between the input image and the Remix prompt (if set). Setting this to 0.0 will produce a remix that is entirely guided by the prompt, while setting it to 1.0 will produce a remix that is entirely guided by the starting image.
 - **Upscale Factor** upscales the output resolution of your generated image by the given factor. If you want large images, upscaling is generally better than rendering at a higher starting resolution, which can result in repeating artifacts.
 
-
 ### /blend
 
 The blend endpoint is similar to [/remix](#remix), but takes two input images rather than just one and creates an image which combines or mixes the two inputs in a novel way. Like remix, it also relies on [IP adapter](https://ip-adapter.github.io/) and prompt reconstruction to match each image, but then averages the internal conditioning of each input image to produce a new image.
@@ -115,7 +114,6 @@ The following parameters are specific to the controlnet endpoint:
   - "luminance" will try to mimic the bright and dark regions in your control image
 
 It also inherits the same **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed** parameters as [/create](#create).
-
 
 ### /upscale
 
@@ -193,7 +191,6 @@ Real2Real has mostly the same parameters as /interpolate, including **Width**, *
 - **Fading smoothness**: low values will result in a rich visual journey, while higher values will look more like alpha-fading but will also be smoother. Values above 0.4 are almost never needed.
 - **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
 
-
 ## Concepts
 
 Concepts are custom objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). Concepts are available in all the endpoints except for /upscale, and work the same way for all of them.
@@ -210,15 +207,17 @@ The base model with no concepts is the default model used by all the endpoints. 
 
 ### Composing with concepts
 
-Once selected, you may optionally compose with that concept by including its name or the string concept in the prompt. For example, if your concept is named **Alice**, then you can reference the concept in any of the equivalent ways.
+Once selected, you may optionally compose with that concept by including its name or "concept" in the prompt. Note that the concept is *not* case-sensitive. For example, if your concept is named **Alice**, then you can reference the concept in any of the equivalent ways.
 
+* A photograph of Alice training a neural network.
 * A photograph of alice training a neural network.
 * A photograph of <alice\> training a neural network.
 * A photograph of <concept\> training a neural network.
 
-Note that the concept is *not* case-sensitive. Also note that it is not required to explicitly reference the concept in the prompt, and for concepts which are intended to model styles, it is usually better to not include it in the prompt.
+:::tip
+If the concept was trained in "face" or "object" mode, it is recommended to trigger the concept by referring to it in the prompt. If the concept was trained in "style" mode, you can usually get better results by not referring to it in the prompt.
+:::tip
 
 ### Adjusting concept strength
 
 The "Concept scale" parameter controls the influence of the concept on the final output. The default should work in most cases, but occasionally you may find your concept is somewhat over or underfit, in which case adjusting this value may improve your results.
-
