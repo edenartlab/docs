@@ -4,7 +4,7 @@ import {Section} from './Section';
 const Content = () => {
   return (
     <div className="flex justify-center">
-      <div className="p-4 max-w-5xl">
+      <div className="p-4 max-w-7xl">
         <div className="grid grid-cols-2 gap-8 mb-12">
           <Section
             title={'By artists, for artists'}
@@ -28,7 +28,7 @@ const Content = () => {
             text={'Eden maintains an ever-growing suite of customizable pipelines that generate the most sublime and glorious image and video art.'}
             linkHref={'https://app.eden.art/create/creations'}
             linkText={'Create art in 1 minute on Eden'}
-            // imageUrl={'/img/eden.png'}
+            imageUrl={'/img/eden.png'}
             orientation={'left'}
           />
         </div>
@@ -39,7 +39,7 @@ const Content = () => {
             text={'For too long, artists have been left out of the process of training foundation models on their work. Reclaim your sovereignty, train your own model on your work, and serve it to your fans.'}
             linkHref={'/docs/guides/concepts'}
             linkText={'Learn more about model training on Eden'}
-            // imageUrl={'/img/eden.png'}
+            imageUrl={'/img/eden.png'}
             orientation={'right'}
           />
         </div>
@@ -50,7 +50,7 @@ const Content = () => {
             text={'Eden is developing an experimental chatbot who represents your artistic brand. Like a concierge who talks to your fans, sketches new works in your style, and handles commissions for new work.'}
             linkHref={'/docs/guides/characters'}
             linkText={'Learn more and apply to the beta program'}
-            // imageUrl={'/img/eden.png'}
+            imageUrl={'/img/eden.png'}
             orientation={'left'}
           />
         </div>

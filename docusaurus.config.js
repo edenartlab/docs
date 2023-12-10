@@ -75,12 +75,12 @@ const config = {
           src: 'img/eden.png',
         },
         items: [
-          {
-            to: '/',
-            label: 'Home',
-            position: 'left',
-            activeBaseRegex: '^/$',
-          },
+          // {
+          //   to: '/',
+          //   label: 'Home',
+          //   position: 'left',
+          //   activeBaseRegex: '^/$',
+          // },
           {
             to: '/docs/category/overview',
             label: 'Docs',
