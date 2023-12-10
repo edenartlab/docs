@@ -12,7 +12,6 @@ ENV NODE_ENV production
 
 FROM nginx:1.14-alpine
 LABEL REPO=docs
-LABEL ORG=edenartlab
 COPY --from=builder /docusaurus/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
