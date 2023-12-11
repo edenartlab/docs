@@ -14,12 +14,12 @@ import React from 'react';
 export const Section = ({title, text, linkHref, linkText, orientation, imageUrl}) => {
   return (
     <div className="flex flex-col items-start h-full">
-      <div className="flex gap-4">
+      <div className={`flex gap-4 ${orientation === 'right' ? 'self-end' : 'self-start'}`}>
         {imageUrl ?
           <img src={imageUrl} alt={linkText} className="h-36 w-36"/>
           : null
         }
-        <div className={orientation === 'right' ? 'order-first' : ''}>
+        <div className={`${orientation === 'right' ? 'order-first' : ''} max-w-2xl`}>
           <h2 className="mb-2">{title}</h2>
           <div className="mb-4">{text}</div>
           <div className={`mt-auto`}>
