@@ -148,7 +148,7 @@ Once a concept is trained, you may select your concept in the [creation tool](ht
 For more information on how to use concepts in the creation tool, see the [creation tool doc](/docs/guides/creation/#concepts).
 :::info
 
-## Exporting concept LoRa's to AUTO1111 webui or ComfyUI
+## Using concept LoRas in AUTO1111 or ComfyUI
 
 LoRa's trained on Eden are fully compatible with all the open source tools in the StableDiffusion ecosystem. To use an Eden trained LoRa, all you have to do is:
 
@@ -184,5 +184,5 @@ For "face" and "object" modes you refer to your concept directly by using in the
 :::tip
 
 :::note
-You will notice that Eden concepts train most of the concept into the token embedding and the lora weights only do a small fraction of the work. Because of this, adjusting your lora_strength in webui doesnt have that much effect on the outputs. To have more control over your concept strength, the Eden creation tool applies some magic behind the scenes that allow for scaling the token embeddings also.
+You will notice that Eden concepts train most of the concept into the token embedding and the lora weights only do a small fraction of the work. Because of this, adjusting the lora strength doesnt have that much effect on the outputs. To have more control over your concept strength, the Eden creation tool applies some magic behind the scenes that allow for scaling the token embeddings also.
 :::note
