@@ -5,7 +5,9 @@ sidebar_position: 2
 import Figure from '@site/src/components/Figure';
 import FigureVideo from '@site/src/components/FigureVideo';
 
-# Training Concepts
+# Training Concepts (LoRa)
+
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" caption="Generated images with the Xander concept." />
 
 A limitation of generative models (including Eden's base model) is that they can only generate things they've been trained on. But what if you want to consistently compose with a specific object, person's face, or artistic style which is not found in the original training data? This is where *Concepts* come in.
 
@@ -13,9 +15,9 @@ Concepts are custom characters, objects, styles, or specific people which have b
 
 Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). Training a concept takes around 10 minutes. Once trained, the concept becomes available to use in the [creation tool](/docs/guides/creation) for all of the endpoints, including images and video.
 
-:::note
+:::tip
 This doc is about training concepts. For help generating creations with your concepts, see the [creation tool doc](/docs/guides/creation/#concepts).
-:::note
+:::tip
 
 ## Training
 
@@ -23,42 +25,38 @@ You can train a concept through the [training UI](https://app.eden.art/create/co
 
 ### Selecting your training set
 
-All you need to train a concept is a selection of images. The number of images can vary a lot depending on what you are trying to learn. For a face or object, 3-10 images is usually enough, but you can include hundreds or even thousands of images to capture a more diverse style.
+All you need to train a concept is a few images. The number of images can vary a lot depending on what you are trying to learn. For a face or object, 4-10 images is usually enough, but you can include hundreds or even thousands of images to capture a more diverse style.
 
-In general, the choice of dataset impacts the quality and accuracy of the concept immensely. With practice you will develop an intuition for how different dataset qualities affect your results. If you're unsatisfied with your results, you should experiment with the selection of the training images before adjusting the settings.
+In general, the choice of the training images is the biggest factor determining the quality and accuracy of the concept. With practice you can develop an intuition for how different dataset qualities affect your results. If you're unsatisfied with your results, try a different selection of training images before adjusting the settings.
 
 Some suggestions and tips for choosing training images:
 
-- **Selective diversity**: If you're trying to learn a specific face or object, your training images should feature the target consistently, and maximize the variance of everything you're *not* trying to learn. For example, if you have several images of a person whose face you are trying to learn, and they are wearing a green shirt in all of the images, the concept is more likely to include the green shirt. It helps to capture the target in different poses, from different angles, and with different lighting conditions or facial expressions. Similarly, if you want to learn a artistic style or aesthetic, you should have a selection of works which is diverse with respect to all the features you're *not* trying to learn (e.g. content, layout, color palettes, etc), while being consistent with respect to the features you are trying to learn (the "style").
+- **Selective diversity**: If you're trying to learn a specific face or object, your training images should feature the target consistently, and maximize the variance of everything you're *not* trying to learn. For example, if you have several images of a person whose face you are trying to learn, and they are wearing a green shirt in all of the images, the concept is more likely to include the green shirt. It helps to capture the target in different poses, from different angles, and with different lighting conditions or facial expressions. Similarly, if you want to learn an artistic style or aesthetic, you should have a selection of works which is diverse with respect to all the features you're *not* trying to learn (e.g. content, layout, color palettes, etc), while being consistent with respect to the features you are trying to learn (the "style").
 
 Some additional guidelines that you should almost always follow:
 
-- **High resolution**: Images that are at least 1000x1000 pixels are best quality. Below 700 or 800 pixels is not recommended.
+- **High resolution**: Images that are at least 768x768 pixels are best quality. Below that is not recommended as your concept might learn and adopt the low quality of the training images.
 - **Center-cropped**: The concept trainer will automatically crop your images to the center square. Avoid placing your the target subject outside of that square. 
 - **Prominence**: For faces and objects, aim to feature the target object prominently in the image.
 
 ### (Optional) Including your own prompts
 
-Concepts are trained on a set of images and their corresponding prompts. By default, the concept trainer produces these prompts for you automatically, extracting them from the images and rephrasing them to all contain a reference to the concept name.
+Concepts are trained on a set of images and their corresponding prompts. By default, the concept trainer tries to produce these prompts for you automatically. However, in some cases you may want to prompt your concept in a very specific way, for this, you may optionally upload your own prompts along with the training images, overriding this behavior. 
 
-You may optionally upload your own prompts along with the training images, overriding this behavior. To do this, create a set of text files whose names match the images (e.g. `1.txt` for `1.jpg`, `image2.txt` for `image2.png`, etc) and which contain the prompt you want to use for the corresponding image.
-
-:::tip
-Make sure all the training prompts contain the concept name, otherwise you'll lack the ability to refer to it in your prompts!
-:::tip
+To do this, create a set of text files whose names match the images (e.g. `1.txt` for `1.jpg`, `image2.txt` for `image2.png`, etc) and which contain the prompt you want to use for the corresponding image.
 
 ### Training parameters
 
 The following parameters are required:
 
-* **Training images**: You may upload image files (jpg, png, or webm) directly or upload zip files containing images. You may optionally upload your own prompts for the training images by zipping the images together with a set of text files whose names match the images. You may upload up to 10 files, and each file must be below 100MB.
-* **Concept name**: This is how you refer to the concept in prompts. You do not need to version   Names are not required to be unique.
+* **Training images**: You may upload image files (jpg, png, or webm) directly or upload zip files containing images. You may optionally upload your own prompts for the training images by zipping the images together with a set of text files whose names match the images (see above). You may upload up to 10 files, and each file must be below 100MB.
+* **Concept name**: This is how you refer to the concept in prompts. You do not need to version since names are not required to be unique.
 * **Training mode**: There are three available modes: object, face, and style. The mode is used to call upon trainer templates that are optimized for these three categories. Faces refer to human faces, objects are for all other "things" (including non-human faces), and styles refer to abstract style characteristics common to all the training images.
 
 The following parameters are optional, and rarely need to be changed:
 
 * **Train steps**: This refers to how long to finetune the model with your dataset. More steps should lead to fitting your concept more accurately, but too many steps may overfit your concept, leading to poor proptability and generalization, as well as visual artifacts.
-* **Random flip**: This setting doubles the number of training samples by randomly flipping each image horizontally. This should generally be on unless the subject has a specific horizontal orientation which cannot appear mirrored, for example text or logos. It is sometimes better to not flip faces.
+* **Random flip**: This setting doubles the number of training samples by randomly flipping each image horizontally. This should generally be on unless the subject has a specific horizontal orientation which cannot appear mirrored, for example text or logos. Flipping is always automatically disabled when training in face mode.
 * **LoRA rank**: The dimension/size of the LoRAs. Higher values allow more 'capacity' for the model to learn and can be more succesful for complex or diverse objects or styles. But they are more likely to overfit on small image sets and there are diminishing returns.
 * **Train resolution** : Image resolution used for training. If your training resolution is much lower than the resolution you create with, the concept will appear smaller inside a larger image and will often have repeating artifacts like multiple noses or copies of the same face. Training at lower resolutions (e.g. 768) can be useful if you want to learn a face but want to prompt it in settings where the face is only a small part of the image. Using init_images with rough shape composition can be very helpful in this scenario.
 
@@ -79,34 +77,21 @@ While concepts can be trained on any arbitrary image set, in practice there are 
 Generative models like Stable Diffusion are great at generating realistic human faces. However, the model obviously doesn't know what every non-famous person looks like. To get around this limitation, we can train a concept to learn a specific person's face.
 
 :::warning
-Note that the faces mode is highly optimized for human faces. If you want to train a concept to learn a non-human face, such as a cartoon character or animal, you should use the [object](#objects) mode instead.
+Note that the faces mode is highly optimized for human faces. If you want to train a concept to learn a non-human face, such as a cartoon character or animal, you probably want to use the [object](#objects) mode instead.
 :::warning
-
-For example, the images below are actual photos of [Xander](https://twitter.com/xsteenbrugge).
-
-<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" caption="Xander face training images." />
 
 :::tip
 When uploading faces, it's usually a good idea to crop the images so the face fills a large fraction of the total image.
 :::tip
 
-We can train a concept on these images, which we will name "Xander". After training, we can generate creations with the "Xander" concept. To refer to the concept in your prompt, you can include the concept name or `<concept\>` in your prompt. For example, we can prompt:
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" caption="Face training images of Xander (https://twitter.com/xsteenbrugge)" />
+
+After training a concept on these images (which we will name "Xander"), we can generate creations with it by selecting the concept in the creation interface. To refer to the concept in your prompt, you can include the concept name or `<concept>` in your prompt, this process is not case sensitive. For example, any of the below will work:
 
 - Xander as a character in a noir graphic novel
 - a xander action figure
 - <concept\> as a knight in shining armour
-- an artwork of <Xander\> as the Mona Lisa
-
-:::tip
-Note that the concept reference is not case-sensitive, and that Xander, xander, `<Xander>`, or `<concept>` are all interchangeable ways of referencing the concept.
-:::tip
-
-:::tip
-When training "face" concepts it is recommended to disable random flipping
-:::tip
-
-Faces are a popular and easy use case. It is possible to learn a face accurately from a single image, although two or three images are usually recommended to provide a bit of additional diversity.
-
+- <Xander\> as the Mona Lisa
 
 <Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" caption="Generated images with the Xander concept." />
 
@@ -116,13 +101,13 @@ The "Object" training mode is optimized for learning all other "things" besides 
 
 For example, the images below are professional renders of the character [Kojii](https://twitter.com/kojii_ai). They exemplify a good training set: a single, consistent character with subtle variations in pose and appearance between every image. 
 
+:::tip
+We're used to "more data is always better", but for concept training, 10 really good, diverse HD images is usually better than 100 low-quality or similar images.
+:::tip
+
 <Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/koji_training_imgs.jpg" caption="Kojii character training images." />
 
-:::tip
-We're used to "more data is always better", but for object training, 5 diverse HD images are usually better than 20 low-quality or similar images.
-:::tip
-
-After training the concept, we are again able to compose with it in the creation tool. For example, we can prompt:
+After training the concept, we are again able to compose with it in the creation tool. Eg, we can prompt:
 
 - a photo of <kojii\> surfing a wave
 - kojii in a snowglobe
@@ -162,3 +147,42 @@ Once a concept is trained, you may select your concept in the [creation tool](ht
 :::info
 For more information on how to use concepts in the creation tool, see the [creation tool doc](/docs/guides/creation/#concepts).
 :::info
+
+## Exporting concept LoRa's to AUTO1111 webui or ComfyUI
+
+LoRa's trained on Eden are fully compatible with all the open source tools in the StableDiffusion ecosystem. To use an Eden trained LoRa, all you have to do is:
+
+<Figure src="/img/download_concept.jpg" caption="Download your concept LoRa as a .tar file" />
+
+### AUTOPMATIC1111 webui
+1. Download the concept
+2. Extract (untar) the content
+3. Put the ..._lora.safetensors file in the `stable-diffusion-webui/models/Lora` folder
+4. Put the ..._embeddings.safetensors file in the `stable-diffusion-webui/embeddings` folder
+5. Eden LoRa's are currently trained using the **JuggernautXL_v6** checkpoint, for best results, generate with that same model!
+6. **Make sure to load both the embedding *and* the lora weights by triggering them in your prompt!**
+For "face" and "object" modes you refer to your concept directly by using *..._embeddings* in the prompt, for style concepts you should add *"... in the style of ..._embeddings"* somewhere in your prompt.
+
+<Figure src="/img/auto1111.jpg" caption="Notice how both the token embedding and the lora are triggered in the prompt!!" />
+
+:::tip
+For "face" and "object" modes you refer to your concept directly by using in the prompt, for style concepts you should add *"... in the style of ..._embeddings"* somewhere in your prompt.
+:::tip
+
+### ComfyUI
+
+1. Download the concept
+2. Extract (untar) the content
+3. Put the ..._lora.safetensors file in the `ComfyUI/models/loras` folder
+4. Put the ..._embeddings.safetensors file in the `ComfyUI/models/embeddings` folder
+5. Eden LoRa's are currently trained using the **JuggernautXL_v6** checkpoint, for best results, generate with that same model!
+6. Load the LoRA weights using a *"Load LoRA"* node in your pipeline and adjust the strength as needed.
+6. Trigger the concept in your prompt by refering to it with *embedding..._embeddings*
+
+:::tip
+For "face" and "object" modes you refer to your concept directly by using in the prompt, for style concepts you should add *"... in the style of embedding:..._embeddings"* somewhere in your prompt.
+:::tip
+
+:::note
+You will notice that Eden concepts train most of the concept into the token embedding and the lora weights only do a small fraction of the work. Because of this, adjusting your lora_strength in webui doesnt have that much effect on the outputs. To have more control over your concept strength, the Eden creation tool applies some magic behind the scenes that allow for scaling the token embeddings also.
+:::note
