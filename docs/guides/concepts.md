@@ -84,16 +84,12 @@ When uploading faces, it's usually a good idea to crop the images so the face fi
 
 <Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" caption="Face training images of Xander" />
 
-After training a concept on these images (which we will name "Xander"), we can generate creations with it by selecting the concept in the creation interface. To refer to the concept in your prompt, you can include the concept name or `<concept>` in your prompt, this process is not case sensitive. For example, any of the below will work:
+After training a concept on these images (which we will name "Xander"), we can generate creations with it by selecting the concept in the creation interface. To refer to the concept in your prompt, you can include the concept name or `<concept>` in your prompt, this process is not case-sensitive. For example, any of the below will work:
 
 - Xander as a character in a noir graphic novel
 - a xander action figure
 - <concept\> as a knight in shining armour
 - <Xander\> as the Mona Lisa
-
-:::tip
-Note that the concept reference is not case-sensitive, and that Xander, xander, `<Xander>`, or `<concept>` are all interchangeable ways of referencing the concept.
-:::tip
 
 <Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" caption="Generated images with the Xander concept." />
 
