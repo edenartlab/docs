@@ -7,8 +7,6 @@ import FigureVideo from '@site/src/components/FigureVideo';
 
 # Training Concepts (LoRa)
 
-<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" caption="Generated images with the Xander concept." />
-
 A limitation of generative models (including Eden's base model) is that they can only generate things they've been trained on. But what if you want to consistently compose with a specific object, person's face, or artistic style which is not found in the original training data? This is where *Concepts* come in.
 
 Concepts are custom characters, objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). With concepts, users are able to consistently reproduce specific content and styles in their creations.
@@ -41,7 +39,7 @@ Some additional guidelines that you should almost always follow:
 
 ### (Optional) Including your own prompts
 
-Concepts are trained on a set of images and their corresponding prompts. By default, the concept trainer tries to produce these prompts for you automatically. However, in some cases you may want to prompt your concept in a very specific way, for this, you may optionally upload your own prompts along with the training images, overriding this behavior. 
+Concepts are trained on a set of images and their corresponding prompts. By default, the concept trainer tries to produce these prompts for you automatically. However, in some cases you may want to prompt your concept in a very specific way. For this, you may optionally upload your own prompts along with the training images, overriding this behavior. 
 
 To do this, create a set of text files whose names match the images (e.g. `1.txt` for `1.jpg`, `image2.txt` for `image2.png`, etc) and which contain the prompt you want to use for the corresponding image.
 
@@ -77,14 +75,14 @@ While concepts can be trained on any arbitrary image set, in practice there are 
 Generative models like Stable Diffusion are great at generating realistic human faces. However, the model obviously doesn't know what every non-famous person looks like. To get around this limitation, we can train a concept to learn a specific person's face.
 
 :::warning
-Note that the faces mode is highly optimized for human faces. If you want to train a concept to learn a non-human face, such as a cartoon character or animal, you probably want to use the [object](#objects) mode instead.
+Note that the faces mode is highly optimized for human faces. If you want to train a concept to learn a non-human face, such as a cartoon character or animal, you will probably get better results using the [object](#objects) mode instead.
 :::warning
 
 :::tip
 When uploading faces, it's usually a good idea to crop the images so the face fills a large fraction of the total image.
 :::tip
 
-<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" caption="Face training images of Xander (https://twitter.com/xsteenbrugge)" />
+<Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_training_images.jpg" caption="Face training images of Xander" />
 
 After training a concept on these images (which we will name "Xander"), we can generate creations with it by selecting the concept in the creation interface. To refer to the concept in your prompt, you can include the concept name or `<concept>` in your prompt, this process is not case sensitive. For example, any of the below will work:
 
@@ -92,6 +90,10 @@ After training a concept on these images (which we will name "Xander"), we can g
 - a xander action figure
 - <concept\> as a knight in shining armour
 - <Xander\> as the Mona Lisa
+
+:::tip
+Note that the concept reference is not case-sensitive, and that Xander, xander, `<Xander>`, or `<concept>` are all interchangeable ways of referencing the concept.
+:::tip
 
 <Figure src="https://storage.googleapis.com/public-assets-xander/A_workbox/eden_docs/xander_generated_images.jpg" caption="Generated images with the Xander concept." />
 
@@ -148,41 +150,45 @@ Once a concept is trained, you may select your concept in the [creation tool](ht
 For more information on how to use concepts in the creation tool, see the [creation tool doc](/docs/guides/creation/#concepts).
 :::info
 
-## Using concept LoRas in AUTO1111 or ComfyUI
+## Exporting LoRas for use in other tools
 
-LoRa's trained on Eden are fully compatible with all the open source tools in the StableDiffusion ecosystem. To use an Eden trained LoRa, all you have to do is:
+Eden concepts are trained using the LoRA technique, a widely used extension to Stable Diffusion, and is fully compatible with the many other tools that support it. You may export your concepts as LoRas to use in other tools, such as [AUTOMATIC1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui) or [ComfyUI](https://github.com/comfyanonymous/ComfyUI).
+
+To export your concept, you can download it from the app. The concept comes as a .tar file which contains two files, one with the token embeddings and one with the LoRA weights.
 
 <Figure src="/img/download_concept.jpg" caption="Download your concept LoRa as a .tar file" />
 
-### AUTOPMATIC1111 webui
-1. Download the concept
-2. Extract (untar) the content
-3. Put the ..._lora.safetensors file in the `stable-diffusion-webui/models/Lora` folder
-4. Put the ..._embeddings.safetensors file in the `stable-diffusion-webui/embeddings` folder
-5. Eden LoRa's are currently trained using the **JuggernautXL_v6** checkpoint, for best results, generate with that same model!
-6. **Make sure to load both the embedding *and* the lora weights by triggering them in your prompt!**
-For "face" and "object" modes you refer to your concept directly by using *..._embeddings* in the prompt, for style concepts you should add *"... in the style of ..._embeddings"* somewhere in your prompt.
+### AUTOMATIC1111 stable-diffusion-webui
 
-<Figure src="/img/auto1111.jpg" caption="Notice how both the token embedding and the lora are triggered in the prompt!!" />
+To use your concept in [AUTOMATIC1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui), follow these steps:
+
+1. Download the concept.
+2. Extract (untar) the content.
+3. Put the `..._lora.safetensors` file in the `stable-diffusion-webui/models/Lora` folder.
+4. Put the ``..._embeddings.safetensors` file in the `stable-diffusion-webui/embeddings` folder.
+5. Eden LoRAs are currently trained using the [**JuggernautXL_v6** checkpoint](https://civitai.com/models/133005/juggernaut-xl). For best results, use that same model as your base checkpoint.
+6. **Make sure to load both the embedding *and* the lora weights by triggering them in your prompt**
+
+<Figure src="/img/auto1111.jpg" caption="Using an exported LoRA in AUTOMATIC1111. Notice how both the token embedding and the LoRa are triggered in the prompt." />
 
 :::tip
-For "face" and "object" modes you refer to your concept directly by using in the prompt, for style concepts you should add *"... in the style of ..._embeddings"* somewhere in your prompt.
+For "face" and "object" modes, refer to your concept directly by using *..._embeddings* in the prompt. For style concepts, you should include *"... in the style of ..._embeddings"* in your prompt.
 :::tip
 
 ### ComfyUI
 
-1. Download the concept
-2. Extract (untar) the content
-3. Put the ..._lora.safetensors file in the `ComfyUI/models/loras` folder
-4. Put the ..._embeddings.safetensors file in the `ComfyUI/models/embeddings` folder
-5. Eden LoRa's are currently trained using the **JuggernautXL_v6** checkpoint, for best results, generate with that same model!
+1. Download the concept.
+2. Extract (untar) the content.
+3. Put the `..._lora.safetensors` file in the `ComfyUI/models/loras` folder.
+4. Put the `..._embeddings.safetensors` file in the `ComfyUI/models/embeddings` folder.
+5. Eden LoRAs are currently trained using the [**JuggernautXL_v6** checkpoint](https://civitai.com/models/133005/juggernaut-xl). For best results, use that same model as your base checkpoint.
 6. Load the LoRA weights using a *"Load LoRA"* node in your pipeline and adjust the strength as needed.
-6. Trigger the concept in your prompt by refering to it with *embedding..._embeddings*
+6. Trigger the concept in your prompt by refering to it with *embedding..._embeddings*.
 
 :::tip
 For "face" and "object" modes you refer to your concept directly by using in the prompt, for style concepts you should add *"... in the style of embedding:..._embeddings"* somewhere in your prompt.
 :::tip
 
 :::note
-You will notice that Eden concepts train most of the concept into the token embedding and the lora weights only do a small fraction of the work. Because of this, adjusting the lora strength doesnt have that much effect on the outputs. To have more control over your concept strength, the Eden creation tool applies some magic behind the scenes that allow for scaling the token embeddings also.
+You may notice that the LoRA strength has a relatively small effect on the final output. This is because Eden concepts optimize towards using the token embedding to learn most of the concept, rather than the LoRA matrices.
 :::note

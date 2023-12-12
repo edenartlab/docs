@@ -48,14 +48,18 @@ The "Settings" dropdown lists optional settings which can be used to customize y
 
 ##### Common settings
 
-- **Width** and **Height** set the resolution of the image. Note that because StableDiffusion was trained at 1024x1024, increasing the resolution can often cause visual artifacts to appear (like a face with multiple noses or too many eyes etc). If you want very HD images its often better to generate them at normal resolutions first and upscale them after.
+- **Width** and **Height** set the resolution of the image.
+
+:::note
+Because SDXL was trained at 1024x1024, increasing the resolution beyond that often causes visual artifacts to appear, like a face with multiple noses or too many eyes. If you want large images, it's often better to generate them at a normal resolution first, and upscale them after.
+:::note
 
 ##### Advanced settings
 
 - **Negative prompt** allows you to specify what you *don't* want to see in the image. If you wish to remove or de-emphasize some undesirable feature, e.g. "color", it is best to include it in the negative prompt rather than as a negation in the regular prompt (e.g. "no color").
-- **Prompt strength** how strongly the prompt drives the creation. Higer values usually result in more saturated images.
+- **Prompt strength** controls how strongly the prompt drives the creation. Higer values usually result in more saturated images.
 - **Sampler** sets the diffusion sampler to use. See [here for an explanation](https://huggingface.co/docs/diffusers/v0.20.0/en/api/schedulers/overview).
-- **Steps** sets the number of denoising steps during diffusion. A higher step count may produce better details but is slower. Strong diminishing returns past 30 steps.
+- **Steps** sets the number of denoising steps during diffusion. A higher step count may produce better details but is slower. There are strong diminishing returns past 30 steps.
 - **Seed** sets the random seed for reproducibility. Fixing the seed can make it easier to determine the precise effect of a certain parameter while keeping everything else fixed.
 
 #### Starting Image
@@ -75,9 +79,9 @@ The remix endpoint takes an input image and creates variations of it. Internally
 
 In remix, the **Starting image** is the input image to be remixed. Like [/create](#create), remix allows you to request 1, 2, or 4 different samples, and inherits all the same basic and advanced settings as create, including **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**. However, the following additional settings are specific to the remix endpoint:
 
-- **Image strength** controls how much influence the starting image has over the final result. Setting this to 0.0 will try to fully reimagine the content of the starting image but ignore its shape, colors and composition. Increasing this will produce results which more closely resemble the starting image.
+- **Image strength** controls how much influence the starting image has over the final result. Setting this to 0.0 will try to fully regenerate the content of the starting image but ignore its shape, colors, and composition. Increasing this will produce results which more closely resemble the starting image.
 - **Remix prompt** allows you to guide the remix generation towards an optional prompt. If left blank, the remix will be entirely guided by the input image.
-- **Image prompt strength** controls the relative influence between the input image and the Remix prompt (if set). Tweak this value to change the impact of the remix prompt on the output.
+- **Image prompt strength** controls the relative influence between the input image and the Remix prompt (if set). Setting this to 0.0 will produce a remix that is entirely guided by the prompt, while setting it to 1.0 will produce a remix that is entirely guided by the starting image.
 - **Upscale Factor** upscales the output resolution of your generated image by the given factor. If you want large images, upscaling is generally better than rendering at a higher starting resolution, which can result in repeating artifacts.
 
 ### /blend
@@ -115,9 +119,9 @@ The following parameters are specific to the controlnet endpoint:
 
 It also inherits the same **Width**, **Height**, **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed** parameters as [/create](#create).
 
-Controlnet can be a great way to achieve style-transfer on eg faces as seen in this example:
-<Figure src="/img/generators/controlnet_style_transfer.jpg" caption="A style transfer of a face using canny-edge controlnet + the prompt 'a statue made of marble'" />
+Controlnet can be a great way to achieve style-transfer on faces as seen in this example:
 
+<Figure src="/img/generators/controlnet_style_transfer.jpg" caption="A style transfer of a face using canny-edge controlnet + the prompt 'a statue made of marble'" />
 
 ### /upscale
 
@@ -195,11 +199,10 @@ Real2Real has mostly the same parameters as /interpolate, including **Width**, *
 - **Fading smoothness**: low values will result in a rich visual journey, while higher values will look more like alpha-fading but will also be smoother. Values above 0.4 are almost never needed.
 - **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
 
-## Concepts
+## Creating with concepts
 
-Concepts are one of Edens most powerful features. To learn how to train your own please check-out:
 :::tip
-To train your own concept, see [training concepts](/docs/guides/concepts)
+To train your own concept, see [training concepts](/docs/guides/concepts).
 :::tip
 
 Concepts are custom objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). Concepts are available in all the creation endpoints, and work the same way for all of them.
@@ -221,7 +224,7 @@ Once selected, you may optionally compose with that concept by including its nam
 * A photograph of <concept\> training a neural network.
 
 :::tip
-If the concept was trained in "face" or "object" mode, it is recommended to trigger the concept by referring to it in the prompt. If the concept was trained in "style" mode, the concept will be automatically triggered for you!
+If the concept was trained in "face" or "object" mode, it is recommended to trigger the concept by referring to it in the prompt. If the concept was trained in "style" mode, the concept will be automatically triggered for you.
 :::tip
 
 ### Adjusting concept strength
