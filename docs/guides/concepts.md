@@ -175,14 +175,16 @@ For "face" and "object" modes, refer to your concept directly by using *..._embe
 
 1. Download the concept.
 2. Extract (untar) the content.
-3. Put the `..._lora.safetensors` file in the `ComfyUI/models/loras` folder.
-4. Put the `..._embeddings.safetensors` file in the `ComfyUI/models/embeddings` folder.
+3. Put the `[lora_name]_lora.safetensors` file in the `ComfyUI/models/loras` folder.
+4. Put the `[lora_name]_embeddings.safetensors` file in the `ComfyUI/models/embeddings` folder.
 5. Eden LoRAs are currently trained using the [**JuggernautXL_v6** checkpoint](https://civitai.com/models/133005/juggernaut-xl). For best results, use that same model as your base checkpoint.
 6. Load the LoRA weights using a *"Load LoRA"* node in your pipeline and adjust the strength as needed.
-6. Trigger the concept in your prompt by refering to it with *embedding..._embeddings*.
+6. Trigger the concept in your prompt by refering to it with *embedding:[lora_name]_embeddings*.
+
+<Figure src="/img/comfy.jpeg" caption="Using an Eden concept in ComfyUI, make sure to trigger the embeddings in the prompt!" />
 
 :::tip
-For "face" and "object" modes you refer to your concept directly by using in the prompt, for style concepts you should add *"... in the style of embedding:..._embeddings"* somewhere in your prompt.
+For "face" and "object" modes you refer to your concept directly by using *[lora_name]* somewhere in the prompt, for style concepts you should add *"... in the style of embedding:[lora_name]_embeddings"* somewhere in your prompt.
 :::tip
 
 :::note
