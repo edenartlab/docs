@@ -160,15 +160,15 @@ To use your concept in [AUTOMATIC1111](https://github.com/AUTOMATIC1111/stable-d
 
 1. Download the concept.
 2. Extract (untar) the content.
-3. Put the `..._lora.safetensors` file in the `stable-diffusion-webui/models/Lora` folder.
-4. Put the ``..._embeddings.safetensors` file in the `stable-diffusion-webui/embeddings` folder.
+3. Put the `[lora_name]_lora.safetensors` file in the `stable-diffusion-webui/models/Lora` folder.
+4. Put the `[lora_name]_embeddings.safetensors` file in the `stable-diffusion-webui/embeddings` folder.
 5. Eden LoRAs are currently trained using the [**JuggernautXL_v6** checkpoint](https://civitai.com/models/133005/juggernaut-xl). For best results, use that same model as your base checkpoint.
 6. **Make sure to load both the embedding *and* the lora weights by triggering them in your prompt**
 
 <Figure src="/img/auto1111.jpg" caption="Using an exported LoRA in AUTOMATIC1111. Notice how both the token embedding and the LoRa are triggered in the prompt." />
 
 :::tip
-For "face" and "object" modes, refer to your concept directly by using *..._embeddings* in the prompt. For style concepts, you should include *"... in the style of ..._embeddings"* in your prompt.
+For "face" and "object" modes, refer to your concept directly by using *[lora_name]_embeddings* in the prompt. For style concepts, you should include *"... in the style of [lora_name]_embeddings"* in your prompt.
 :::tip
 
 ### ComfyUI
@@ -184,7 +184,7 @@ For "face" and "object" modes, refer to your concept directly by using *..._embe
 <Figure src="/img/comfy.jpeg" caption="Using an Eden concept in ComfyUI, make sure to trigger the embeddings in the prompt!" />
 
 :::tip
-For "face" and "object" modes you refer to your concept directly by using *[lora_name]* somewhere in the prompt, for style concepts you should add *"... in the style of embedding:[lora_name]_embeddings"* somewhere in your prompt.
+For "face" and "object" modes you refer to your concept directly by using *embedding:[lora_name]_embeddings* somewhere in the prompt, for style concepts you should add *"... in the style of embedding:[lora_name]_embeddings"* somewhere in your prompt.
 :::tip
 
 :::note
