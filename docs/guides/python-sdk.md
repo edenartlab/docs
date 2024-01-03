@@ -8,7 +8,7 @@ sidebar_position: 5
 API keys are currently in beta. If you'd like to use the SDK, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
 :::info
 
-The Eden SDK is a Python library for interacting with the Eden API. The SDK allows you to make creation requests programatically and integrate Eden-facing widgets into your own applications. The Python library is incomplete implementation of the Eden API, and more complete applications should use the [JS SDK](/guides/sdk) instead.
+The Eden SDK is a Python library for interacting with the Eden API. The SDK allows you to make creation requests programatically and integrate Eden-facing widgets into your own applications. The Python library is incomplete implementation of the Eden API, and more complete applications should use the [JS SDK](/docs/guides/sdk) instead.
 
 Full API documentation is available at [https://api.eden.art/documentation](https://api.eden.art/documentation/). Some browsers have issues opening the documentation, so if you have trouble, try using a different browser or use incognito mode.
 
