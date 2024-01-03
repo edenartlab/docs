@@ -81,11 +81,7 @@ const pollForTask = async function(pollingInterval, taskId) {
 const result = await pollForTask(5000, taskResult.taskId);
 ```
 
-## Manna
+## Hello Eden
 
-To get your user's [Manna](/docs/overview/manna) balance, use:
+An example React app which shows how to authenticate with the Eden SDK and make creations in a boilerplate NextJS web application is available [here](https://github.com/edenartlab/hello-eden).
 
-```js
-const manna = await eden.manna.balance();
-console.log(manna);
-```
