@@ -2,13 +2,15 @@
 sidebar_position: 4
 ---
 
-# SDK Quickstart
+# JavaScript SDK
 
 :::info
 API keys are currently in beta. If you'd like to use the SDK, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
 :::info
 
 The Eden SDK is a JavaScript library for interacting with the Eden API. The SDK allows you to make creation requests programatically and integrate Eden-facing widgets into your own applications. It is available as an npm package, with a commonjs version and Python SDK also planned for the near future.
+
+Full API documentation is available at [https://api.eden.art/documentation](https://api.eden.art/documentation/). Some browsers have issues opening the documentation, so if you have trouble, try using a different browser or use incognito mode.
 
 ## Get API credentials
 
@@ -40,13 +42,24 @@ const config = {
   text_input: "An apple tree in a field",
 };
 
+const urls = await eden.create({
+  generatorName: "create",
+  config: config
+});
+console.log(urls[0])
+```
+
+
+Alternatively, you can create a task and poll for the result manually:
+
+```js
 const taskResult = await eden.tasks.create({
   generatorName: "create", 
   config: config
 });
 ```
 
-The `create` method is asynchronous and will immediately return a `taskResult` object with an ID for that task (or an error message). If you want to wait for the task to complete, you can poll the task until it is done, like so:
+The `tasks.create` method is asynchronous and will immediately return a `taskResult` object with an ID for that task (or an error message). If you want to wait for the task to complete, you can poll the task until it is done, like so:
 
 ```js
 const pollForTask = async function(pollingInterval, taskId) {
@@ -76,7 +89,3 @@ To get your user's [Manna](/docs/overview/manna) balance, use:
 const manna = await eden.manna.balance();
 console.log(manna);
 ```
-
-:::warning
-There is currently no way to retrieve the cost in Manna of a specific config or job requests. This is a high priority feature.
-:::warning
