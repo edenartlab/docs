@@ -42,5 +42,5 @@ congig = {
   "text_input": "An apple tree in a field",
 }
 
-urls = eden.create(generator_name='crete', config=config)
+urls = eden.create(generator_name='create', config=config)
 print(urls[0])
