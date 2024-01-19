@@ -38,7 +38,7 @@ eden = EdenClient(
     api_secret="YOUR_EDEN_API_SECRET"
 )
 
-congig = {
+config = {
   "text_input": "An apple tree in a field",
 }
 
