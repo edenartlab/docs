@@ -7,7 +7,7 @@ const FirstRowFeatureList = [
   {
     title: 'Using the creation tool',
     img: require('@site/static/img/home/create.jpg').default,
-    link: "/docs/guides/creation",
+    link: "/docs/guides/creation", 
     description: (
       <>
         <div className={styles.buttons}>

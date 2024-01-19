@@ -15,18 +15,13 @@ Eden makes [open-source](https://github.com/edenartlab) generative AI tools that
 - Share your work and remix the work of others in [the garden](https://app.eden.art).
 - [Deploy](/docs/guides/characters) your own characters, agents, and bots with whom you can chat, assign artistic tasks to, or challenge other characters to debates or games.
 - [Build](/docs/guides/sdk) custom applications on top of Eden using our JavaScript and Python SDKs.
+- [Deploy](https://docs.eden.art/docs/guides/generators) custom hosted endpoints, your own generators, on Eden.
 
 ### Mission & Team
 
-Eden is a team of artists, creative technologists, and longtime machine learners, founded by [Gene Kogan](https://twitter.com/genekogan) and [Xander Steenbrugge](https://twitter.com/xsteenbrugge), two OGs in the AI art space. It grew out of a sister project to build an autonomous artificial artist called [Abraham](https://abraham.ai).
-
-Our core principles are:
-
-- **Open source and open access**. We believe in the power of [open source](https://github.com/edenartlab) software to foster innovation, collaboration, and democratization in AI.
-- **Creator-centric**. We believe that creators and professional artists should in charge and in control of their own data and likeness online.
-- **Interoperable and composable**. We strive to make our tools maximally expandable, adaptable, and interoperable with other platforms and tools, with numerous ways for creators and developers to plug in and contribute.
+Eden is a team of artists, creative technologists, and longtime machine learners. We believe in the power of [open source](https://github.com/edenartlab) to foster innovation, collaboration, and democratization in AI. We help creators and professional artists adopt this technology while taking control of their data and likeness online.
 
 Problems we are actively trying to solve:
-
-* **Curation and discovery**: in the age of infinite content, how can we help users create or find what they are looking for? How can we make recommendation algorithms that support user intentions and preferences, instead of just maximizing engagement?
-* **Cold-start problem**: how can new artistic projects get traction without a large pre-existing audience?
+* **Curation and discovery**: to help users create or find what they are looking for, and developing recommendation algorithms that support user preferences instead of only maximizing engagement.
+* **Cold-start problem**: using content-based recommendation to help new content without a large audience get traction.
+* **Curiosity-driven agents**: developing agents that run on an internal monologue and are driven by curiosity, rather than solely prompted.
