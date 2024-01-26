@@ -15,7 +15,9 @@ You can also interact with the creator tool <!-- [through the Discord bot](/crea
 
 ## Overview
 
-Eden offers a number of generative pipelines for making images and videos, mostly built on top of the [Stable Diffusion (SDXL)](https://stability.ai/stablediffusion) model family. The pipelines are divided into a number of *endpoints* or *generators* (terms used interchangeably) which are optimized for different visual tasks.
+Eden offers a number of generative pipelines for making images and videos, mostly built on top of the [Stable Diffusion](https://stability.ai/stablediffusion) model family. The pipelines are divided into a number of *endpoints* or *generators* (terms used interchangeably) which are optimized for different visual tasks.
+
+## Summary of endpoints
 
 #### Image endpoints
 
@@ -28,11 +30,11 @@ Eden offers a number of generative pipelines for making images and videos, mostl
 #### Video endpoints
 - [**/interpolate**](#interpolate) generates a video which gradually interpolates through a sequence of prompts.
 - [**/real2real**](#real2real) generates a video which gradually interpolates through a sequence of uploaded images.
-- [**/animate**](#animate) TBD.
+- [**/img2vid**](#img2vid) generates a video from a starting image (animating the image)
+- [**/txt2vid**](#txt2vid) generates a video from a (list of) prompt(s)
+- [**/vid2vid**](#vid2vid) apply style transfer to an input video
 
 Each of the endpoints are calibrated to give you good creations using the default settings, but achieving more particular or custom results requires some understanding of the optional parameters.
-
-## Summary of endpoints
 
 ### /create
 
@@ -129,15 +131,12 @@ Upscale takes a single input image and simply produces an upscaled version of it
 
 <Figure src="/img/generators/upscale.jpg" caption="Upscaling the image on the left" />
 
-The only important parameters are:
+The only parameters are:
 
 - **Init Image** is the input image to be upscaled.
-- **Init image strength** controls the level of influence of the original image. A lower values give the upscaler more freedom to create new details, often leading to a sharper final image, but will also deviate more from the original input. Recommended values are 0.3-0.7.
-- **Width** the desired width of the final image.
-- **Height** the desired height of the final image.
-- **Adopt aspect ratio of starting image** (true by default) will adjust the width and height of the creation to match the aspect ratio of the starting image, while keeping the same number of pixels.
-
-Like [/create](#create), /upscale also inherits **Negative prompt**, **Guidance scale**, **Sampler**, **Steps**, and **Seed**.
+- **AI creativity** controls the level of influence of the input image. Lower values (0.2-0.4) result in images that are more similar to the input image. Higher values (0.4-0.7) allow for generated details, but can also deviate more from the input image by inventing new details.
+- **Width** Maximum width of the final image (/upscale will always maintain aspect ratio).
+- **Height** Maximum height of the final image (/upscale will always maintain aspect ratio).
 
 ### /interpolate
 
@@ -198,6 +197,15 @@ Real2Real has mostly the same parameters as /interpolate, including **Width**, *
 - **Override prompts** which allows you to optionally use a custom prompt to optimize towards in addition to each keyframe, similar to **Prompts** in /interpolate.
 - **Fading smoothness**: low values will result in a rich visual journey, while higher values will look more like alpha-fading but will also be smoother. Values above 0.4 are almost never needed.
 - **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
+
+### /img2vid
+This is a simple animation endpoint that takes a single input image and generates an animated video from it. It supports the default arguments like resolution, n_steps and n_frames (which determines how long the final animation will be). There's an optional toggle called "loop" which tries to create an animation thats a seamless loop.
+
+### /txt2vid
+Txt2vid turns a single prompt or list of prompts into a video animation. This is similar to /interpolate, but uses an actual video model, leading to more realistic video output. This endpoint is perfect to visualize narratives driven by prompts.
+
+### /vid2vid
+Vid2vid takes a single input video or animation (can be a .mp4 file but also a .GIF) and a single style image and tries to recreate the input video in the style of the style image. Behind the scenes, this endpoint uses controlnet to mainting the motion in the input video and IP_adapter to apply the style from the image to the video. Note that this endpoint can require some experimentation to get good results, some style img + input video combinations work much better than others!
 
 ## Creating with concepts
 
