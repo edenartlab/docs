@@ -43,33 +43,62 @@ As a toy example, let's suppose you have a custom finetuned model for generating
 * A slider which adjusts the level of photorealism of the generated cat, from 0 (fully figurative) to 1 (fully photographic).
 * A toggle which controls the genre of the cat (including "noir", "romantic", "anime", "surreal", etc).
 
-In order to trigger a creation, the custom interface must define a function which maps the selected settings from the user into a full config object to the underlying generator. We can do this by pre-defining a default [/create config](/docs/guides/creation#create) and adjusting it. One way of doing this for the the genre setting would be pre-defining the prompt (e.g. "A stylish cat in the style of {genre}"), and inserting the genre.
+In order to trigger a creation, the custom interface must define a function which maps a selection from the desired settings above into a full Eden config object to the underlying generator. We can do this by pre-defining a default [/create config](/docs/guides/creation#create) and adjusting it in various ways. There are often multiple ways of achieving similar effects, and this design process is more of an art than a science. We'll go over a few examples.
 
-The photorealism characteristic could be captured by a [concept or LoRa](/docs/guides/concepts) which adjusts the checkpoint, and then regulated using the `lora_scale` parameter.
+One way of translating the genre setting would be pre-defining the prompt (e.g. "A stylish cat in the style of {genre}"), and inserting the genre into the prompt string at runtime.
 
 ```
+# Example of a user selection
 settings = {
-  "photorealism': 0.5,
   "genre": "noir"
 }
 
+# Convert the above into a full Eden config
 config = {
-  "prompt': f"A stylish cat in the style of {settings['genre']}",
-  "checkpoint": "my_custom_model_of_cats",
-  "lora": "photorealism",
-  "lora_scale": settings['photorealism']
+  "prompt": f"A stylish cat in the style of noir"
 }
 ```
 
-This is a fairly simple but powerful example. In practice, there is a lot of creativity and felxibility in defining this function. The levers you have to control the final output, in order of importance, are:
+An alternative way of differentiating the genres would be to keep the prompt static (e.g. "A stylish cat") but to use a pre-assigned starting image for each genre. [Because starting images can have a large influence on the final output](/docs/guides/creation/#starting-image), this can be a powerful tool.
+
+```
+settings = {
+  "genre": "romantic"
+}
+
+config = {
+  "init_image": "my_romantic_starting_image.jpg"
+}
+```
+
+Yet another way of differentiating the genres would be to assign separate [concepts](/docs/guides/concepts) to each genre.
+
+To continue with the example, let's turn to the desired photorealism setting. Unlike genre, it's defined as a continuous parameter, controlled by a slider, rather than a discrete parameter. It needs continuously adjustable config parameters to map onto.
+
+One way of representing the photorealism characteristic could be to use a [concept (LoRA)](/docs/guides/concepts) trained on photorealism, and then regulated using the `lora_scale` parameter.
+
+```
+settings = {
+  "photorealism": 0.72
+}
+
+config = {
+  "lora": "photorealism",
+  "lora_scale": 0.72
+}
+```
+
+Another option for representing photorealism as a adjustable slider value is to use the technique of prompt interpolation, where you define two static prompts for each of the extremes, and then interpolate between the two at runtime. For photorealism, the prompts may be "A stylish cat in a figurative cartoonish style" for 0, and "A stylish cat, photorealistic" for 1.
+
+The above example is fairly simple but powerful. In practice, there is a lot of creativity and felxibility in defining the mapping function. The levers you have to control the final output, in order of influence, are:
 
 * The base model/checkpoint
-* The prompt (and negative prompt)
 * Concepts/LoRas
+* The prompt (and negative prompt)
 * Starting images (as an init_image or [controlnet](/docs/guides/creation#controlnet) image), which can include static images pre-defined by the creator
 * Generation parameters (guidance scale, starting image strength, etc)
 
-The Eden team will work with you to come up with the mapping function which enables your desired custom interface.
+The Eden team will work closely with you to come up with the mapping function which enables your desired custom interface.
 
 ### ComfyUI workflow
 
