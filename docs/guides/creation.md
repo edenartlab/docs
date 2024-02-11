@@ -199,13 +199,48 @@ Real2Real has mostly the same parameters as /interpolate, including **Width**, *
 - **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
 
 ### /img2vid
-This is a simple animation endpoint that takes a single input image and generates an animated video from it. It supports the default arguments like resolution, n_steps and n_frames (which determines how long the final animation will be). There's an optional toggle called "loop" which tries to create an animation thats a seamless loop.
+This is an animation endpoint that takes a single input image and generates an animated video from it. Under the hood this uses [AnimateDiff](https://github.com/guoyww/AnimateDiff). Several input arguments are exposed:
+- **loop**: This tries to create a seamlessly looping video where end = start. You can turn this off to give the AI animation model a bit more freedom.
+- **number of frames** How many animation frames to render. The final video length will be n_frames / 8 seconds.
+- **Width**: Maximum width of the creation (the input aspect ratio will always be maintained)
+- **Height**: Maximum height of the creation (the input aspect ratio will always be maintained)
+- **AI Strength**: This is the amount of diffusion done on top of the input image to create the animation. Lowering this value will result in an animation that stays closer to the input image, but may also exhibit less motion because of that. 
+- **Animation prompt**: This is an optional prompt you can provide which will be used as the motion prompt for AnimateDiff.
+- **Motion Scale**: How much motion you want to see (1.1 is usually great, 0.8 is only very subtle motion, 1.25 is a LOT of motion and often destroys the video)
+
+Advanced Settings (only change these when you really know what you're doing):
+- **Motion Brush Mask**: Optional Motion Brush mask (only the white regions will be animated)
+- **seed**: as always, the seed can be set for reproducibility
+- **Negative prompt**: specify what you dont want to see.
 
 ### /txt2vid
-Txt2vid turns a single prompt or list of prompts into a video animation. This is similar to /interpolate, but uses an actual video model, leading to more realistic video output. This endpoint is perfect to visualize narratives driven by prompts.
+Txt2vid turns a single prompt or a list of prompts into a video animation. This is similar to /interpolate, but uses an actual video model, leading to more realistic video output. This endpoint is perfect to visualize narratives driven by prompts. Important to know is that the video model needs enough frames to transition from one prompt to another, so make sure to increase the number of frames if you're using many prompts. 24 frames per prompt is a good rule of thumb! Exposed parameters:
+- **number of frames** How many animation frames to render. The final video length will be n_frames / 8 seconds.
+- **Width**: Width of the creation in # pixels
+- **Height**: Height of the creation in # pixels
+- **loop**: This tries to create a seamlessly looping video where end = start. You can turn this off to give the AI animation model a bit more freedom.
+- **Motion Scale**: How much motion you want to see (1.1 is usually great, 0.8 is only very subtle motion, 1.25 is a LOT of motion and often destroys the video)
+
+Advanced Settings: 
+- **seed**: as always, the seed can be set for reproducibility
+- **Negative prompt**: specify what you dont want to see.
+
 
 ### /vid2vid
-Vid2vid takes a single input video or animation (can be a .mp4 file but also a .GIF) and a single style image and tries to recreate the input video in the style of the style image. Behind the scenes, this endpoint uses controlnet to mainting the motion in the input video and IP_adapter to apply the style from the image to the video. Note that this endpoint can require some experimentation to get good results, some style img + input video combinations work much better than others!
+Vid2vid takes a single input video or animation (can be a video file but also a .GIF) and one (or two) style image(s) and tries to recreate the input video in the style of the style image(s). Behind the scenes, this endpoint uses AnimateDiff + controlnet to mainting the motion in the input video and IP_adapter to apply the style from the image to the video. Note that this endpoint can require some experimentation to get good results, some style img + input video combinations work much better than others! Exposed parameters:
+- **number of frames** How many animation frames to render. The final video length will be n_frames / 8 seconds. This value will automatically get capped when reaching the end of your input video
+- **shape guidance method**: Set if you want coarse or fine shape guidance form the input video. Coarse usually gives better looking videos, but will ignore more small details from the input video.
+- **Optional style prompt**: Optional prompt used on top of the style image(s). You can try something like "an animation of [describe your input video] in the style of [describe your style image]"
+- **Width**: Maximum width of the creation (the input aspect ratio will always be maintained)
+- **Height**: Maximum height of the creation (the input aspect ratio will always be maintained)
+- **AI Strength**: How much AI diffusion to apply to the input video/gif (1.0 = fully reimagine input, 0.0 = return input as is). The default of 0.95 will use a tiny bit of the colors from the input.
+- **Shape Control strength**: How much the shape of the input video/gif drives the shape of the result.
+- **loop**: This tries to create a seamlessly looping video where end = start. If the input video/GIF does not loop, this might not be a good idea.
+- **Motion Scale**: How much motion you want to see (1.1 is usually great, 0.8 is only very subtle motion, 1.25 is a LOT of motion and often destroys the video)
+
+Advanced Settings (only change these when you really know what you're doing):
+- **seed**: as always, the seed can be set for reproducibility
+- **Negative prompt**: specify what you dont want to see.
 
 ## Creating with concepts
 
