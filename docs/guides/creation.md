@@ -198,48 +198,55 @@ Real2Real has mostly the same parameters as /interpolate, including **Width**, *
 - **Fading smoothness**: low values will result in a rich visual journey, while higher values will look more like alpha-fading but will also be smoother. Values above 0.4 are almost never needed.
 - **Keyframe strength** is the strength of the keyframes during interpolation. Setting this to 1.0 will exactly reproduce the init imgs at some point in the video, while lower values will allow the video to drift away from your uploaded images.
 
+
+### /txt2vid
+
+Txt2vid turns a single prompt or a list of prompts into a video animation. This is similar to /interpolate, but uses an actual video generation model, leading to more realistic video output. This endpoint is perfect to visualize narratives driven by prompts. Note that the video model needs enough frames to transition from one prompt to another, so make sure to increase the number of frames if you're using many prompts. 24 frames per prompt is a good rule of thumb! Exposed parameters:
+
+- **Width**: Width in pixels
+- **Height**: Height in pixels
+- **Number of frames** How many frames to render. The final video will be n_frames / 8 seconds.
+- **Loop**: Whether to generate a seamless loop. If off, the model has a bit more freedom.
+- **Motion Scale**: How much motion to use. 0.8 is only subtle motion; 1.1 is the default amount of motion; 1.25 is heavy motion and may make the video incoherent.
+
+Advanced Settings: 
+- **Seed**: as always, the seed can be set for reproducibility
+- **Negative prompt**: specify what you dont want to see
+
+
 ### /img2vid
+
 This is an animation endpoint that takes a single input image and generates an animated video from it. Under the hood this uses [AnimateDiff](https://github.com/guoyww/AnimateDiff). Several input arguments are exposed:
-- **loop**: This tries to create a seamlessly looping video where end = start. You can turn this off to give the AI animation model a bit more freedom.
-- **number of frames** How many animation frames to render. The final video length will be n_frames / 8 seconds.
+
 - **Width**: Maximum width of the creation (the input aspect ratio will always be maintained)
 - **Height**: Maximum height of the creation (the input aspect ratio will always be maintained)
-- **AI Strength**: This is the amount of diffusion done on top of the input image to create the animation. Lowering this value will result in an animation that stays closer to the input image, but may also exhibit less motion because of that. 
+- **Number of frames** How many frames to render. The final video will be n_frames / 8 seconds.
+- **Loop**: Whether to generate a seamless loop. If off, the model has a bit more freedom.
+- **AI Strength**: This is the amount of diffusion done on top of the input image to create the animation. Lowering this value will result in an animation that stays closer to the input image, and exhibits less motion.
 - **Animation prompt**: This is an optional prompt you can provide which will be used as the motion prompt for AnimateDiff.
-- **Motion Scale**: How much motion you want to see (1.1 is usually great, 0.8 is only very subtle motion, 1.25 is a LOT of motion and often destroys the video)
+- **Motion Scale**: How much motion to use. 0.8 is only subtle motion; 1.1 is the default amount of motion; 1.25 is heavy motion and may make the video incoherent.
 
 Advanced Settings (only change these when you really know what you're doing):
 - **Motion Brush Mask**: Optional Motion Brush mask (only the white regions will be animated)
-- **seed**: as always, the seed can be set for reproducibility
+- **Seed**: as always, the seed can be set for reproducibility
 - **Negative prompt**: specify what you dont want to see.
-
-### /txt2vid
-Txt2vid turns a single prompt or a list of prompts into a video animation. This is similar to /interpolate, but uses an actual video model, leading to more realistic video output. This endpoint is perfect to visualize narratives driven by prompts. Important to know is that the video model needs enough frames to transition from one prompt to another, so make sure to increase the number of frames if you're using many prompts. 24 frames per prompt is a good rule of thumb! Exposed parameters:
-- **number of frames** How many animation frames to render. The final video length will be n_frames / 8 seconds.
-- **Width**: Width of the creation in # pixels
-- **Height**: Height of the creation in # pixels
-- **loop**: This tries to create a seamlessly looping video where end = start. You can turn this off to give the AI animation model a bit more freedom.
-- **Motion Scale**: How much motion you want to see (1.1 is usually great, 0.8 is only very subtle motion, 1.25 is a LOT of motion and often destroys the video)
-
-Advanced Settings: 
-- **seed**: as always, the seed can be set for reproducibility
-- **Negative prompt**: specify what you dont want to see.
-
 
 ### /vid2vid
-Vid2vid takes a single input video or animation (can be a video file but also a .GIF) and one (or two) style image(s) and tries to recreate the input video in the style of the style image(s). Behind the scenes, this endpoint uses AnimateDiff + controlnet to mainting the motion in the input video and IP_adapter to apply the style from the image to the video. Note that this endpoint can require some experimentation to get good results, some style img + input video combinations work much better than others! Exposed parameters:
+
+Vid2vid takes a single input video (mp4, webm, or gif) and one or two style images and tries to recreate the input video in the style of the style image(s). This endpoint may require experimentation to get good results. Some style image / input video combinations work much better than others! Exposed parameters:
+
 - **number of frames** How many animation frames to render. The final video length will be n_frames / 8 seconds. This value will automatically get capped when reaching the end of your input video
 - **shape guidance method**: Set if you want coarse or fine shape guidance form the input video. Coarse usually gives better looking videos, but will ignore more small details from the input video.
 - **Optional style prompt**: Optional prompt used on top of the style image(s). You can try something like "an animation of [describe your input video] in the style of [describe your style image]"
 - **Width**: Maximum width of the creation (the input aspect ratio will always be maintained)
 - **Height**: Maximum height of the creation (the input aspect ratio will always be maintained)
-- **AI Strength**: How much AI diffusion to apply to the input video/gif (1.0 = fully reimagine input, 0.0 = return input as is). The default of 0.95 will use a tiny bit of the colors from the input.
-- **Shape Control strength**: How much the shape of the input video/gif drives the shape of the result.
-- **loop**: This tries to create a seamlessly looping video where end = start. If the input video/GIF does not loop, this might not be a good idea.
+- **AI Strength**: How much diffusion to apply to the input video/gif (1.0 = fully reimagine input, 0.0 = return input as is). The default of 0.95 will use a tiny bit of the colors from the input.
+- **Shape Control Strength**: How much the shape of the input video/gif drives the shape of the result.
+- **Loop**: This tries to create a seamlessly looping video where end = start. If the input video/GIF does not loop, this might not be a good idea.
 - **Motion Scale**: How much motion you want to see (1.1 is usually great, 0.8 is only very subtle motion, 1.25 is a LOT of motion and often destroys the video)
 
 Advanced Settings (only change these when you really know what you're doing):
-- **seed**: as always, the seed can be set for reproducibility
+- **Seed**: as always, the seed can be set for reproducibility
 - **Negative prompt**: specify what you dont want to see.
 
 ## Creating with concepts

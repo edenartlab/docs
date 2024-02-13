@@ -115,3 +115,39 @@ Eden generators are currently hosted by [Replicate](https://replicate.com/) as [
 ## Permissioning endpoints
 
 Generators can be fully public to Eden users, like the other endpoints, or they can be fully private to the owner, or only accessible to a specific set of whitelisted users.
+
+
+
+---
+
+
+
+Every creation made on Eden is defined by a config of all the settings that determine it. the main settings are: 
+
+- prompt
+- concept and concept strength (optional but recommended)
+- starting image / control image (optional)
+there are a bunch more obscure settings that you can usually leave at defaults but you can also experiment with to get more unusual results. 
+
+to make a generator on kojii you need to define an interface that maps user inputs (i.e. buttons, sliders, text inputs, and/or image uploads) to eden configs.
+
+for example, suppose you decide to have these toggles:
+- apple / banana / lemon
+- photo / comic book / sculpture
+- day / night
+
+some examples of things you can do:
+
+you can inject the selected words into a prompt, e.g. "{comic book} of a {lemon} at {night}" or "{sculpture} of a {banana} at {day}". 
+
+you can use the selections as placeholders for longer text strings. e.g. day = "bright sunlit room in a glass house, solarpunk" and night = "cyberpunk alley, dark shadows". So your prompt can be assembled at runtime by pasting chunks that you've curated.
+
+you can map the selections to starting images or control images (if using controlnet). e.g. selecting "apple" it will use a picture of an apple as the image input (or a random sample from an array of them), and for "banana" it samples a banana picture. you can use your own artworks or images from the internet (within reason -- try to respect other people's ip/style/livelihoods). you can have even hundreds of these and randomly sample from them.
+
+besides for toggles, you can also have sliders. these are continuous values -- things you can have more or less of -- as opposed to discrete categories. for example, you could have a slider that goes between "photorealistic" and "abstract". images where it's selected in the middle should be partially photorealistic and partially abstract. one way to accomplish this would be to define a prompt for each extreme:
+e.g. photorealistic = "A banana, hyper-photorealistic, 4k, 8mm camera, highly detailed, realism", and abstract = "A banana, figurative, abstract, minimalist, triangles"
+at runtime, we can actually "average" the two prompts according to the selection i.e. 20% photorealistic + 80% abstract.
+
+the last really important part is the concept / LoRA. this can be the main pillar of your collection -- it's the first pass at distinguishing a more specific style from base stable diffusion. but it's also possible to use multiple concepts and switch them out depending on the settings. for example, you can have separate concepts for "apple" "banana" and "lemon" which get swapped out according to which of them was selected. every artist has a distinct style, but they may also have sub-styles -- you might have a few genres you mix together, and you can get them by training a collection of similar concepts which have subtle differences among them.
+
+there's a lot of creativity in putting these rules together, and it's more of an art than a science. you are letting people customize artworks in your style. so you're trying to constrain it so that all the images that come out of it feel distinctly yours and distinctly from this particular collection, but that the user feels like they influenced the image, got a surprising or unique result, like they collaborated with you to make it.
