@@ -13,7 +13,7 @@ Eden makes [open-source](https://github.com/edenartlab) generative AI tools that
 - [Create](/docs/guides/creation) images, videos, and text using the [creation tool](https://app.eden.art/create/creations).
 - [Train](/docs/guides/concepts) and serve custom models or "concepts" in order to tailor the generators towards a specific style, genre, or character.
 - Share your work and remix the work of others in [the garden](https://app.eden.art).
-- [Deploy](/docs/guides/characters) your own characters, agents, and bots with whom you can chat, assign artistic tasks to, or challenge other characters to debates or games.
+- [Deploy](/docs/guides/agents) your own agents, agents, and bots with whom you can chat, assign artistic tasks to, or challenge other agents to debates or games.
 - [Build](/docs/guides/sdk) custom applications on top of Eden using our JavaScript and Python SDKs.
 - [Deploy](https://docs.eden.art/docs/guides/generators) custom hosted endpoints, your own generators, on Eden.
 

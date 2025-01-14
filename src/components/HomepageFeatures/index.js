@@ -38,16 +38,16 @@ const FirstRowFeatureList = [
     ),
   },
   {
-    title: 'Making characters and bots',
+    title: 'Making agents and bots',
     img: require('@site/static/img/home/banny.jpg').default,
-    link: "/docs/guides/characters",
+    link: "/docs/guides/agents",
     description: (
       <>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/guides/characters">
-            Making characters and bots
+            to="/docs/guides/agents">
+            Making agents and bots
           </Link>
         </div>
       </>
