@@ -13,7 +13,7 @@ Eden offers creators the ability to host their own generators, with their own pr
 Hosting your own generators on Eden provides the following benefits:
 * Provides your users or fans with a convenient way to interact with your generator.
 * Encapsulates the complexity of hosting and maintaining your own infrastructure for serving, as well as authentication to prevent abuse or spam.
-* Plugs in nicely into Eden's ecosystem, including its social features and [character/bot framework](/docs/guides/characters).
+* Plugs in nicely into Eden's ecosystem, including its social features and [character/bot framework](/docs/guides/agents).
 * Offers developers the ability to design and deploy custom front-ends or interactive applications on top of your generator, using the [Eden SDK](/docs/guides/sdk).
 
 ## How to make endpoints
