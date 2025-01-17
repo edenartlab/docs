@@ -81,7 +81,7 @@ By default, agents are equipped with several image and video generating tools, s
 
 More tools are being added all the time that automatically become available to all agents. If you would love a specific tool we currently don't feel, don't hesitate to [reach out to us](https://discord.com/invite/4dSYwDT)!
 
-<Figure src="/img/agent_chat.jpg" caption="Agent builder home screen" />
+<Figure src="/img/banny_chat.jpg" caption="Agent builder home screen" />
 
 ## Exporting Agents to social clients
 
