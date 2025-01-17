@@ -66,7 +66,9 @@ The **face** mode in the trainer will focus on the face only and try to ignore c
 
 ### Training a character using "object" mode:
 The **object** mode is ideal for learning entire characters, objects or things like the iconic Banny character from [juicebox](https://juicebox.money/):
-<Figure src="/img/flux_lora/banny_train.jpg" caption="Character training images. Notice all images are diverse and high quality." />
+<div style={{ width: '70%', margin: '0 auto' }}>
+  <Figure src="/img/flux_lora/banny_train.jpg" caption="Character training images. Notice all images are diverse and high quality." />
+</div>
 <Figure src="/img/flux_lora/banny_test.jpg" caption="AI generated images using custom model" />
 
 ### Linking your custom model to your agent
