@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[168],{1536:e=>{e.exports=JSON.parse('{"title":"Overview","description":"An introduction to the Eden project ","slug":"/category/overview","permalink":"/docs/category/overview","navigation":{"next":{"title":"About Eden","permalink":"/docs/overview/intro"}}}')}}]);
