@@ -5,17 +5,19 @@ sidebar_position: 3
 import Figure from '@site/src/components/Figure';
 import FigureVideo from '@site/src/components/FigureVideo';
 
-# Creating Agents
+# Creative AI Agents
 
-Eden Agents are chat agents who are given a custom personality, set of tools, and finetuned image generation model capturing a personalized aesthetic. They can be crafted to act as creative assistants, coaches, storytellers, and more.
+Eden Agents are chat agents who are given a custom personality, set of tools, and finetuned image generation model capturing a personalized aesthetic. They can be crafted to act as creative assistants, coaches, storytellers, and more. Once created, they can optionally be deployed to social media.
 
 ## Create an Agent
 
 A list of all agents featured on Eden is [found here](https://beta.eden.art/explore?tab=agents). From that page, click "Create Agent" to take you to the builder interface. You may also edit agents from this page.
 
-<Figure src="/img/create_agent.jpg" caption="Agent builder home screen" />
+<Figure src="/img/agents.jpg" caption="Agent home screen" />
 
-Some guidelines for writing out character definitions:
+<Figure src="/img/create_agent.jpg" caption="Agent builder form" />
+
+### Some guidelines for writing out your character definitions:
 
 **Display Name and Name**: Display name and username of your character.
 
@@ -45,11 +47,39 @@ Start the conversation by briefly introducing yourself and explaining to the use
 You may go on for as long as the user likes, generating as many images as they want. If they want to start over at some point, go back to step 1.
 </blockquote>
 
-## Interacting with an Agent
+## Training a custom visual model for your agent
 
-From the [agents home screen](https://beta.eden.art/explore?tab=agents), you may find your agent and start a chat with them.
+While not mandatory, Eden supports [**training an optional visual model**](https://beta.eden.art/train) that gets integrated into your agent. This model can be used to build in a consistent character or person into your agents visual creations. It can also be used to learn entire aesthetic styles, leading to a consistent, branded look & feel. See our [models page](https://beta.eden.art/explore?tab=models) for examples.
 
-By default, agents are equipped with several image and video generating tools based on [Flux](https://blackforestlabs.ai/), as well as a few audio generators, and tools for websearch and news.
+Eden supports two [**trainers**](https://beta.eden.art/train): an older SDXL trainer (left) and the newer and better FLUX trainer (right) that should be used for making agents:
+<div style={{ width: '50%', margin: '0 auto' }}>
+  <Figure src="/img/flux_lora/selector.jpg" caption="Old SDXL trainer (left) and new FLUX trainer (right)" />
+</div>
+
+A good training set should have at least 5 high-resolution images (10-15 images is even better). 
+The trainer has a couple of advanced options, but generally using all-default settings works very well:
+
+### Training a person using "face" mode:
+The **face** mode in the trainer will focus on the face only and try to ignore clothing and surroundings as much as possible, this is ideal for training a person:
+<Figure src="/img/flux_lora/xander_train.jpg" caption="Person training images. Notice all images are diverse and high quality." />
+<Figure src="/img/flux_lora/xander_test.jpg" caption="AI generated images using custom model" />
+
+### Training a character using "object" mode:
+The **object** mode is ideal for learning entire characters, objects or things like the iconic Banny character from [juicebox](https://juicebox.money/):
+<Figure src="/img/flux_lora/banny_train.jpg" caption="Character training images. Notice all images are diverse and high quality." />
+<Figure src="/img/flux_lora/banny_test.jpg" caption="AI generated images using custom model" />
+
+### Linking your custom model to your agent
+Once training is done, you can simply go (back) to the agent builder form add connect your custom model to your agent:
+<Figure src="/img/flux_lora/add_lora.jpg" caption="Click 'Select Flux LoRA' to connect your model" />
+
+## Interact with your Agent
+
+Once deployed, you can find your agent in the [agents home screen](https://beta.eden.art/explore?tab=agents) and start a chat with them.
+
+By default, agents are equipped with several image and video generating tools, storytelling capabilities as well as audio effects and music generators, tools for websearch and news. All these tools are available by just asking your agent to do something!
+
+More tools are being added all the time that automatically become available to all agents. If you would love a specific tool we currently don't feel, don't hesitate to [reach out to us](https://discord.com/invite/4dSYwDT)!
 
 <Figure src="/img/agent_chat.jpg" caption="Agent builder home screen" />
 
