@@ -79,11 +79,14 @@ Once training is done, you can simply go (back) to the agent builder form add co
 
 Once deployed, you can find your agent in the [agents home screen](https://beta.eden.art/explore?tab=agents) and start a chat with them.
 
-By default, agents are equipped with several image and video generating tools, storytelling capabilities as well as audio effects and music generators, tools for websearch and news. All these tools are available by just asking your agent to do something!
-
+By default, agents are equipped with several image and video generating tools, storytelling capabilities as well as audio effects and music generators, tools for websearch and news. 
 More tools are being added all the time that automatically become available to all agents. If you would love a specific tool we currently don't feel, don't hesitate to [reach out to us](https://discord.com/invite/4dSYwDT)!
 
-<Figure src="/img/banny_chat.jpg" caption="Agent builder home screen" />
+<Figure src="/img/banny_chat.jpg" caption="" />
+
+All these tools are available by just asking your agent to do something:
+<FigureVideo src="/video/banny_chat.mp4" w={600} h={400} caption="" />
+
 
 ## Exporting Agents to social clients
 
