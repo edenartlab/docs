@@ -73,6 +73,8 @@ The **object** mode is ideal for learning entire characters, objects or things l
 </div>
 <Figure src="/img/flux_lora/banny_test.jpg" caption="AI generated images using custom model" />
 
+There is also a "style" mode which is used to learn the general aesthetics of a set of images, perfect for artists with their own, custom style.
+
 ### Linking your custom model to your agent
 Once training is done, you can simply go (back) to the agent builder form add connect your custom model to your agent:
 <Figure src="/img/flux_lora/add_lora.jpg" caption="Click 'Select Flux LoRA' to connect your model" />
