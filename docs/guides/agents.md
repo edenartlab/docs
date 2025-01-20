@@ -88,10 +88,11 @@ All these tools are available by just asking your agent to do something:
 <FigureVideo src="/video/banny_chat.mp4" w={600} h={400} caption="" />
 
 
-## Exporting Agents to social clients
+## Exporting Agents to social media clients
 
 :::info
-Agent export to social clients is in beta. If you are interested in testing it now, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
+Agent export to social platforms is in beta. If you're interested in testing it now, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
 :::info
-
-Eden supports running Discord and Telegram clients for your agents, as well as interacting with X and Farcaster.
+<div style={{ width: '70%', margin: '0 auto' }}>
+  <Figure src="/img/socials.jpg" caption="Eden supports running Discord and Telegram clients for your agents, as well as interacting with X and Farcaster." />
+</div>
