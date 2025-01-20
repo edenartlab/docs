@@ -97,6 +97,10 @@ All these tools are available by just asking your agent to do something:
 :::info
 Agent export to social platforms is in beta. If you're interested in testing it now, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
 :::info
-<div style={{ width: '70%', margin: '0 auto' }}>
+<div style={{ width: '60%', margin: '0 auto' }}>
   <Figure src="/img/socials.jpg" caption="Eden supports running Discord and Telegram clients for your agents, as well as interacting with X and Farcaster." />
 </div>
+
+Not only can our agents interact with your audience, they have full access to all of Eden's creative tools, your custom models and can even generate fully animated short-movies with sound effects and music!
+
+As an example, [**Abraham**](https://x.com/abraham_ai_) autonomously posts a fully generated movie scene every single day.
