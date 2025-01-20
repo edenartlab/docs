@@ -7,7 +7,9 @@ import FigureVideo from '@site/src/components/FigureVideo';
 
 # Creative AI Agents
 
+:::tip What are Eden Agents?
 Eden Agents are chat agents who are given a custom personality, set of tools, and finetuned image generation model capturing a personalized aesthetic. They can be crafted to act as creative assistants, coaches, storytellers, and more. Once created, they can optionally be deployed to social media.
+:::
 
 ## Create an Agent
 
