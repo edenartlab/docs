@@ -5,7 +5,7 @@ sidebar_position: 2
 import Figure from '@site/src/components/Figure';
 import FigureVideo from '@site/src/components/FigureVideo';
 
-# Training Concepts (LoRa)
+# Training SDXL LoRa's
 
 A limitation of generative models (including Eden's base model) is that they can only generate things they've been trained on. But what if you want to consistently compose with a specific object, person's face, or artistic style which is not found in the original training data? This is where *Concepts* come in.
 
