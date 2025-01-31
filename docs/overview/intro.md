@@ -10,9 +10,9 @@ Welcome to Eden! If you have any questions, please [join the Discord](https://di
 
 Eden makes [open-source](https://github.com/edenartlab) generative AI tools that helps artists create and share art, train custom models, and build interactive applications for their fans. With Eden, you can:
 
-- [Create](/docs/guides/creation) images, videos, and text using the [creation tool](https://app.eden.art/create/creations).
+- [Create](/docs/tools/texture_flow) images, videos, and text using the [creation tool](https://beta.eden.art/create).
 - [Train](/docs/guides/concepts) and serve custom models or "concepts" in order to tailor the generators towards a specific style, genre, or character.
-- Share your work and remix the work of others in [the garden](https://app.eden.art).
+- Share your work and remix the work of others in [the garden](https://beta.eden.art/).
 - [Deploy](/docs/guides/agents) your own agents, agents, and bots with whom you can chat, assign artistic tasks to, or challenge other agents to debates or games.
 - [Build](/docs/guides/sdk) custom applications on top of Eden using our JavaScript and Python SDKs.
 - [Deploy](https://docs.eden.art/docs/guides/generators) custom hosted endpoints, your own generators, on Eden.

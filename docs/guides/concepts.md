@@ -11,15 +11,12 @@ A limitation of generative models (including Eden's base model) is that they can
 
 Concepts are custom characters, objects, styles, or specific people which have been trained and added by Eden users to the Eden generators' knowledge base, using the [LoRA technique](https://arxiv.org/abs/2106.09685). With concepts, users are able to consistently reproduce specific content and styles in their creations.
 
-Concepts are first trained by uploading example images to the [concept trainer](https://app.eden.art/create/concepts). Training a concept takes around 10 minutes. Once trained, the concept becomes available to use in the [creation tool](/docs/guides/creation) for all of the endpoints, including images and video.
+Concepts are first trained by uploading example images to the [SDXL trainer](https://beta.eden.art/train/lora_trainer). Training a concept takes around 10 minutes. Once trained, the concept becomes available to use in the creation tool for all of the endpoints, including images and video.
 
-:::tip
-This doc is about training concepts. For help generating creations with your concepts, see the [creation tool doc](/docs/guides/creation/#concepts).
-:::tip
 
 ## Training
 
-You can train a concept through the [training UI](https://app.eden.art/create/concepts) or through the [SDK](/docs/guides/sdk).
+You can train a concept through the [training UI](https://beta.eden.art/train/lora_trainer) or through the [SDK](/docs/guides/sdk).
 
 ### Selecting your training set
 
@@ -140,11 +137,7 @@ Note that these images are not of the same objects, nor do they share a common v
 
 ## Generating with concepts
 
-Once a concept is trained, you may select your concept in the [creation tool](https://app.eden.art/create/creations) from the concept selector, and trigger the concept by referring to it in the prompt by its name or by <concept\>.
-
-:::info
-For more information on how to use concepts in the creation tool, see the [creation tool doc](/docs/guides/creation/#concepts).
-:::info
+Once a concept is trained, you may select your concept in the [creation tool](https://beta.eden.art/create) from the concept selector, and trigger the concept by referring to it in the prompt by its name or by <concept\>.
 
 ## Exporting LoRas for use in other tools
 

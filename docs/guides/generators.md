@@ -24,10 +24,6 @@ Custom hosted endpoints are still under development. This documentation is incom
 
 To create an endpoint, there are several options, depending on your needs.
 
-### Custom model only
-
-If you simply have a custom finetuned model or [LoRA](/docs/guides/concepts), which you'd like to serve through Eden's [existing image and video pipelines](/docs/guides/creation), you can upload your model checkpoint to Eden, and we'll expose a new endpoint on the API for it.
-
 ### Custom interface
 
 Although most creators generally use the same core SDXL pipelines for generating images and videos, in some cases you may wish to create a custom interface for your users, i.e. a set of adjustable parameters in the form of sliders, toggles, text inputs, and/or media uploads, which resolves to an input config that goes to that generator.
@@ -43,7 +39,7 @@ As a toy example, let's suppose you have a custom finetuned model for generating
 * A slider which adjusts the level of photorealism of the generated cat, from 0 (fully figurative) to 1 (fully photographic).
 * A toggle which controls the genre of the cat (including "noir", "romantic", "anime", "surreal", etc).
 
-In order to trigger a creation, the custom interface must define a function which maps a selection from the desired settings above into a full Eden config object to the underlying generator. We can do this by pre-defining a default [/create config](/docs/guides/creation#create) and adjusting it in various ways. There are often multiple ways of achieving similar effects, and this design process is more of an art than a science. We'll go over a few examples.
+In order to trigger a creation, the custom interface must define a function which maps a selection from the desired settings above into a full Eden config object to the underlying generator. There are often multiple ways of achieving similar effects, and this design process is more of an art than a science. We'll go over a few examples.
 
 One way of translating the genre setting would be pre-defining the prompt (e.g. "A stylish cat in the style of {genre}"), and inserting the genre into the prompt string at runtime.
 
@@ -59,7 +55,7 @@ config = {
 }
 ```
 
-An alternative way of differentiating the genres would be to keep the prompt static (e.g. "A stylish cat") but to use a pre-assigned starting image for each genre. [Because starting images can have a large influence on the final output](/docs/guides/creation/#starting-image), this can be a powerful tool.
+An alternative way of differentiating the genres would be to keep the prompt static (e.g. "A stylish cat") but to use a pre-assigned starting image for each genre.
 
 ```
 settings = {
@@ -95,7 +91,7 @@ The above example is fairly simple but powerful. In practice, there is a lot of 
 * The base model/checkpoint
 * Concepts/LoRas
 * The prompt (and negative prompt)
-* Starting images (as an init_image or [controlnet](/docs/guides/creation#controlnet) image), which can include static images pre-defined by the creator
+* Starting images (as an init_image or controlnet image), which can include static images pre-defined by the creator
 * Generation parameters (guidance scale, starting image strength, etc)
 
 The Eden team will work closely with you to come up with the mapping function which enables your desired custom interface.
