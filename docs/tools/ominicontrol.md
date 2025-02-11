@@ -19,7 +19,7 @@ A specialized tool for reimagining subjects in new contexts using a single refer
 
 ## Quick Start
 
-1. Visit Eden Create: [Instant LoRA](https://beta.eden.art/create/ominicontrol) tool
+1. Visit Eden Create: [Instant LoRA](https://beta.eden.art/create/image/ominicontrol) tool
 2. Upload your subject image
 3. Enter your descriptive prompt
 4. Click "Create"
