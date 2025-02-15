@@ -88,7 +88,7 @@ const config = {
             activeBaseRegex: 'docs/*',
           },
           {
-            href: 'https://app.eden.art',
+            href: 'https://beta.eden.art',
             label: 'App',
             position: 'right',
           },
@@ -102,7 +102,7 @@ const config = {
             items: [
               {
                 label: 'App',
-                href: 'https://app.eden.art',
+                href: 'https://beta.eden.art',
               },
               {
                 label: 'Docs',
@@ -123,7 +123,7 @@ const config = {
               },
               {
                 label: 'Instagram',
-                href: 'https://instagram.com/eden.art____',
+                href: 'https://instagram.com/edenartlab',
               },
             ],
           },
@@ -139,8 +139,8 @@ const config = {
                 href: 'https://www.npmjs.com/package/@edenlabs/eden-sdk',
               },
               {
-                label: 'Eden SDK (Python)',
-                href: 'https://github.com/abraham-ai/eden-sdk-py',
+                label: 'Eve',
+                href: 'https://github.com/edenartlab/eve',
               },
             ],
           },

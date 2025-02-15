@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# JavaScript SDK
+# SDK
 
 :::info
 API keys are currently in beta. If you'd like to use the SDK, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
@@ -26,7 +26,7 @@ npm install @edenlabs/eden-sdk
 
 ## Make a creation
 
-A full list of generators and their config parameters can be found in the [creation tool](https://app.eden.art/create).
+A full list of generators and their config parameters can be found in the [creation tool](https://beta.eden.art/create).
 
 All requests to Eden go through the `EdenClient` class. To make a task request, target a specific generator (e.g. "create") with a configuration object. For example:
 
