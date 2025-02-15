@@ -11,7 +11,7 @@ import FigureVideo from '@site/src/components/FigureVideo';
 Deployments are experimental and currently in private beta. If you're interested in testing it now, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
 :::
 
-Users who have been granted access to the deployment beta will notice a "Deployments" section in each Agent's settings. Through this interface, you can deploy your agent to either Discord or [Telegram](/guides/telegram).
+Users who have been granted access to the deployment beta will notice a "Deployments" section in each Agent's settings. Through this interface, you can deploy your agent to either Discord or [Telegram](/docs/guides/telegram).
 
 To deploy your agent to Discord, you will first need to create a new application in the [Discord Developer Portal](https://discord.com/developers/applications).
 
