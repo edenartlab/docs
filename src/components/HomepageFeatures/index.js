@@ -75,16 +75,16 @@ const SecondRowFeatureList = [
     ),
   },
   {
-    title: 'Hosting custom endpoints',
+    title: 'Deploy a bot to Discord or Telegram',
     img: require('@site/static/img/home/comfyui.jpg').default,
-    link: "/docs/guides/generators",
+    link: "/docs/guides/discord",
     description: (
       <>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/guides/generators">
-            Hosting custom endpoints
+            to="/docs/guides/discord">
+            Deploy a bot to Discord or Telegram
           </Link>
         </div>
       </>
