@@ -49,14 +49,24 @@ Now click "OAuth2" on the left sidebar to set up the bot's permissions and get a
 
 Finally, go to the URL and invite the bot to your server.
 
+## Link bot to your agent
+
 The last step is to paste the bot token into Eden. Go to your agent's deployment settings, select Discord, and paste the token into the "Token" field.
 
 The "Allowed Channels" field is optional. If you want to specify certain channels where the bot is able to send messages, add them. To get the channel ID, right click the channel name in Discord and select "Copy ID". If this is left blank, the bot will be able to send and receive messages to all channels in all guilds it is a member of.
 
+:::warning
+Some users report not seeing the "Copy ID" option for a channel. If you don't see it, you might see "Copy Link" instead. Copy that, and grab the ID from the URL, where it is the last part of the URL after the last slash.
+:::
+
 <Figure src="/img/discord_deployment.jpg" caption="Select Bot scope." />
 
-Once you're done, click "Deploy." You will be alerted that the deployment is starting. Note this process may take up to 10 minutes to complete. Once it's done, the deployments page will show the status of the deployment. If it is successful, you should now be able to interact with your agent in Discord. Try mentioning it in a message.
+Once you're done, click "Deploy." Once it's done, the deployments page will show the status of the deployment. If it is successful, you should now be able to interact with your agent in Discord. 
+
+## Test your agent
+
+Go to one of the channels where the bot is allowed to send messages and try mentioning it in a message. If it responds, you're all set!
 
 :::warning
-The deployment may show as "successful" a couple minutes before it is actually ready. If it is successful but not responding, please wait a few more minutes.
+A common issue is allowlisting your bot to a channel where it does not have permission to send messages. If it doesn't respond, check the permissions of the channel and make sure the bot has "Send Messages" permissions.
 :::
