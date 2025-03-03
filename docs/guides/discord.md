@@ -13,7 +13,12 @@ Deployments are experimental and currently in private beta. If you're interested
 
 Users who have been granted access to the deployment beta will notice a "Deployments" section in each Agent's settings. Through this interface, you can deploy your agent to either Discord or [Telegram](/docs/guides/telegram).
 
-To deploy your agent to Discord, you will first need to create a new application in the [Discord Developer Portal](https://discord.com/developers/applications).
+To deploy your agent to Discord, follow these steps.
+
+
+## Create application in Discord
+
+You will first need to create a new application in the [Discord Developer Portal](https://discord.com/developers/applications).
 
 <Figure src="/img/discord1.jpg" caption="Select 'New Application'" />
 
