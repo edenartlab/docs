@@ -29,9 +29,9 @@ Now go to your agent's deployment settings, select Telegram, and paste the token
 
 <Figure src="/img/telegram_deployment.jpg" caption="Enter the token and click 'Deploy'" />
 
-The "Allowed Channels" field is optional. If you want to specify certain channels ("groups" or "topics" in Telegram) where the bot is permitted to send messages, specify those here. To get the ID of a topic or group, you have to visit the channel in [Telegram web](https://web.telegram.org/) and then inspect the url when you've selected the group. The ID is the number after the last slash, excluding the hash.
+Lastly, you need to specify the "Allowed Channels" field, which is all of the channels the bot is permitted to chat. These are called "groups" or "topics" in Telegram. To get the ID of a topic or group, you have to visit the channel in [Telegram web](https://web.telegram.org/) and then inspect the url when you've selected the group. The ID is the number after the last slash, excluding the hash. **If the group is a multi-user group chat, prepend the ID with `-100`**. For example 
 
-<Figure src="/img/telegram1.jpg" caption="The ID of the group is `-2155286223` (note the dash!)" />
+<Figure src="/img/telegram2.jpg" caption="Notice the ID of the group is `-1002155286223` (-100, then the group ID)" />
 
 Once you're done, click "Deploy." You will be alerted that the deployment is starting. Note this process may take up to 10 minutes to complete. Once it's done, the deployments page will show the status of the deployment. If it is successful, you should now be able to interact with your agent in Discord. Try mentioning it in a message.
 

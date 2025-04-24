@@ -75,8 +75,8 @@ const SecondRowFeatureList = [
     ),
   },
   {
-    title: 'Deploy a bot to Discord or Telegram',
-    img: require('@site/static/img/home/comfyui.jpg').default,
+    title: 'Deploy a bot to Discord',
+    img: require('@site/static/img/discord3.jpg').default,
     link: "/docs/guides/discord",
     description: (
       <>
@@ -84,23 +84,23 @@ const SecondRowFeatureList = [
           <Link
             className="button button--secondary button--lg"
             to="/docs/guides/discord">
-            Deploy a bot to Discord or Telegram
+            Deploy a bot to Discord
           </Link>
         </div>
       </>
     ),
   },
   {
-    title: 'About Eden',
-    img: require('@site/static/img/eden.png').default,
-    link: "/docs/overview/intro",
+    title: 'Deploy a bot to Telegram',
+    img: require('@site/static/img/telegram1.jpg').default,
+    link: "/docs/guides/telegram",
     description: (
       <>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/overview/intro">
-            About Eden
+            to="/docs/guides/telegram">
+            Deploy a bot to Telegram
           </Link>
         </div>
       </>

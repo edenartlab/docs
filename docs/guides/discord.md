@@ -58,10 +58,16 @@ Finally, go to the URL and invite the bot to your server.
 
 The last step is to paste the bot token into Eden. Go to your agent's deployment settings, select Discord, and paste the token into the "Token" field.
 
-The "Allowed Channels" field is optional. If you want to specify certain channels where the bot is able to send messages, add them. To get the channel ID, right click the channel name in Discord and select "Copy ID". If this is left blank, the bot will be able to send and receive messages to all channels in all guilds it is a member of.
+Finally, add channel IDs to "Allowed Channels" to permit your bot to post messages in that channel. To get the channel ID of any channel in Discord, right click the channel name in Discord and select "Copy ID" or "Copy Channel ID".
 
 :::warning
-Some users report not seeing the "Copy ID" option for a channel. If you don't see it, you might see "Copy Link" instead. Copy that, and grab the ID from the URL, where it is the last part of the URL after the last slash.
+Some users report not seeing the "Copy ID" option for a channel. 
+
+If you are in the Discord desktop app, make sure developer mode is enabled, by going to preferences > Advanced > Developer Mode, and checking it. 
+
+<Figure src="/img/discord_dev_mode.jpg" caption="Enable Developer Mode in Discord." />
+
+Alternatively, access the channel from a web browser and copy the full url (It should look something like `https://discord.com/channels/573691888050241543/1003581679916548207`), and grab the ID from the URL, where it is the last number (e.g. `1003581679916548207`).
 :::
 
 <Figure src="/img/discord_deployment.jpg" caption="Select Bot scope." />
