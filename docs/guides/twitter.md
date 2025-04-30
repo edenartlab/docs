@@ -25,7 +25,7 @@ In this page, you will see a default project. Click the `+Add App` button.
 
 <Figure src="/img/twitter/twitter2.jpg" caption="Creating a new app in Twitter" />
 
-On the next page, you will be asked to provide a name for your app. Choose a unique name, it doesn't matter what it is.
+On the next page, you will be asked to provide a name for your app. Choose a unique name, it doesn't matter what it is. Click 'next'.
 
 
 <Figure src="/img/twitter/twitter3.jpg" caption="Naming your app" />
@@ -47,11 +47,13 @@ Set the app permissions and type of app as shown here. App permissions should be
 
 <Figure src="/img/twitter/twitter6.jpg" caption="Setting app permissions" />
 
-Set Callback URI / Redirect URI to `http://localhost:8000` and set Website URL to `https://eden.art`. Click Save.
+Set Callback URI / Redirect URI to `http://localhost:8000` and set Website URL to `https://eden.art`. Click Save, then click 'Yes' in the next popup.
 
 <Figure src="/img/twitter/twitter7.jpg" caption="Setting app info" />
 
-Return to your app using the sidebar and click the `Keys and Tokens` tab. In the section marked `Access Token and Secret`, click `Generate Token`.
+At this point, you will be shown a Client ID and Client Secret. Disregard these for now, you do not need them. Click 'Done', then click 'Yes, I saved it'.
+
+Click the `Keys and Tokens` tab. In the section marked `Access Token and Secret`, click `Generate`.
 <Figure src="/img/twitter/twitter8.jpg" caption="Generating a token" />
 
 Copy your access token and access token secret and save them in a secure location. You will need them later.
