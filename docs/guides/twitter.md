@@ -23,10 +23,7 @@ Ignore the subscription tiers and just click "sign up for Free Account":
 
 In the **developer Agreement** you can explain what you're intending to use the agent for, but to make things easy we've already drafted something for you, feel free to edit if you want:
 
-<div style={{backgroundColor: 'lightgray', padding: '10px', borderRadius: '5px', width: '70%', margin: 'auto'}}>
-Programmatically read, classify and respond to public tweets that discuss generative-AI, autonomous agents and community-driven creativity. Prototype research agents that serve as transparent information filters: collecting relevant threads and information, extract key insights, generate multimedia and publish context-rich replies using a multi-modal agentic tool-suite. Aggregated, de-identified activity metrics will inform studies on collective knowledge-building, guide open-source tooling roadmaps and coordinate online events. All processing accesses only publicly available content and crawls the minimum data required.
-</div>
-<br />
+> Programmatically read, classify and respond to public tweets that discuss generative-AI, autonomous agents and community-driven creativity. Prototype research agents that serve as transparent information filters: collecting relevant threads and information, extract key insights, generate multimedia and publish context-rich replies using a multi-modal agentic tool-suite. Aggregated, de-identified activity metrics will inform studies on collective knowledge-building, guide open-source tooling roadmaps and coordinate online events. All processing accesses only publicly available content and crawls the minimum data required.
 
 Now, you should be able to navigate to your default project which is auto-created for you. Navigate to its only existing app and rename it if you want.
 
@@ -57,11 +54,14 @@ Copy your access token and access token secret and save them in a secure locatio
 <Figure src="/img/twitter/twitter9.jpg" caption="Copying your token" width="70%"/>
 
 ## [3/4] Get your User ID
-If you go back to your app settings on the developer website and look at your developer.x.com url you should see something like this:
 
-`https://developer.x.com/en/portal/projects/1925176436425485860/apps/32908218/settings`
+If you go back to your app settings on the developer website and look at your `developer.x.com` URL, you should see something like this:
 
-The large number after */projects/* is your **User ID**, copy it and save it in a file.
+```
+https://developer.x.com/en/portal/projects/1925176436425485860/apps/32908218/settings
+```
+
+The large number after `/projects/` (in the URL above) is your **User ID**. Copy it and save it in a file.
 
 
 ## [4/4] Deploy Your Agent
@@ -70,17 +70,17 @@ Navigate to your agent's page in Eden. You should see a button called `Deploymen
 
 <Figure src="/img/twitter/twitter1.jpg" caption="Setting up your agent" width="70%"/>
 
-**User ID** this is the large number from just before.
+Fill them in as follows:
 
-**Username** - this is your Twitter @handle, dont include the '@'-sign, just your handle.
+*   **User ID**: This is the large number from the previous step.
+*   **Username**: This is your Twitter @handle. Do not include the `@` sign, just your handle (e.g., `your_twitter_name`).
+*   **Bearer Token**: This is the Bearer Token from the application you set up earlier.
+*   **Consumer Key**: This is the API key from the application you set up earlier.
+*   **Consumer Secret**: This is the API secret from the application you set up earlier.
+*   **Access Token**: This is the access token from the application you set up earlier.
+*   **Access Token Secret**: This is the access token secret from the application you set up earlier.
 
-**Bearer Token, Consumer Key, Consumer Secret, Access Token, Access Token Secret** - These all come from the application you setup earlier. Paste them in their respective fields.
-
-- Bearer Token is the bearer token from the application you setup earlier.
-- Consumer Key and Consumer Secret are the API key and API secret from the application you setup earlier.
-- Access Token and Access Token Secret are the access token and access token secret from the application you setup earlier.
-
-Paste the values into the fields and click deploy!
+Paste the values into their respective fields and click `Deploy`!
 
 
 ## Finally, test your agent!
