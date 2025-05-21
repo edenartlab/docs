@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 2
 ---
 
 import Figure from '@site/src/components/Figure';
@@ -11,72 +11,68 @@ import FigureVideo from '@site/src/components/FigureVideo';
 Deployments are experimental and currently in private beta. If you're interested in testing it now, please reach out to the devs on [Discord](https://discord.com/invite/4dSYwDT).
 :::
 
-Users who have been granted access to the deployment beta will notice a "Deployments" section in each Agent's settings.
-
-To deploy your agent to Twitter, follow these steps.
+Users who have been granted access to the deployment beta will notice a "Deployments" section in each Agent's settings. To deploy your agent to Twitter, follow these steps.
 
 
-## Create application in Twitter/X
+## [1/4] Create a Twitter/X application
 
-Begin by signing into X, and navigating to the [X Developer Portal](https://developer.x.com/en/portal/projects-and-apps).
+Begin by signing into X using the account you want to deploy your agent to! When logged in, navigate to the **[X Developer Portal](https://developer.x.com/en/portal/projects-and-apps)**.
 
-In this page, you will see a default project. Click the `+Add App` button.
+Ignore the subscription tiers and just click "sign up for Free Account":
+<Figure src="/img/twitter/twitter_01.jpg" caption="Sign up for a Free Account" width="60%" />
 
+In the **developer Agreement** you can explain what you're intending to use the agent for, but to make things easy we've already drafted something for you, feel free to edit if you want:
 
-<Figure src="/img/twitter/twitter2.jpg" caption="Creating a new app in Twitter" />
+<div style={{backgroundColor: 'lightgray', padding: '10px', borderRadius: '5px', width: '70%', margin: 'auto'}}>
+Programmatically read, classify and respond to public tweets that discuss generative-AI, autonomous agents and community-driven creativity. Prototype research agents that serve as transparent information filters: collecting relevant threads and information, extract key insights, generate multimedia and publish context-rich replies using a multi-modal agentic tool-suite. Aggregated, de-identified activity metrics will inform studies on collective knowledge-building, guide open-source tooling roadmaps and coordinate online events. All processing accesses only publicly available content and crawls the minimum data required.
+</div>
+<br />
 
-On the next page, you will be asked to provide a name for your app. Choose a unique name, it doesn't matter what it is. Click 'next'.
+Now, you should be able to navigate to your default project which is auto-created for you. Navigate to its only existing app and rename it if you want.
 
+<Figure src="/img/twitter/twitter_03.jpg" caption="Your first (default) app"  width="30%" />
 
-<Figure src="/img/twitter/twitter3.jpg" caption="Naming your app" />
+## [2/4] Setup your API Key and Secrets
+Next, you will see your **API Key, Secret**, and **Bearer Token**. Copy these and save them in a secure location. You will need them later.
 
-Next, you will see your API Key, Secret, and Bearer Token. Copy these and save them in a secure location. You will need them later.
+Click back on your app (or navigate to 'settings'), scroll down, and you'll see a section called `User Authentication settings`. Click the `Set up` button:
 
+<Figure src="/img/twitter/twitter5.jpg" caption="Setting up user authentication"  width="70%"/>
 
-<Figure src="/img/twitter/twitter4.jpg" caption="Getting bearer token and API keys" />
+Set the app permissions and type of app as shown here. App permissions should be set to `Read and Write and Direct Message`. Type of app should be `Web App, Automated App, or Bot`:
 
-Now click your app in the sidebar.
-
-<Figure src="/img/twitter/twitter10.jpg" caption="Copying your API keys" />
-
-On the page for your app, you will see a section called `User Authentication settings`. Click the `Set up` button.
-
-<Figure src="/img/twitter/twitter5.jpg" caption="Setting up user authentication" />
-
-Set the app permissions and type of app as shown here. App permissions should be set to `Read and Write and Direct Message`. Type of app should be `Web App, Automated App, or Bot`.
-
-<Figure src="/img/twitter/twitter6.jpg" caption="Setting app permissions" />
+<Figure src="/img/twitter/twitter6.jpg" caption="Setting app permissions"  width="70%"/>
 
 Set Callback URI / Redirect URI to `http://localhost:8000` and set Website URL to `https://eden.art`. Click Save, then click 'Yes' in the next popup.
 
-<Figure src="/img/twitter/twitter7.jpg" caption="Setting app info" />
+<Figure src="/img/twitter/twitter7.jpg" caption="Setting app info"  width="70%"/>
 
-At this point, you will be shown a Client ID and Client Secret. Disregard these for now, you do not need them. Click 'Done', then click 'Yes, I saved it'.
+You will be shown a Client ID and Client Secret. **Ignore these for now, you do not need them**. Click 'Done', then click 'Yes, I saved it'.
 
 Click the `Keys and Tokens` tab. In the section marked `Access Token and Secret`, click `Generate`.
-<Figure src="/img/twitter/twitter8.jpg" caption="Generating a token" />
+<Figure src="/img/twitter/twitter8.jpg" caption="Generating a token" width="70%"/>
 
 Copy your access token and access token secret and save them in a secure location. You will need them later.
 
-<Figure src="/img/twitter/twitter9.jpg" caption="Copying your token" />
+<Figure src="/img/twitter/twitter9.jpg" caption="Copying your token" width="70%"/>
 
-## Deploy Your Agent
+## [3/4] Get your User ID
+If you go back to your app settings on the developer website and look at your developer.x.com url you should see something like this:
+
+`https://developer.x.com/en/portal/projects/1925176436425485860/apps/32908218/settings`
+
+The large number after */projects/* is your **User ID**, copy it and save it in a file.
+
+
+## [4/4] Deploy Your Agent
 
 Navigate to your agent's page in Eden. You should see a button called `Deployments`. Click that button to open the deployment sheet, and scroll to the Twitter section. You should see the following fields:
 
-<Figure src="/img/twitter/twitter1.jpg" caption="Setting up your agent" />
+<Figure src="/img/twitter/twitter1.jpg" caption="Setting up your agent" width="70%"/>
 
-You will need the following pieces of information to deploy your agent:
+**User ID** this is the large number from just before.
 
-**User ID** - Unfortunately there is not a straightforward way to do this. One of the easiest ways is to go to your profile, right click, choose 'View Source', and search for `/profile_banners/`
-
-<Figure src="/img/twitter/twitter11.jpg" caption="Viewing your user ID" />
-
-You will see a URL, and the number after /profile_banners/ is your user ID.
-
-For instance, here the Twitter User ID is 1179234046213345281.
-
-**Username** - this is your Twitter @handle.
+**Username** - this is your Twitter @handle, dont include the '@'-sign, just your handle.
 
 **Bearer Token, Consumer Key, Consumer Secret, Access Token, Access Token Secret** - These all come from the application you setup earlier. Paste them in their respective fields.
 
@@ -84,9 +80,20 @@ For instance, here the Twitter User ID is 1179234046213345281.
 - Consumer Key and Consumer Secret are the API key and API secret from the application you setup earlier.
 - Access Token and Access Token Secret are the access token and access token secret from the application you setup earlier.
 
-Paste the values into the fields and click deploy. After that you should be good to go!
+Paste the values into the fields and click deploy!
 
 
-## Test your agent
+## Finally, test your agent!
 
-Start a chat with your agent. Ask it to create something and post it as a tweet. It should be posted to your Twitter account.
+Start a chat with your agent using the web interface.
+Ask your agent to create something and post it as a tweet. It should be posted to your Twitter account.
+
+## Build the magic
+
+
+<Figure src="/img/twitter/twitter__09.jpg" caption="Schedule Tasks" width="70%"/>
+
+Once everything works you can start really making your agent into a powerful autonomous agents. Our most powerful feature is scheduled tasks driven by a single, powerful prompt that leverages all the tools in our stack! Be creative, go wild, be responsible, this is powerful stuff you're playing with!
+
+
+<Figure src="/img/twitter/twitter__10.jpg" caption="Schedule Tasks" width="70%"/>
