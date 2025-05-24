@@ -55,13 +55,13 @@ Copy your access token and access token secret and save them in a secure locatio
 
 ## [3/4] Get your User ID
 
-If you go back to your app settings on the developer website and look at your `developer.x.com` URL, you should see something like this:
+Go to your Twitter profile on x.com, click on your profile picture until it is fullscreen, then right-click and select "Open image in new tab". The URL will look something like this:
 
 ```
-https://developer.x.com/en/portal/projects/1925176436425485860/apps/32908218/settings
+https://pbs.twimg.com/profile_images/1925130100616598696/84WXIM8n_400x400.jpg
 ```
 
-The large number after `/projects/` (in the URL above) is your **User ID**. Copy it and save it in a file.
+The long number in that URL (in this example: `1925130100616598696`) is your **User ID**. Copy it and save it in a file.
 
 
 ## [4/4] Deploy Your Agent
