@@ -30,8 +30,12 @@ Once you have a Farcaster account, you will need to export your account mnemonic
 
 ## Link Farcaster to your agent
 
-Now let's set up your agent in Eden. Go to your agent's deployment settings, select Discord, and paste the mnemonic into the "Mnemonic" field. Click deploy.
+Now let's set up your agent in Eden. Go to your agent's deployment settings, select Farcaster, and paste the mnemonic from the previous step into the "Mnemonic" field. 
+
+Additionally, you can choose to enable or disable 'Auto-reply'. If enabled, your agent will automatically reply to any @mention of its username on Farcaster.
+
+Click deploy.
 
 ## Test your agent
 
-If your deployment was successful, your bot should reply to any @mention of its username on Farcaster.
+If your deployment was successful and auto-reply is enabled, your bot should reply to any @mention of its username on Farcaster.
