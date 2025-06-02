@@ -16,7 +16,7 @@ Users who have been granted access to the deployment beta will notice a "Deploym
 To deploy your agent to Discord, follow these steps.
 
 
-## Create application in Discord
+## (1/3) Create application in Discord
 
 You will first need to create a new application in the [Discord Developer Portal](https://discord.com/developers/applications).
 
@@ -32,48 +32,54 @@ Now click "Bot" on the left sidebar to set up the bot.
 
 Click "Reset Token" to generate a new token and copy it somewhere safe. In one of the next steps, you will need to paste this token into Eden. 
 
-:::warning
-Make sure to save the token somewhere safe. Once you leave this page, you will not be able to access it again.
-:::
+<Figure src="/img/discord3.jpg" caption="Click 'Reset Token' to generate a new token and copy it somewhere safe." />
 
 :::warning
 If you ever reset or revoke the token, your bot will stop working. You can always generate a new token and paste it again into Eden.
 :::
 
-<Figure src="/img/discord3.jpg" caption="Click 'Reset Token' to generate a new token and copy it somewhere safe." />
-
 On the same page, scroll down to "Privileged Gateway Intents" and make sure to select the presence, server members, and message content intents. Your bot will not be able to send or receive messages without these permissions, so make sure to select them and click "Save Changes".
 
-## Link bot to your agent
+<Figure src="/img/discord/_100003.jpg" caption="Allowlist" width="100%" />
 
-Now let's set up your agent in Eden. Go to your agent's deployment settings, select Discord, and paste the token into the "Token" field.
+## (2/3) Link the Discord bot to your Eden agent
 
-Finally, add channel IDs to "Allowed Channels" to permit your bot to post messages in that channel. To get the channel ID of any channel in Discord, right click the channel name in Discord and select "Copy ID" or "Copy Channel ID".
+Now let's set up your agent in Eden. Go to your agent's deployment settings, select Discord, and paste the Discord Token you copied earlier into the "Token" field.
+<Figure src="/img/discord_deployment.jpg" caption="Select Bot scope." width="80%" />
 
-:::warning
-Some users report not seeing the "Copy ID" option for a channel. 
+Next you'll have to setup which channels your agent will be active in. The easiest way to do this is to first activate "developer mode" in discord:
+1. Go to user settings:
+<Figure src="/img/discord/_100001.jpg" caption="Copy Channel ID." width="40%" />
+2. Search for "developer" and activate the developer mode in advanced settings:
+<Figure src="/img/discord/_100002.jpg" caption="Copy Channel ID." width="100%" />
 
-If you are in the Discord desktop app, make sure developer mode is enabled, by going to preferences > Advanced > Developer Mode, and checking it. 
+Finally, add channel IDs to "Allowed Channels" to permit your bot to post messages in that channel. To get the channel ID of any channel in Discord, right click the channel name in Discord and select "Copy ID" or "Copy Channel ID". It's good practice to add the channel name as a label so you remember later which ones you've already added.
 
-<Figure src="/img/discord_dev_mode.jpg" caption="Enable Developer Mode in Discord." />
+<Figure src="/img/discord/_100000.jpg" caption="Copy Channel ID." width="20%" />
 
-Alternatively, right click the channel in Discord and click "Copy Link", and paste it somewhere. (It should look something like `https://discord.com/channels/573691888050241543/1003581679916548207`), and grab the ID from the URL, which is the last number (e.g. `1003581679916548207`).
-:::
+Once you're done, click "Deploy."
 
-<Figure src="/img/discord_deployment.jpg" caption="Select Bot scope." />
-
-Once you're done, click "Deploy." Once it's done, the deployments page will show the status of the deployment. If it is successful, you will now see a section that says "Invite Bot to Server". Click to copy this link, paste it into a browser, and add the bot to your server.
+Once it's done, the deployments page will show the status of the deployment. If it is successful, you will now see a section that says "Invite Bot to Server". Click to copy this link, paste it into a browser, and add the bot to your server:
 
 <Figure src="/img/discord/discord1.jpg" caption="Click to copy this link, paste it into a browser, and add the bot to your server." />
 
-## Test your agent
+## (3/3) Test your agent
 
 If your deployment was successful, your bot will show as "Online" in the sidebar of your Discord server.
 
-<Figure src="/img/discord/discord2.jpg" caption="Your bot will show as 'Online' in the sidebar of your Discord server." />
+<Figure src="/img/discord/discord2.jpg" caption="Your bot will show as 'Online' in the sidebar of your Discord server."  width="40%" />
 
 Go to one of the channels where the bot is allowed to send messages and try mentioning it in a message. If it responds, you're all set!
 
 :::warning
 A common issue is allowlisting your bot to a channel where it does not have permission to send messages. If it doesn't respond, check the permissions of the channel and make sure the bot has "Send Messages" permissions.
+
+Also, when deploying a bot to a private channel you may need to manually add it as a member in discord:
+
+1. Right click the channel and click "Edit Channel":
+<Figure src="/img/discord/_100004.jpg" caption="Edit channel" width="40%" />
+
+2. Go to permissions and add members and add your bot:
+<Figure src="/img/discord/_100005.jpg" caption="Add permissions" width="90%" />
+
 :::
