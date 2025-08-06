@@ -243,3 +243,90 @@ After setting up your credentials:
 6. **Rate limiting**
    - Captions.ai has API rate limits
    - Implement retry logic with exponential backoff
+
+### Getting Help
+
+If you encounter issues:
+
+1. Check Captions.ai's [API documentation](https://help.captions.ai/api-reference/api)
+2. Review your API key permissions in Captions.ai dashboard
+3. Enable debug logging to see detailed error messages
+4. Contact Eden support with specific error details
+
+## Complete Workflow Integration
+
+Eden's Captions.ai integration is designed to work seamlessly with other platforms in a complete content creation and distribution pipeline:
+
+### Step 1: Generate Script
+
+- Use Eden's AI tools to create engaging video scripts
+- Optimize scripts for your target audience and platform
+- Include calls-to-action and brand messaging
+
+### Step 2: Create Product & Media
+
+- Generate product designs using Eden's creative tools
+- Create products on [Printify](/docs/guides/printify) or [Shopify](/docs/guides/shopify)
+- Extract product images and media for video background
+
+### Step 3: Prepare Video Assets
+
+- Use the generated product media as video backgrounds
+- Ensure media meets Captions.ai requirements (high resolution, proper aspect ratios)
+- Organize assets for batch processing
+
+### Step 4: Generate Video with Captions.ai
+
+- Send script + product media to Captions.ai API
+- Use your trained AI clone for consistent branding
+- Configure video settings (duration, style, format)
+
+### Step 5: Retrieve and Process Video
+
+- Download generated video from Captions.ai
+- Apply any final edits or branding overlays
+- Optimize for different platform requirements
+
+### Step 6: Distribute to Social Channels
+
+- Upload to Instagram (Reels, Stories, Posts)
+- Post to TikTok with trending hashtags
+- Share on X (Twitter) with engaging captions
+- Cross-post to Farcaster and other Web3 platforms
+
+### Workflow Automation Tips
+
+1. **Batch Processing**
+
+   - Generate multiple scripts and products simultaneously
+   - Use templates for consistent formatting
+   - Set up automated scheduling for social posts
+
+2. **Platform Optimization**
+
+   - Create different video formats for each platform
+   - Optimize aspect ratios (9:16 for TikTok/Reels, 16:9 for YouTube)
+   - Adjust video length based on platform best practices
+
+3. **Content Strategy**
+
+   - Maintain consistent branding across all videos
+   - Use product media to showcase your offerings
+   - Include platform-specific calls-to-action
+
+4. **Analytics and Iteration**
+   - Track performance across different platforms
+   - A/B test different scripts and media combinations
+   - Refine your AI clone based on performance data
+
+## Next Steps
+
+Once your Captions.ai integration is configured:
+
+- Explore Eden's video creation tools
+- Set up automated video workflows
+- Create multiple AI clones for different purposes
+- Integrate with your content marketing strategy
+- Connect with [Printify](/docs/guides/printify) and [Shopify](/docs/guides/shopify) for complete product-to-video pipeline
+
+For more advanced usage, see our [Captions.ai API documentation](https://help.captions.ai/api-reference/api) and [Eden tools documentation](/docs/tools/).
