@@ -80,29 +80,11 @@ After installing the app:
 
    <Figure src="/img/shopify/store-location.png" caption="Store location is 79431860420" width="50%" />
 
-## Environment Variables Configuration
+## Agent Deployment Configuration
 
-Once you have your credentials, configure the following environment variables:
+Once you have your credentials, configure the corresponding variables for your Eden agent deployment.
 
-```bash
-# Shopify Configuration
-# Replace these values with your actual Shopify store credentials
-
-# Your Shopify store name (without .myshopify.com)
-SHOPIFY_STORE_NAME=your-store-name # Deployment specific
-
-# Shopify API version (e.g., 2023-10, 2024-01)
-SHOPIFY_API_VERSION=2025-07 # Does not need to change
-
-# Your Shopify access token with product creation permissions
-SHOPIFY_ACCESS_TOKEN=your-access-token-here # Deployment specific
-
-# Your Shopify location ID for inventory management
-SHOPIFY_LOCATION_ID=your-location-id-here # Deployment specific
-
-# Optional: Set to 'true' to enable debug logging
-DEBUG=false # Does not need to change
-```
+   <Figure src="/img/shopify/agent-deployment.png" caption="Configure name / API token / location ID for your store" width="75%" />
 
 ### Variable Descriptions
 
@@ -114,8 +96,6 @@ DEBUG=false # Does not need to change
 
 ## Security Best Practices
 
-- **Keep your access token secure** - never commit it to version control
-- **Use environment variables** - store credentials in secure environment variables
 - **Regularly rotate tokens** - regenerate your access token periodically
 - **Monitor API usage** - keep track of API calls to avoid rate limits
 - **Use minimal permissions** - only grant the permissions your integration needs
