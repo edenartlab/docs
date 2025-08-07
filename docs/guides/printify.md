@@ -10,6 +10,10 @@ import Figure from '@site/src/components/Figure';
 Eden's Printify integration allows you to programmatically create and manage print-on-demand products through Printify's network of print providers. This enables automated product creation, design management, and fulfillment through Eden's AI-powered tools.
 :::
 
+:::warning Note
+Printify is a drop-shipping service and will use its own connection to Shopify. This replaces the Eden Shopify integration. The Eden Shopify integration is best suited for physical goods where you have the inventory on-hand and wish to sell them via your Agent.
+:::
+
 ## Prerequisites
 
 Before setting up Printify integration, you'll need:

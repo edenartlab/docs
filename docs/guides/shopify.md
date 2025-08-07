@@ -86,6 +86,12 @@ Once you have your credentials, configure the corresponding variables for your E
 
    <Figure src="/img/shopify/agent-deployment.png" caption="Configure name / API token / location ID for your store" width="75%" />
 
+## Use
+
+Once you have deployed your Shopify configuration, prompt your Agent to create a Shopify product!
+
+   <Figure src="/img/shopify/product.png" caption="Creating a product on Shopify" width="50%" />
+
 ### Variable Descriptions
 
 - **`SHOPIFY_STORE_NAME`**: Your store's subdomain (e.g., `mystore` for `mystore.myshopify.com`)
