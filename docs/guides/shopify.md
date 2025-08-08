@@ -24,15 +24,20 @@ Before setting up Shopify integration, you'll need:
 
 1. **Log into your Shopify Admin**
 
-   - Go to your Shopify store's admin panel
+   - Go to your Shopify store's admin panel. If you need to create a new shopify go to [https://accounts.shopify.com/](https://accounts.shopify.com/) and sign up as appropriate, then create a store
    - Navigate to **Settings** → **Apps and sales channels**
 
 2. **Create a Private App**
 
    - Click on **Develop apps** (or **Manage private apps** for older stores)
+   - Click 'Allow custom app development' if not already selected
+
+   <Figure src="/img/shopify/app-dev.jpg" caption="Allow custom app development" width="50%" />
+
    - Click **Create an app**
    - Give your app a name (e.g., "Eden Integration")
-   - Enter your email address as the developer email
+   - Select your email address as the developer email
+   - Click **Create app**
 
 3. **Configure App Permissions**
 
@@ -40,12 +45,12 @@ Before setting up Shopify integration, you'll need:
    - Enable the following permissions:
      - **Products**: `read_products`, `write_products`
      - **Inventory**: `read_inventory`, `write_inventory`
-     - **Product images**: `read_product_images`, `write_product_images`
-     - **Variants**: `read_product_variants`, `write_product_variants`
+     - **Locations**: `read_locations`, `write_locations`
+     - **Publications**: `read_publications`, `write_publications`
    - Click **Save**
 
 4. **Install the App**
-   - Click **Install app** to install it on your store
+   - Click **Install app** to install it on your store. You may need to close the settings and reopen them for the button to enable.
    - Confirm the installation
 
 ### Step 2: Get Your Access Token
@@ -56,69 +61,36 @@ After installing the app:
 
    - In your app's overview page, you'll see an **Admin API access token**
    - Click **Reveal token once** to see it
-   - **Copy this token immediately** - you won't be able to see it again
+   - **Copy this token immediately** - you won't be able to see it again. It should start with `shpat`
 
 2. **Note Your Store Name**
 
    - Your store name is the subdomain of your Shopify store
    - For example, if your store URL is `mystore.myshopify.com`, your store name is `mystore`
 
+   <Figure src="/img/shopify/store-name.png" caption="Store name is pvw15i-8p" width="50%" />
+
 3. **Get Your Location ID**
+
    - Go to **Settings** → **Locations**
-   - You'll see a list of your store's locations (warehouses, retail stores, etc.)
-   - Note the **Location ID** for your primary location
-   - If you only have one location, this is typically your main warehouse or fulfillment center
+   - You'll see a list of your store's locations (warehouses, retail stores, etc.). For new stores this may just be 'Shop location' and then a country.
+   - Select a location
+   - Note the **Location ID** for your primary location. This is located at the end of the URL in your URL bar
    - The Location ID is a numeric value (e.g., `123456789`)
 
-## Store Configuration
+   <Figure src="/img/shopify/store-location.png" caption="Store location is 79431860420" width="50%" />
 
-### Required Store Settings
+## Agent Deployment Configuration
 
-Before using the integration, ensure your store is properly configured:
+Once you have your credentials, configure the corresponding variables for your Eden agent deployment.
 
-1. **Enable API Access**
+   <Figure src="/img/shopify/agent-deployment.png" caption="Configure name / API token / location ID for your store" width="75%" />
 
-   - Go to **Settings** → **Apps and sales channels**
-   - Ensure your private app is listed and active
+## Use
 
-2. **Configure Product Settings**
+Once you have deployed your Shopify configuration, prompt your Agent to create a Shopify product!
 
-   - Go to **Settings** → **Products**
-   - Ensure **Inventory tracking** is enabled if you plan to manage inventory
-   - Set up your **Default product type** and **Default vendor** if desired
-
-3. **Set Up Payment Methods**
-
-   - Go to **Settings** → **Payments**
-   - Ensure you have at least one payment method configured
-
-4. **Configure Shipping**
-   - Go to **Settings** → **Shipping and delivery**
-   - Set up shipping zones and rates
-
-## Environment Variables Configuration
-
-Once you have your credentials, configure the following environment variables:
-
-```bash
-# Shopify Configuration
-# Replace these values with your actual Shopify store credentials
-
-# Your Shopify store name (without .myshopify.com)
-SHOPIFY_STORE_NAME=your-store-name # Deployment specific
-
-# Shopify API version (e.g., 2023-10, 2024-01)
-SHOPIFY_API_VERSION=2025-07 # Does not need to change
-
-# Your Shopify access token with product creation permissions
-SHOPIFY_ACCESS_TOKEN=your-access-token-here # Deployment specific
-
-# Your Shopify location ID for inventory management
-SHOPIFY_LOCATION_ID=your-location-id-here # Deployment specific
-
-# Optional: Set to 'true' to enable debug logging
-DEBUG=false # Does not need to change
-```
+   <Figure src="/img/shopify/product.png" caption="Creating a product on Shopify" width="50%" />
 
 ### Variable Descriptions
 
@@ -130,8 +102,6 @@ DEBUG=false # Does not need to change
 
 ## Security Best Practices
 
-- **Keep your access token secure** - never commit it to version control
-- **Use environment variables** - store credentials in secure environment variables
 - **Regularly rotate tokens** - regenerate your access token periodically
 - **Monitor API usage** - keep track of API calls to avoid rate limits
 - **Use minimal permissions** - only grant the permissions your integration needs
